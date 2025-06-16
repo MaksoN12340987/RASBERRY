@@ -23,6 +23,7 @@ class SwitchI2C(SMBus):
     
     def __init__(self, name_switch, bus: int = 1, force: bool = False):
         self.name_switch = name_switch
+        self.bus = bus
         super().__init__(bus, force)
     
     def __str__(self):
