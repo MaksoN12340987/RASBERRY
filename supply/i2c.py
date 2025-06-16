@@ -100,25 +100,37 @@ class SwitchI2C(SMBus):
     def __str__(self):
         return f"Name {self.name}, i2c-{self.bus}: \n{self.read_byte_data(self.adress, self.registr)}"
 
-    def turn_on(self, reg: int = 0, data: int = 0):
+    def turn_on(self, reg: int = 0):
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
         self.open(self.bus)
 
-        super().write_byte_data(self.adress, self.registr, data)
+        super().write_byte_data(self.adress, self.registr, 100)
 
         result = self.read_byte_data(self.adress, self.registr)
-        logger_i2c.info(f"{result}, {self.adress}, {self.registr}, {data}")
+        logger_i2c.info(f"{result}, {self.adress}, {self.registr}, 100")
 
         self.close()
         return result
 
     def turn_off(self):
-        pass
+        if reg:
+            self.registr = self.matrix_addresses[f"{reg}"]
+        self.open(self.bus)
+
+        super().write_byte_data(self.adress, self.registr, 0)
+
+        result = self.read_byte_data(self.adress, self.registr)
+        logger_i2c.info(f"{result}, {self.adress}, {self.registr}, 0")
+
+        self.close()
+        return result
 
 
 i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
 
 reg = int(input("set reg: "))
-time = int(input("set data: "))
-print(i2c.turn_on(reg, time))
+print(i2c.turn_on(reg))
+
+reg = int(input("set reg: "))
+print(i2c.turn_on(reg))
