@@ -21,7 +21,7 @@ import time
 class SwitchI2C(SMBus):
     name_switch: str
     
-    def __init__(self, name_switch, bus = ..., force = ...):
+    def __init__(self, name_switch, bus: int = 1, force: bool = False):
         self.name_switch = name_switch
         super().__init__(bus, force)
     
@@ -33,4 +33,4 @@ class SwitchI2C(SMBus):
 i2c = SwitchI2C("super_1")
 
 print(i2c)
- 
+# it commit -m " add init"
