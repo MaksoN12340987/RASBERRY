@@ -1,5 +1,18 @@
 from smbus3 import SMBus
 import time
+import logging
+
+
+logger_i2c = logging.getLogger(__name__)
+file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
+file_formatter = logging.Formatter(
+    "\n%(asctime)s %(levelname)s %(name)s \n%(funcName)s %(lineno)d: \n%(message)s",
+    datefmt="%H:%M:%S %d-%m-%Y",
+)
+file_handler.setFormatter(file_formatter)
+logger_i2c.addHandler(file_handler)
+logger_i2c.setLevel(logging.INFO)
+
 
 # try:
 #     bus.write_byte(address, 0x00)  # Пример записи байта
@@ -19,12 +32,14 @@ import time
 
 
 class SwitchI2C(SMBus):
+    number_i2c: int
     name_switch: str
     adress_switch: int
     defolt_registr: int
 
     def __init__(
         self,
+        number_i2c,
         name_switch,
         adress_switch,
         defolt_registr,
@@ -33,32 +48,34 @@ class SwitchI2C(SMBus):
     ):
         validation = self.__validation_input(
             [
-                bus,
+                number_i2c,
                 name_switch,
                 adress_switch,
                 defolt_registr,
             ]
         )
-        print(validation)
+        logger_i2c.info(validation)
 
         self.bus = validation["number_i2c"]
         self.name_switch = validation["name"]
         self.adress_switch = validation["adress"]
         self.defolt_registr = validation["registr"]
-        super().__init__(bus, force)
+        super().__init__(self.bus, force)
 
-    def __validation_input(self, validation_dict: dict = {}):
+    def __validation_input(self, validation_list: list = {}):
         result ={}
-        for value, i in enumerate(validation_dict):
+        for value, i in enumerate(validation_list):
             if i == 0:
                 if value != 1:
                     result["number_i2c"] = value
+                    logger_i2c.info(value)
                     print(f"Не стандартный номер шины i2c {value}")
                 else:
-                    print(f"Номер шины i2c {value}")
+                    logger_i2c.info(value)
                     result["number_i2c"] = value
             elif i == 1:
                 if len(f"{value}") != 0 and len(f"{value}") < 101:
+                    logger_i2c.info(value)
                     result["name"] = value
                 else:
                     raise ValueError("Имя не должно быть пустыи и не длиннее 100 символов")
@@ -66,11 +83,13 @@ class SwitchI2C(SMBus):
                 if value > 255:
                     raise ValueError("Имя не должно быть пустыи и не длиннее 100 символов")
                 else:
+                    logger_i2c.info(value)
                     result["adress"] = value
             else:
                 if value > 255:
                     raise ValueError("Имя не должно быть пустыи и не длиннее 100 символов")
                 else:
+                    logger_i2c.info(value)
                     result["registr"] = value
 
         return result
@@ -91,7 +110,7 @@ class SwitchI2C(SMBus):
         return text
 
 
-i2c = SwitchI2C("super_1", 40, 3)
+i2c = SwitchI2C(1, "super_1", 40, 3)
 
 print(i2c)
 # it commit -m " add init"
