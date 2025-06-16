@@ -1,4 +1,4 @@
-from smbus3 import SMBus
+from smbus3 import SMBus # type: ignore
 import time
 import logging
 
@@ -14,21 +14,7 @@ logger_i2c.addHandler(file_handler)
 logger_i2c.setLevel(logging.INFO)
 
 
-# try:
-#     bus.write_byte(address, 0x00)  # Пример записи байта
-#     time.sleep(0.1)
-#     data = bus.read_byte(address)  # Пример чтения байта
-#     print(f"Прочитано: {data}")
-# except Exception as e:
-#     print(f"Ошибка: {e}")
-
-
 # sudo apt-get install python-smbus
-
-# bus = SMBus(1)
-# data = bus.read_byte_data(0x68, 0x75)
-# print(hex(data))
-# bus.close()
 
 
 class SwitchI2C(SMBus):
@@ -43,7 +29,6 @@ class SwitchI2C(SMBus):
         name_switch,
         adress_switch,
         defolt_registr,
-        bus: int = 1,
         force: bool = False,
     ):
         validation = self.__validation_input(
@@ -80,14 +65,14 @@ class SwitchI2C(SMBus):
                 else:
                     raise ValueError("Имя не должно быть пустыи и не длиннее 100 символов")
             elif i == 2:
-                if value > 255:
-                    raise ValueError("Имя не должно быть пустыи и не длиннее 100 символов")
+                if int(value) > 255:
+                    raise ValueError("Адрес не должун быть больше 255")
                 else:
                     logger_i2c.info(value)
                     result["adress"] = value
             else:
-                if value > 255:
-                    raise ValueError("Имя не должно быть пустыи и не длиннее 100 символов")
+                if int(value) > 255:
+                    raise ValueError("Адрес не должун быть больше 255")
                 else:
                     logger_i2c.info(value)
                     result["registr"] = value
@@ -97,11 +82,11 @@ class SwitchI2C(SMBus):
     def __str__(self):
         # return f"Name {self.name_switch}, i2c-{self.bus}: \n{self.read_byte_data(hex(adress), hex(regster))}"
         
-        return f"Name {self.name_switch}, i2c-{self.bus}: \n{hex(self.adress_switch), hex(self.defolt_registr)}"
+        return f"Name {self.name_switch}, i2c-{self.bus}: \n{self.adress_switch, self.defolt_registr}"
 
 
 
-i2c = SwitchI2C(1, "super_1", 40, 3)
+i2c = SwitchI2C(1, "super_1", 0x40, 0x03)
 
 print(i2c)
 # it commit -m " add init"
