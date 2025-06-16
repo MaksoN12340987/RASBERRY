@@ -65,13 +65,13 @@ class SwitchI2C(SMBus):
                 else:
                     raise ValueError("Имя не должно быть пустыи и не длиннее 100 символов")
             elif i == 2:
-                if int(value) > 255:
+                if value > 255:
                     raise ValueError("Адрес не должун быть больше 255")
                 else:
                     logger_i2c.info(value)
                     result["adress"] = value
             else:
-                if int(value) > 255:
+                if value > 255:
                     raise ValueError("Адрес не должун быть больше 255")
                 else:
                     logger_i2c.info(value)
@@ -82,7 +82,7 @@ class SwitchI2C(SMBus):
     def __str__(self):
         # return f"Name {self.name_switch}, i2c-{self.bus}: \n{self.read_byte_data(hex(adress), hex(regster))}"
         
-        return f"Name {self.name_switch}, i2c-{self.bus}: \n{self.adress_switch, self.defolt_registr}"
+        return f"Name {self.name_switch}, i2c-{self.bus}: \n{hex(self.adress_switch), hex(self.defolt_registr)}"
 
 
 
