@@ -80,9 +80,7 @@ class SwitchI2C(SMBus):
         return result
 
     def __str__(self):
-        # return f"Name {self.name_switch}, i2c-{self.bus}: \n{self.read_byte_data(hex(adress), hex(regster))}"
-        
-        return f"Name {self.name_switch}, i2c-{self.bus}: \n{hex(self.adress_switch), hex(self.defolt_registr)}"
+        return f"Name {self.name_switch}, i2c-{self.bus}: \n{self.read_byte_data(hex(self.adress_switch), hex(self.defolt_registr))}"
 
 
 
