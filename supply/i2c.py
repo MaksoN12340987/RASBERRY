@@ -83,11 +83,11 @@ class SwitchI2C(SMBus):
     def __str__(self):
         return f"Name {self.name}, i2c-{self.bus}: \n{self.read_byte_data(self.adress, self.registr)}"
 
-    def turn_on(self, registr, data):
+    def turn_on(self, data):
         # self.open(self.bus)
         
-        self.write_byte_data(self.adress, registr, data)
-        logger_i2c.info(self.read_byte_data(self.name, registr))
+        self.write_byte_data(self.adress, self.registr, data)
+        logger_i2c.info(self.read_byte_data(self.name, self.registr))
         
         # self.close()
     
@@ -96,7 +96,7 @@ class SwitchI2C(SMBus):
 
 
 
-i2c = SwitchI2C(1, "super_1", 0x40, 0x03)
+i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
 
-print(i2c.write_byte_data(64, 34, 100))
+print(i2c.turn_on(100))
 # it commit -m " add init"
