@@ -14,10 +14,27 @@ logger_i2c.addHandler(file_handler)
 logger_i2c.setLevel(logging.INFO)
 
 
-# sudo apt-get install python-smbus
+# sudo apt-get install smbus3
 
 
 class SwitchI2C(SMBus):
+    """Класс включайющий или отключающий устройства на
+    аналоговой шмне i2c
+
+    Args:
+        SMBus (Python библиотека smbus3): родительский класс
+        библиотеки, позволяющей управлять устройствами по
+        шине i2c
+
+    Raises:
+    Исключения метода __validation_input
+        ValueError: имя длиннее 100 символов или пустое
+        ValueError: адресс устройства задан не корректно
+        ValueError: адресс регистра памяти задан не корректно
+
+    Returns:
+        _int_: значения регистра памяти
+    """    
     i2c: int
     name: str
     adress: int
@@ -64,6 +81,28 @@ class SwitchI2C(SMBus):
         }
 
     def __validation_input(self, validation_list: list = {}):
+        """Приватный метод валидации данных, выполняет проверки
+        переданных значений
+
+        Args:
+            validation_list (list, optional): список параметров
+            в порядке:
+            - номер шины
+            - название устройства
+            - адресс устройства
+            - регистр памяти по умолчанию
+            Defaults to {}.
+
+        Raises:
+            ValueError: имя длиннее 100 символов или пустое
+            ValueError: адресс устройства задан не корректно
+            ValueError: адресс регистра памяти задан не корректно
+
+        Returns:
+            _dict_: ключи - короткое наименование
+                    значения переменных, прошедших
+                    валидацию
+        """        
         result = {}
         for i, value in enumerate(validation_list):
             if i == 0:
@@ -75,7 +114,7 @@ class SwitchI2C(SMBus):
                     logger_i2c.info(value)
                     result["i2c"] = value
             elif i == 1:
-                if len(f"{value}") != 0 and len(f"{value}") < 101:
+                if len(f"{value}") != 0 or len(f"{value}") < 101:
                     logger_i2c.info(value)
                     result["name"] = value
                 else:
@@ -100,7 +139,18 @@ class SwitchI2C(SMBus):
     def __str__(self):
         return f"Name {self.name}, i2c-{self.bus}: \n{self.read_byte_data(self.adress, self.registr)}"
 
-    def turn_on(self, reg: int = 0):
+    def turn_on(self, reg: int = 20):
+        """Включи устройство
+
+        Args:
+            reg (int, optional): регистр памяти в диапозоне:
+            [20 ... 26]
+            [30 ... 34]
+            Defaults to 20.
+
+        Returns:
+            _int_: значение указанного регистра памяти
+        """        
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
         self.open(self.bus)
@@ -113,7 +163,18 @@ class SwitchI2C(SMBus):
         self.close()
         return result
 
-    def turn_off(self, reg: int = 0):
+    def turn_off(self, reg: int = 20):
+        """Выключи устройство
+
+        Args:
+            reg (int, optional): регистр памяти в диапозоне:
+            [20 ... 26]
+            [30 ... 34]
+            Defaults to 20.
+
+        Returns:
+            _int_: значение указанного регистра памяти
+        """        
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
         self.open(self.bus)
