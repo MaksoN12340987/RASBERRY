@@ -1,20 +1,13 @@
-# from smbus import SMBus # type: ignore
-
-
-
-import smbus
+from smbus3 import SMBus
 import time
 
-bus = smbus.SMBus(1)  # 1 указывает на /dev/i2c-1
-address = 0x40  # Замените на адрес вашего устройства
-
-try:
-    bus.write_byte(address, 0x00)  # Пример записи байта
-    time.sleep(0.1)
-    data = bus.read_byte(address)  # Пример чтения байта
-    print(f"Прочитано: {data}")
-except Exception as e:
-    print(f"Ошибка: {e}")
+# try:
+#     bus.write_byte(address, 0x00)  # Пример записи байта
+#     time.sleep(0.1)
+#     data = bus.read_byte(address)  # Пример чтения байта
+#     print(f"Прочитано: {data}")
+# except Exception as e:
+#     print(f"Ошибка: {e}")
 
 
 # sudo apt-get install python-smbus
