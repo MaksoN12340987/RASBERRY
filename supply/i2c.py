@@ -113,7 +113,7 @@ class SwitchI2C(SMBus):
         self.close()
         return result
 
-    def turn_off(self):
+    def turn_off(self, reg: int = 0):
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
         self.open(self.bus)
