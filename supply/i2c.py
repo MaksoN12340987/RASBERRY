@@ -94,20 +94,11 @@ class SwitchI2C(SMBus):
 
         return result
 
-    def __str__(self, adress: int = 0, regster: int = 0):
-        # if not adress and not regster:
-        #     text = f"Name {self.name_switch}, i2c-{self.bus}: \n{self.read_byte_data(hex(adress), hex(regster))}"
-        # else:
-        #     adress, regster = self.adress_switch, self.defolt_registr
-        #     text = f"Name {self.name_switch}, i2c-{self.bus}: \n{self.read_byte_data(hex(adress), hex(regster))}"
-        # return text
+    def __str__(self):
+        # text = f"Name {self.name_switch}, i2c-{self.bus}: \n{self.read_byte_data(hex(adress), hex(regster))}"
+        
+        text = f"Name {self.name_switch}, i2c-{self.bus}: \n{hex(self.adress_switch), hex(self.defolt_registr)}"
 
-        if not adress and not regster:
-            text = f"Name {self.name_switch}, i2c-{self.bus}: \n{hex(adress), hex(regster)}"
-        else:
-            adress, regster = self.adress_switch, self.defolt_registr
-            text = f"Name {self.name_switch}, i2c-{self.bus}: \n{hex(adress), hex(regster)}"
-        return text
 
 
 i2c = SwitchI2C(1, "super_1", 40, 3)
