@@ -18,33 +18,33 @@ logger_i2c.setLevel(logging.INFO)
 
 
 class SwitchI2C(SMBus):
-    number_i2c: int
-    name_switch: str
-    adress_switch: int
-    defolt_registr: int
+    i2c: int
+    name: str
+    adress: int
+    registr: int
 
     def __init__(
         self,
-        number_i2c,
-        name_switch,
-        adress_switch,
-        defolt_registr,
+        i2c,
+        name,
+        adress,
+        registr,
         force: bool = False,
     ):
         validation = self.__validation_input(
             [
-                number_i2c,
-                name_switch,
-                adress_switch,
-                defolt_registr,
+                i2c,
+                name,
+                adress,
+                registr,
             ]
         )
         logger_i2c.info(validation)
 
-        self.bus = validation["number_i2c"]
-        self.name_switch = validation["name"]
-        self.adress_switch = validation["adress"]
-        self.defolt_registr = validation["registr"]
+        self.bus = validation["i2c"]
+        self.name = validation["name"]
+        self.adress = validation["adress"]
+        self.registr = validation["registr"]
         super().__init__(self.bus, force)
         
 
@@ -53,12 +53,12 @@ class SwitchI2C(SMBus):
         for i, value in enumerate(validation_list):
             if i == 0:
                 if value != 1:
-                    result["number_i2c"] = value
+                    result["i2c"] = value
                     logger_i2c.info(value)
                     print(f"Не стандартный номер шины i2c {value}")
                 else:
                     logger_i2c.info(value)
-                    result["number_i2c"] = value
+                    result["i2c"] = value
             elif i == 1:
                 if len(f"{value}") != 0 and len(f"{value}") < 101:
                     logger_i2c.info(value)
@@ -81,13 +81,13 @@ class SwitchI2C(SMBus):
         return result
 
     def __str__(self):
-        return f"Name {self.name_switch}, i2c-{self.bus}: \n{self.read_byte_data(self.adress_switch, self.defolt_registr)}"
+        return f"Name {self.name}, i2c-{self.bus}: \n{self.read_byte_data(self.adress, self.registr)}"
 
     def turn_on(self, registr, data):
         # self.open(self.bus)
         
-        self.write_byte_data(self.name_switch, registr, data)
-        logger_i2c.info(self.read_byte_data(self.name_switch, registr))
+        self.write_byte_data(self.name, registr, data)
+        logger_i2c.info(self.read_byte_data(self.name, registr))
         
         # self.close()
     
@@ -98,5 +98,5 @@ class SwitchI2C(SMBus):
 
 i2c = SwitchI2C(1, "super_1", 0x40, 0x03)
 
-print(i2c.turn_on(0x22, 10))
+print(i2c.turn_on(0x22, 0x10))
 # it commit -m " add init"
