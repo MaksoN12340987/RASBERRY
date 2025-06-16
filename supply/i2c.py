@@ -84,12 +84,12 @@ class SwitchI2C(SMBus):
         return f"Name {self.name_switch}, i2c-{self.bus}: \n{self.read_byte_data(self.adress_switch, self.defolt_registr)}"
 
     def turn_on(self, registr, data):
-        self.open(self.bus)
+        # self.open(self.bus)
         
         self.write_byte_data(self.name_switch, registr, data)
         logger_i2c.info(self.read_byte_data(self.name_switch, registr))
         
-        self.close()
+        # self.close()
     
     def turn_off(self):
         pass
