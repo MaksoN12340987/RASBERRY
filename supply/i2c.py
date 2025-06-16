@@ -39,6 +39,7 @@ class SwitchI2C(SMBus):
                 defolt_registr,
             ]
         )
+        print(validation)
 
         self.bus = validation["number_i2c"]
         self.name_switch = validation["name"]
@@ -52,8 +53,9 @@ class SwitchI2C(SMBus):
             if i == 0:
                 if value != 1:
                     result["number_i2c"] = value
-                    print(f"Не стандартный омер шины i2c {value}")
+                    print(f"Не стандартный номер шины i2c {value}")
                 else:
+                    print(f"Номер шины i2c {value}")
                     result["number_i2c"] = value
             elif i == 1:
                 if len(f"{value}") != 0 and len(f"{value}") < 101:
