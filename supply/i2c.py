@@ -38,6 +38,6 @@ class SwitchI2C(I2C):
 
 
 
-item_super = SwitchI2C("super_1", id=40, driver="bcm2835")
+item_super = SwitchI2C("super_1", id=40)
 
 print(item_super)
