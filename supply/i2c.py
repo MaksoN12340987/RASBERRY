@@ -38,6 +38,8 @@ class SwitchI2C(I2C):
 
 
 
-item_super = SwitchI2C("super_1", id=40)
+item_super = SwitchI2C("super_1", id=40, driver="bcm2708")
 
 print(item_super)
+
+# sudo apt-get install i2c-tools
