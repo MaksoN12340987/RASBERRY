@@ -91,7 +91,7 @@ class SwitchI2C(SMBus):
         self.write_byte_data(self.adress, self.registr, data)
         
         result = self.read_byte_data(self.adress, self.registr)
-        logger_i2c.info(result)
+        logger_i2c.info(result, self.adress, self.registr, data)
         
         self.close()
         return result
