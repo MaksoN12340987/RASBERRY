@@ -26,7 +26,8 @@ class SwitchI2C(SMBus):
         super().__init__(bus, force)
     
     def __str__(self):
-        return f"{self.name_switch}: \n{self.write_quick(0x40)}"
+        return f"""Name {self.name_switch}, i2c-{self.bus}:
+    {self.write_quick(40)}"""
 
 
 
