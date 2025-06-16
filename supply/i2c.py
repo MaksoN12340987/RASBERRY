@@ -102,7 +102,7 @@ class SwitchI2C(SMBus):
 
     def turn_on(self, reg: int = 0, data: int = 0):
         if reg:
-            self.registr = self.matrix_addresses[reg]
+            self.registr = self.matrix_addresses[f"{reg}"]
         self.open(self.bus)
 
         super().write_byte_data(self.adress, self.registr, data)
