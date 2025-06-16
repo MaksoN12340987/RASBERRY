@@ -127,10 +127,10 @@ class SwitchI2C(SMBus):
         return result
 
 
-i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
+# i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
 
-reg = int(input("set reg: "))
-print(i2c.turn_on(reg))
+# reg = int(input("set reg: "))
+# print(i2c.turn_on(reg))
 
-reg = int(input("set reg: "))
-print(i2c.turn_off(reg))
+# reg = int(input("set reg: "))
+# print(i2c.turn_off(reg))
