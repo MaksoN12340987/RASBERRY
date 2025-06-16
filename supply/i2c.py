@@ -98,5 +98,5 @@ class SwitchI2C(SMBus):
 
 i2c = SwitchI2C(1, "super_1", 0x40, 0x03)
 
-print(i2c.turn_on(22, 100))
+print(i2c.turn_on(22, 10))
 # it commit -m " add init"
