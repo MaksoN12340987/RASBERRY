@@ -98,5 +98,5 @@ class SwitchI2C(SMBus):
 
 i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
 
+time = input("set data: ")
 print(i2c.turn_on(100))
-# it commit -m " add init"
