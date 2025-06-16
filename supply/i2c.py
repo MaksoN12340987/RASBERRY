@@ -4,7 +4,7 @@ import logging
 
 
 logger_i2c = logging.getLogger(__name__)
-file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
+file_handler = logging.FileHandler(f"log/{__name__}.log", mode="w", encoding="UTF8")
 file_formatter = logging.Formatter(
     "\n%(asctime)s %(levelname)s %(name)s \n%(funcName)s %(lineno)d: \n%(message)s",
     datefmt="%H:%M:%S %d-%m-%Y",
@@ -86,7 +86,7 @@ class SwitchI2C(SMBus):
     def turn_on(self, registr, data):
         # self.open(self.bus)
         
-        self.write_byte_data(self.name, registr, data)
+        self.write_byte_data(self.adress, registr, data)
         logger_i2c.info(self.read_byte_data(self.name, registr))
         
         # self.close()
