@@ -22,20 +22,57 @@ class SwitchI2C(SMBus):
     name_switch: str
     adress_switch: int
     defolt_registr: int
-    
-    def __init__(self, name_switch, adress_switch, defolt_registr, bus: int = 1, force: bool = False):
-        validation = self.__validation_input([name_switch, adress_switch, defolt_registr, bus])
-        
-        self.bus = validation[bus]
-        self.name_switch = validation[name_switch]
-        self.adress_switch = validation[adress_switch]
-        self.defolt_registr = validation[defolt_registr]
+
+    def __init__(
+        self,
+        name_switch,
+        adress_switch,
+        defolt_registr,
+        bus: int = 1,
+        force: bool = False,
+    ):
+        validation = self.__validation_input(
+            [
+                bus,
+                name_switch,
+                adress_switch,
+                defolt_registr,
+            ]
+        )
+
+        self.bus = validation["number_i2c"]
+        self.name_switch = validation["name"]
+        self.adress_switch = validation["adress"]
+        self.defolt_registr = validation["registr"]
         super().__init__(bus, force)
-        
-    def __validation_input():
-        
-        return {}
-    
+
+    def __validation_input(self, validation_dict: dict = {}):
+        result ={}
+        for value, i in enumerate(validation_dict):
+            if i == 0:
+                if value != 1:
+                    result["number_i2c"] = value
+                    print(f"Не стандартный омер шины i2c {value}")
+                else:
+                    result["number_i2c"] = value
+            elif i == 1:
+                if len(value) != 0 and len(value) < 101:
+                    result["name"] = value
+                else:
+                    raise ValueError("Имя не должно быть пустыи и не длиннее 100 символов")
+            elif i == 2:
+                if value > 255:
+                    raise ValueError("Имя не должно быть пустыи и не длиннее 100 символов")
+                else:
+                    result["adress"] = value
+            else:
+                if value > 255:
+                    raise ValueError("Имя не должно быть пустыи и не длиннее 100 символов")
+                else:
+                    result["registr"] = value
+
+        return result
+
     def __str__(self, adress: int = 0, regster: int = 0):
         # if not adress and not regster:
         #     text = f"Name {self.name_switch}, i2c-{self.bus}: \n{self.read_byte_data(hex(adress), hex(regster))}"
@@ -43,14 +80,13 @@ class SwitchI2C(SMBus):
         #     adress, regster = self.adress_switch, self.defolt_registr
         #     text = f"Name {self.name_switch}, i2c-{self.bus}: \n{self.read_byte_data(hex(adress), hex(regster))}"
         # return text
-        
+
         if not adress and not regster:
             text = f"Name {self.name_switch}, i2c-{self.bus}: \n{hex(adress), hex(regster)}"
         else:
             adress, regster = self.adress_switch, self.defolt_registr
             text = f"Name {self.name_switch}, i2c-{self.bus}: \n{hex(adress), hex(regster)}"
         return text
-
 
 
 i2c = SwitchI2C("super_1", 40, 3)
