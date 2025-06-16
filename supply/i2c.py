@@ -100,6 +100,6 @@ class SwitchI2C(SMBus):
 
 i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
 
-reg = input("set reg: ")
-time = input("set data: ")
+reg = int(input("set reg: "))
+time = int(input("set data: "))
 print(i2c.turn_on(reg, time))
