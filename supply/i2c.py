@@ -133,4 +133,4 @@ reg = int(input("set reg: "))
 print(i2c.turn_on(reg))
 
 reg = int(input("set reg: "))
-print(i2c.turn_on(reg))
+print(i2c.turn_off(reg))
