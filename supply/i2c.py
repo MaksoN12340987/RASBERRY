@@ -22,24 +22,39 @@ from i2cpy import I2C
 
 
 
-class SwitchI2C(I2C):
-    device_name: str
+# class SwitchI2C(I2C):
+#     device_name: str
     
-    def __init__(self, device_name, id = None, *, driver = None, freq = 400000, auto_init = True, **kwargs):
-        self.device_name = device_name
-        super().__init__(id, driver=driver, freq=freq, auto_init=auto_init, **kwargs)
+#     def __init__(self, device_name, id = None, *, driver = None, freq = 400000, auto_init = True, **kwargs):
+#         self.device_name = device_name
+#         super().__init__(id, driver=driver, freq=freq, auto_init=auto_init, **kwargs)
     
-    def __str__(self):
-        self.init()
-        self.deinit()
-        return f"{self.scan()}"
+#     def __str__(self):
+#         self.init()
+#         self.deinit()
+#         return f"{self.scan()}"
     
     
 
 
 
-item_super = SwitchI2C(device_name="super_1", driver="i2c-1")
+# item_super = SwitchI2C("super_1", driver="bcm2708", "/dev/i2c-1")
 
-print(item_super)
+# print(item_super)
 
 # sudo apt-get install i2c-tools
+
+from i2cpy import I2C
+
+i2c = I2C(driver="bcm2708")                       # explicitly specify driver
+
+i2c = I2C("/dev/i2c-1")
+
+
+print("init")
+i2c.init()
+
+print("deinit")
+i2c.deinit()
+
+print(i2c.scan())
