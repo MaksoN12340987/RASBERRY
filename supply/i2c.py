@@ -27,8 +27,10 @@ class SwitchI2C(SMBus):
         super().__init__(bus, force)
     
     def __str__(self):
-        return f"""Name {self.name_switch}, i2c-{self.bus}:
-    {self.read_byte_data(0x40, 0x00)}"""
+        with self.SMBus(self.bus):
+            text = f"Name {self.name_switch}, i2c-{self.bus}: \n{self.read_byte_data(0x40, 0x00)}"
+        
+        return text
 
 
 
