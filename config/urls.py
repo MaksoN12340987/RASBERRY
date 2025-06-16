@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from supply.apps import SupplyConfig
 
 from django.contrib import admin
@@ -21,5 +22,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path(f'{SupplyConfig.name}/', include(f'{SupplyConfig.name}.urls', namespace=f'{SupplyConfig.name}'))
+    path(
+        f"{SupplyConfig.name}/",
+        include(f"{SupplyConfig.name}.urls", namespace=f"{SupplyConfig.name}"),
+    ),
 ]
