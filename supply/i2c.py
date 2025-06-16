@@ -46,10 +46,25 @@ class SwitchI2C(SMBus):
         self.adress = validation["adress"]
         self.registr = validation["registr"]
         super().__init__(self.bus, force)
-        
+        self.matrix_addresses = {
+            # 2-pin register
+            "20": "32",
+            "21": "33",
+            "22": "34",
+            "23": "35",
+            "24": "36",
+            "25": "37",
+            "26": "38",
+            # 4-pin register
+            "30": "48",
+            "31": "49",
+            "32": "50",
+            "33": "51",
+            "34": "51",
+        }
 
     def __validation_input(self, validation_list: list = {}):
-        result ={}
+        result = {}
         for i, value in enumerate(validation_list):
             if i == 0:
                 if value != 1:
@@ -64,7 +79,9 @@ class SwitchI2C(SMBus):
                     logger_i2c.info(value)
                     result["name"] = value
                 else:
-                    raise ValueError("Имя не должно быть пустыи и не длиннее 100 символов")
+                    raise ValueError(
+                        "Имя не должно быть пустыи и не длиннее 100 символов"
+                    )
             elif i == 2:
                 if value > 255:
                     raise ValueError("Адрес не должун быть больше 255")
@@ -85,20 +102,19 @@ class SwitchI2C(SMBus):
 
     def turn_on(self, reg: int = 0, data: int = 0):
         if reg:
-            self.registr = reg
+            self.registr = self.matrix_addresses[reg]
         self.open(self.bus)
-        
-        self.write_byte_data(self.adress, self.registr, data)
-        
+
+        super().write_byte_data(self.adress, self.registr, data)
+
         result = self.read_byte_data(self.adress, self.registr)
         logger_i2c.info(f"{result}, {self.adress}, {self.registr}, {data}")
-        
+
         self.close()
         return result
-    
+
     def turn_off(self):
         pass
-
 
 
 i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
