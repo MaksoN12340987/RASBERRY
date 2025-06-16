@@ -53,7 +53,7 @@ class SwitchI2C(SMBus):
 
 
 
-i2c = SwitchI2C("super_1")
+i2c = SwitchI2C("super_1", 40, 3)
 
 print(i2c)
 # it commit -m " add init"
