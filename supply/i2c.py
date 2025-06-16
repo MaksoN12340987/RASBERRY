@@ -64,7 +64,7 @@ class SwitchI2C(SMBus):
 
     def __validation_input(self, validation_list: list = {}):
         result ={}
-        for value, i in enumerate(validation_list):
+        for i, value in enumerate(validation_list):
             if i == 0:
                 if value != 1:
                     result["number_i2c"] = value
