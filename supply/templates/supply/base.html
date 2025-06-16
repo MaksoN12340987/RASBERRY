@@ -1,0 +1,86 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Управление светом{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            
+            <div class="col-4 vh-100 bg-dark text-white p-2">
+            
+                <div class="d-flex align-items-center ms-3">
+                    <!--  href="/?img=bootstrap-logo-white.svg" -->
+                    <img src="" alt="/static/images/bootstrap-logo-white.svg" width="40" height="32" class="d-inline-block">
+                    <div class="flex-grow-0"><h2 class="mt-1 ms-4">Меню</h2></div>
+                </div>
+
+                <div class="col ms-1 mb-3 me-2"><hr></div>
+
+                <div class="d-grid">
+                    
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                          <a class="nav-link" aria-current="page" href="/?page=main">
+                            <div class="d-flex text-bg-primary rounded-3">
+                                <img src="/static/images/home_9.png" alt="./data/home_9.png" width="24" height="20" class="d-inline-block mt-2 ms-2">
+                                <div class="flex-grow-0 ms-2 mt-2"><h5>Главная</h5></div>
+                            </div>
+                          </a>
+                        </li>
+                    </ul>
+
+                    {% block content %}{% endblock %}
+
+                </div>
+
+            </div>
+
+            <div class="col-8 bg-dark text-white">
+
+                <div class="text-center p-4 mt-5">
+                    <h1>Главная</h1>
+                    <h4>Вы наxодитесь на сайте для продажи товаров</h4>
+                </div>
+
+                <div class="container-fluid text-center p-4">
+                    <div class="row row-cols-3">
+                    
+                        
+                    
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="fixed-bottom">
+          
+            <div class="col-2 bg-dark text-white p-2">
+  
+              <div class="col ms-1 mb-3 me-2"><hr></div>
+              
+              <div class="d-flex align-items-center ms-3">
+                <img src="/static/images/icon_man.png" alt="" width="30" height="30" class="d-inline-block rounded-circle">
+                          
+                <div class="flex-grow-0 text-white">
+                  <select class="form-select bg-dark text-white" style="--bs-border-color: #161719" aria-label="Пользователь">
+                      <option selected>Пользователь</option>
+                      <option value="1">Профиль</option>
+                      <option value="1">Выход</option>
+                    </select>
+                </div>
+              </div>
+  
+            </div>
+              
+        </div>
+    </div>
+    <script src="/static/js/bootstrap.bundle.js"></script>
+</body>
+</html>

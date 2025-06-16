@@ -1,0 +1,30 @@
+{
+  "name": "foodtronics-supervisor",
+  "version": "2.1.0",
+  "description": "Foodtronics power supervisor",
+  "main": "supervisor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier:write": "prettier --write ."
+  },
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "aerp-service-transport": "git+ssh://git@github.com/foodtronics/aerp-service-transport.git",
+    "commander": "^2.19.0",
+    "cron": "^1.8.2",
+    "food-rpc": "github:foodtronics/food-rpc",
+    "hast-util-to-html": "^5.0.0",
+    "hastscript": "^5.0.0",
+    "i2c-bus": "^5.1.0",
+    "kefir": "^3.8.8",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "ramda": "^0.27.0",
+    "reconnecting-websocket": "^4.4.0",
+    "u-queue": "^1.1.0",
+    "ws": "^8.18.0"
+  }
+}
