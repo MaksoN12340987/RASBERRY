@@ -18,11 +18,19 @@ import time
 # bus.close()
 
 
-# class SwitchI2C(SMBus):
+class SwitchI2C(SMBus):
+    name_switch: str
     
-#     def __str__(self):
-#         return f"{self.write_quick(0x41)}"
+    def __init__(self, name_switch, bus = ..., force = ...):
+        self.name_switch = name_switch
+        super().__init__(bus, force)
+    
+    def __str__(self):
+        return f"{self.name_switch}: \n{self.write_quick(0x40)}"
 
 
-# i2c = SwitchI2C()
+
+i2c = SwitchI2C("super_1")
+
+print(i2c)
  
