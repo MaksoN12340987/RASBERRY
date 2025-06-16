@@ -83,7 +83,9 @@ class SwitchI2C(SMBus):
     def __str__(self):
         return f"Name {self.name}, i2c-{self.bus}: \n{self.read_byte_data(self.adress, self.registr)}"
 
-    def turn_on(self, data):
+    def turn_on(self, reg: int = 0, data: int = 0):
+        if reg:
+            self.registr = reg
         self.open(self.bus)
         
         self.write_byte_data(self.adress, self.registr, data)
@@ -98,5 +100,6 @@ class SwitchI2C(SMBus):
 
 i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
 
+reg = input("set reg: ")
 time = input("set data: ")
-print(i2c.turn_on(100))
+print(i2c.turn_on(reg, time))
