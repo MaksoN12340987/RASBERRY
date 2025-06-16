@@ -1,4 +1,4 @@
-from smbus3 import SMBus # type: ignore
+from smbus3 import SMBus
 import time
 import logging
 
@@ -46,6 +46,7 @@ class SwitchI2C(SMBus):
         self.adress_switch = validation["adress"]
         self.defolt_registr = validation["registr"]
         super().__init__(self.bus, force)
+        
 
     def __validation_input(self, validation_list: list = {}):
         result ={}
@@ -80,7 +81,7 @@ class SwitchI2C(SMBus):
         return result
 
     def __str__(self):
-        return f"Name {self.name_switch}, i2c-{self.bus}: \n{self.read_byte_data(hex(self.adress_switch), hex(self.defolt_registr))}"
+        return f"Name {self.name_switch}, i2c-{self.bus}: \n{self.read_byte_data(self.adress_switch, self.defolt_registr)}"
 
 
 
