@@ -89,9 +89,12 @@ class SwitchI2C(SMBus):
         self.open(self.bus)
         
         self.write_byte_data(self.adress, self.registr, data)
-        logger_i2c.info(self.read_byte_data(self.adress, self.registr))
+        
+        result = self.read_byte_data(self.adress, self.registr)
+        logger_i2c.info(result)
         
         self.close()
+        return result
     
     def turn_off(self):
         pass
