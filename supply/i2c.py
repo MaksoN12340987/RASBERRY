@@ -38,7 +38,7 @@ class SwitchI2C(I2C):
 
 
 
-item_super = SwitchI2C("super_1", driver="bcm2708")
+item_super = SwitchI2C(device_name="super_1", driver="i2c-1")
 
 print(item_super)
 
