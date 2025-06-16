@@ -56,7 +56,7 @@ class SwitchI2C(SMBus):
                 else:
                     result["number_i2c"] = value
             elif i == 1:
-                if len(value) != 0 and len(value) < 101:
+                if len(f"{value}") != 0 and len(f"{value}") < 101:
                     result["name"] = value
                 else:
                     raise ValueError("Имя не должно быть пустыи и не длиннее 100 символов")
