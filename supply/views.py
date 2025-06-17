@@ -24,13 +24,14 @@ class SwitchesButtonsView(ListView):
     context_object_name = "switches"
     
     
-class SwitchON(ListView):
+class SwitchON(DetailView):
     model = SupplySwitch
-    template_name = "supply/home.html"
+    template_name = "supply/on_off.html"
     context_object_name = "switches"
     
     def get_queryset(self) -> QuerySet:
         switch = SupplySwitch.objects.get(pk=self.kwargs['pk'])
+        logger_views.info(switch)
         
         i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
         i2c.turn_on()
@@ -38,6 +39,7 @@ class SwitchON(ListView):
         return super().get_queryset()
     
     def get_success_url(self):
+        logger_views.info("get_success_url")
         return reverse('supply:home')
     
     
@@ -46,12 +48,17 @@ class SwitchOFF(DetailView):
     template_name = "supply/on_off.html"
     context_object_name = "switches"
     
-    
-    
-    def get_success_url(self):
-        i2c = SwitchI2C(1, "super_1", self.adres_board, self.adres_registr)
+    def get_queryset(self) -> QuerySet:
+        switch = SupplySwitch.objects.get(pk=self.kwargs['pk'])
+        logger_views.info(switch)
+        
+        i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
         i2c.turn_off()
         
+        return super().get_queryset()
+    
+    def get_success_url(self):
+        logger_views.info("get_success_url")
         return reverse('supply:home')
 
 
