@@ -161,7 +161,7 @@ class SwitchI2C(SMBus):
         logger_i2c.info(f"{self.adress}, {self.registr}, 100")
         
         self.open(self.bus)
-        super().write_byte_data(self.adress, self.registr, 100)
+        self.write_byte_data(self.adress, self.registr, 100)
         self.close()
         
         return self.read_byte_data(self.adress, self.registr)
@@ -183,7 +183,7 @@ class SwitchI2C(SMBus):
         logger_i2c.info(f"{self.adress}, {self.registr}, 0")
         
         self.open(self.bus)
-        super().write_byte_data(self.adress, self.registr, 0)
+        self.write_byte_data(self.adress, self.registr, 0)
         self.close()
         
         return self.read_byte_data(self.adress, self.registr)
