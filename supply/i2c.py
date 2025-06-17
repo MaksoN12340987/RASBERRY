@@ -158,12 +158,12 @@ class SwitchI2C(SMBus):
         """
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
+        logger_i2c.info(f"{result}, {self.adress}, {self.registr}, 100")
+        
         self.open(self.bus)
 
         super().write_byte_data(self.adress, self.registr, 100)
-
         result = self.read_byte_data(self.adress, self.registr)
-        logger_i2c.info(f"{result}, {self.adress}, {self.registr}, 100")
 
         self.close()
         return result
@@ -182,12 +182,12 @@ class SwitchI2C(SMBus):
         """
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
-        self.open(self.bus)
-
-        super().write_byte_data(self.adress, self.registr, 0)
-
-        result = self.read_byte_data(self.adress, self.registr)
         logger_i2c.info(f"{result}, {self.adress}, {self.registr}, 0")
+        
+        self.open(self.bus)
+        
+        super().write_byte_data(self.adress, self.registr, 0)
+        result = self.read_byte_data(self.adress, self.registr)
 
         self.close()
         return result
