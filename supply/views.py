@@ -43,7 +43,7 @@ class SwitchON(ListView):
     
 class SwitchOFF(DetailView):
     model = SupplySwitch
-    template_name = "supply/home.html"
+    template_name = "supply/on_off.html"
     context_object_name = "switches"
     
     
