@@ -1,29 +1,74 @@
-<!-- RASSBERRY\supply\templates\supply\home.html -->
 {% extends 'supply/base.html' %}
 
 {% block title %}
-    Управление светом
+    Новости
+{% endblock %}
+
+{% block page_title %}
+  <h1>Новости</h1>
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid text-center p-4">
-    <div class="row row-cols-3">
-      
-      {% for switch in switches %}
-        <div class="col">
-            <div class="card rounded-3 mt-2 mb-3 ms-2 me-2">
-                <div class="card-header">
-                  {{ switch.name }}
+  <div class="row row-cols-2 p-1">
+    
+    {% for switch in switches %}
+      <div class="col mb-5">
+        <div class="card rounded-3 ms-3 me-3 bg-post-card text-white-card">
+                <div class="card-header mt-1 text-post-title">
+                  <h5>{{ switch.name }}</h5>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title">{{ switch.adres_board }}</h5>
-                  <p class="card-text">{{ switch.adres_registr }}</p>
-                  <a href="{% url 'supply:delite' switch.pk %}" class="btn btn-dark rounded-3">Изменить</a>
+
+                <img src="/media/{{ switch.preview }}" alt="">
+
+                <div class="card-body">                    
+                    <div class="text-start bg-primary-footer text-white-card p-1">
+                        <p>{{ switch.adres_board }}</p>
+                        <p>{{ switch.adres_registr }}</p>
+                    </div>
+                    
+                    <form method="get" class="text-start mt-2">
+                      {% csrf_token %}
+                      <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-top-line">
+                        Включить
+                      </a>
+                      <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-top-line">
+                        Отключить
+                      </a>
+                      <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
+                        Обновить
+                      </a>
+                    </form>
                 </div>
             </div>
-        </div>
-      {% endfor %}
+      </div>
+    {% endfor %}
 
+  </div>
+{% endblock %}
+
+
+{% block bottom %}
+  <div class="row p-2">
+    <div class="col-3"></div>
+
+    <div class="col-6">
+      <div class="row p-1">
+        <div class="col-4 mt-1">
+        </div>
+    
+        <div class="col-4 text-post-title">
+          <div class="d-grid gap-2">
+            <a href="{% url 'supply:create' %}" class="btn btn-success">Создать пост</a>
+          </div>
+        </div>
+    
+        <div class="col-4 mt-1">
+        </div>
+    
+      </div>
     </div>
-</div>
+
+    <div class="col-3"></div>
+
+  </div>
 {% endblock %}

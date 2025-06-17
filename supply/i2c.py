@@ -144,14 +144,14 @@ class SwitchI2C(SMBus):
     def __str__(self):
         return f"Name {self.name}, i2c-{self.bus}: \n{self.read_byte_data(self.adress, self.registr)}"
 
-    def turn_on(self, reg: int = 20):
+    def turn_on(self, reg: int = 0):
         """Включи устройство
 
         Args:
             reg (int, optional): регистр памяти в диапозоне:
             [20 ... 26]
             [30 ... 34]
-            Defaults to 20.
+            Defaults to 0.
 
         Returns:
             _int_: значение указанного регистра памяти
@@ -168,14 +168,14 @@ class SwitchI2C(SMBus):
         self.close()
         return result
 
-    def turn_off(self, reg: int = 20):
+    def turn_off(self, reg: int = 0):
         """Выключи устройство
 
         Args:
             reg (int, optional): регистр памяти в диапозоне:
             [20 ... 26]
             [30 ... 34]
-            Defaults to 20.
+            Defaults to 0.
 
         Returns:
             _int_: значение указанного регистра памяти
