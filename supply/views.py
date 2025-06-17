@@ -2,7 +2,7 @@ import logging
 
 from django.db.models.query import QuerySet
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView, DetailView
 
 from supply.i2c import SwitchI2C
 from supply.models import SupplySwitch
@@ -41,25 +41,17 @@ class SwitchON(ListView):
         return reverse('supply:home')
     
     
-class SwitchOFF(ListView):
+class SwitchOFF(DetailView):
     model = SupplySwitch
     template_name = "supply/home.html"
     context_object_name = "switches"
     
-    def get_queryset(self) -> QuerySet:
-        switch = SupplySwitch.objects.get(pk=self.kwargs['pk'])
-        
-        i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
-        i2c.turn_off()
-        
-        return super().get_queryset()
     
-    # i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
-
-    # reg = int(input("set reg: "))
-    # i2c.turn_off(reg)
     
     def get_success_url(self):
+        i2c = SwitchI2C(1, "super_1", self.adres_board, self.adres_registr)
+        i2c.turn_off()
+        
         return reverse('supply:home')
 
 
