@@ -1,7 +1,7 @@
-from smbus3 import SMBus
-import time
 import logging
+import time
 
+from smbus3 import SMBus
 
 logger_i2c = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="w", encoding="UTF8")
@@ -38,7 +38,8 @@ class SwitchI2C(SMBus):
 
     Returns:
         _int_: значения регистра памяти
-    """    
+    """
+
     i2c: int
     name: str
     adress: int
@@ -106,7 +107,7 @@ class SwitchI2C(SMBus):
             _dict_: ключи - короткое наименование
                     значения переменных, прошедших
                     валидацию
-        """        
+        """
         result = {}
         for i, value in enumerate(validation_list):
             if i == 0:
@@ -154,7 +155,7 @@ class SwitchI2C(SMBus):
 
         Returns:
             _int_: значение указанного регистра памяти
-        """        
+        """
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
         self.open(self.bus)
@@ -178,7 +179,7 @@ class SwitchI2C(SMBus):
 
         Returns:
             _int_: значение указанного регистра памяти
-        """        
+        """
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
         self.open(self.bus)

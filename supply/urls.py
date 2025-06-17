@@ -1,12 +1,13 @@
 from django.urls import path
-from . import views
+
 from supply.apps import SupplyConfig
 
+from .views import SwitchesButtonsView, CreateButtonSwitch, SwitchButtonDelete
 
 app_name = SupplyConfig.name
 
 urlpatterns = [
-    path("home/", views.home, name="home"),
-    path("contacts/", views.contacts, name="contacts"),
-    path(f"{SupplyConfig.name}/", views.contacts, name=f"{SupplyConfig.name}"),
+    path("home/", SwitchesButtonsView.as_view(), name="home"),
+    path("home/create/", CreateButtonSwitch.as_view(), name="contacts"),
+    path("home/<int:pk>/delite/", SwitchButtonDelete.as_view(), name=f"{SupplyConfig.name}"),
 ]

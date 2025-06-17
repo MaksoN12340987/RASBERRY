@@ -1,9 +1,9 @@
-from django.shortcuts import render
-
 import logging
 
-from supply.apps import SupplyConfig
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DeleteView, ListView
 
+from supply.models import SupplySwitch
 
 logger_views = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -16,23 +16,20 @@ logger_views.addHandler(file_handler)
 logger_views.setLevel(logging.INFO)
 
 
-from django.shortcuts import render
-from django.http import HttpResponse
+class SwitchesButtonsView(ListView):
+    model = SupplySwitch
+    template_name = "supply/home.html"
+    context_object_name = "switches"
 
 
-# Create your views here.
-def home(request):
-    logger_views.info(request)
+class CreateButtonSwitch(CreateView):
+    model = SupplySwitch
+    fields = ["name", "adres_board", "adres_registr"]
+    template_name = "supply/"
+    success_url = reverse_lazy("catalog:users")
 
-    if "home" in f"{request}":
-        return render(request, f"{SupplyConfig.name}/home.html")
 
-
-def contacts(request):
-    logger_views.debug(request)
-    if request.method == "POST":
-        name = request.POST.get("name")
-        message = request.POST.get("message")
-
-        return HttpResponse(f"Спасибо, {name}! Сообщение отправлено.")
-    return render(request, f"{SupplyConfig.name}/contacts.html")
+class SwitchButtonDelete(DeleteView):
+    model = SupplySwitch
+    template_name = "supply/"
+    success_url = reverse_lazy("catalog:orders")
