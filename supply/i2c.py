@@ -156,6 +156,8 @@ class SwitchI2C(SMBus):
         Returns:
             _int_: значение указанного регистра памяти
         """
+        result = 0
+        
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
         logger_i2c.info(f"{result}, {self.adress}, {self.registr}, 100")
@@ -180,6 +182,8 @@ class SwitchI2C(SMBus):
         Returns:
             _int_: значение указанного регистра памяти
         """
+        result = 0
+        
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
         logger_i2c.info(f"{result}, {self.adress}, {self.registr}, 0")
