@@ -6,10 +6,24 @@
 {% endblock %}
 
 {% block content %}
-    <button id="" type="button" class="btn btn-primary active rounded-3 ms-3 mt-1 me-3" data-bs-toggle="button" aria-pressed="true">
-        <div class="d-flex rounded-3">
-            <img src="" alt="static/images/home_9.png" width="24" height="20" class="d-inline-block mt-2 ms-2">
-            <div class="flex-grow-0 ms-2 mt-2"><h5>Главная</h5></div>
+<div class="container-fluid text-center p-4">
+    <div class="row row-cols-3">
+      
+      {% for switch in switches %}
+        <div class="col">
+            <div class="card rounded-3 mt-2 mb-3 ms-2 me-2">
+                <div class="card-header">
+                  {{ switch.name }}
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{ switch.adres_board }}</h5>
+                  <p class="card-text">{{ switch.adres_registr }}</p>
+                  <a href="{% url 'supply:delite' switch.pk %}" class="btn btn-dark rounded-3">Изменить</a>
+                </div>
+            </div>
         </div>
-    </button>
+      {% endfor %}
+
+    </div>
+</div>
 {% endblock %}
