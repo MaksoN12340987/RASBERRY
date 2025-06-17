@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'supply/base.html' %}
 
 {% block title %}
     Создание поста
@@ -15,28 +15,7 @@
             <div class="container vh-100">
                 
                 <div class="card rounded-3 ms-2 me-2 p-2 text-start bg-dark text-white">
-                    <form method="post" class="bg-dark text-white">
-                        
-                        {% csrf_token %}
-                        
-                        <div class="mb-3">
-                            <label for="id_title" class="form-label">Заголовок</label>
-                            <input type="text" name="title" value="1" maxlength="200" required id="id_title" class="form-control">
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="id_content" class="form-label">Содержимое:</label>
-                            <textarea name="content" cols="40" rows="10" id="id_content" class="form-control"></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="id_publication_flag">Сделат публичным:</label>
-                            <input type="checkbox" name="publication_flag" aria-describedby="id_publication_flag_helptext" id="id_publication_flag" checked>
-                            <span class="helptext" id="id_publication_flag_helptext">да</span>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Отправить</button>
-                    </form>
+                    {% form.as_p %}
                 </div>
         
             </div>
