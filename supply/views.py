@@ -29,10 +29,13 @@ class SwitchON(ListView):
     template_name = "supply/home.html"
     context_object_name = "switches"
     
-    # i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
-
-    # reg = int(input("set reg: "))
-    # i2c.turn_on(reg)
+    def get_queryset(self) -> QuerySet:
+        switch = SupplySwitch.objects.get(pk=self.kwargs['pk'])
+        
+        i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
+        i2c.turn_on()
+        
+        return super().get_queryset()
     
     def get_success_url(self):
         return reverse('supply:home')
@@ -47,7 +50,7 @@ class SwitchOFF(ListView):
         switch = SupplySwitch.objects.get(pk=self.kwargs['pk'])
         
         i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
-        i2c.turn_on()
+        i2c.turn_off()
         
         return super().get_queryset()
     
