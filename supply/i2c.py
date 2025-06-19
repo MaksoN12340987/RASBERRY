@@ -163,7 +163,7 @@ class SwitchI2C(SMBus):
         
         self.write_byte_data(self.adress, self.registr, 1)
         
-        return self.read_byte_data(self.adress, self.registr)
+        return 1
 
     def turn_off(self, reg: int = 0):
         """Выключи устройство
@@ -183,7 +183,7 @@ class SwitchI2C(SMBus):
         
         self.write_byte_data(self.adress, self.registr, 0)
         
-        return self.read_byte_data(self.adress, self.registr)
+        return 1
 
 
 # i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
