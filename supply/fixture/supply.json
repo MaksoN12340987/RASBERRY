@@ -57,7 +57,7 @@
     "model": "supply.supplyswitch",
     "pk": 7,
     "fields": {
-        "name": "2-pin - 6",
+        "name": "2-pin - 7",
         "adres_board": 40,
         "adres_registr": 27
     }
