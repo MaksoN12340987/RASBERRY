@@ -1,18 +1,36 @@
 [
 {
     "model": "supply.supplyswitch",
-    "pk": 3,
+    "pk": 1,
     "fields": {
-        "name": "Второй слот",
+        "name": "ALL off",
         "adres_board": 40,
         "adres_registr": 21
     }
 },
 {
     "model": "supply.supplyswitch",
+    "pk": 2,
+    "fields": {
+        "name": "2-pin - 2",
+        "adres_board": 40,
+        "adres_registr": 22
+    }
+},
+{
+    "model": "supply.supplyswitch",
+    "pk": 3,
+    "fields": {
+        "name": "2-pin - 3",
+        "adres_board": 40,
+        "adres_registr": 22
+    }
+},
+{
+    "model": "supply.supplyswitch",
     "pk": 4,
     "fields": {
-        "name": "Третий слот",
+        "name": "2-pin - 4",
         "adres_board": 40,
         "adres_registr": 22
     }
@@ -21,16 +39,52 @@
     "model": "supply.supplyswitch",
     "pk": 5,
     "fields": {
-        "name": "4-пин первый слот",
+        "name": "2-pin - 5",
         "adres_board": 40,
-        "adres_registr": 31
+        "adres_registr": 22
     }
 },
 {
     "model": "supply.supplyswitch",
     "pk": 6,
     "fields": {
-        "name": "4-пин второй слот",
+        "name": "2-pin - 6",
+        "adres_board": 40,
+        "adres_registr": 22
+    }
+},
+{
+    "model": "supply.supplyswitch",
+    "pk": 7,
+    "fields": {
+        "name": "4-pin - 1",
+        "adres_board": 40,
+        "adres_registr": 31
+    }
+},
+{
+    "model": "supply.supplyswitch",
+    "pk": 8,
+    "fields": {
+        "name": "4-pin - 2",
+        "adres_board": 40,
+        "adres_registr": 32
+    }
+},
+{
+    "model": "supply.supplyswitch",
+    "pk": 9,
+    "fields": {
+        "name": "4-pin - 3",
+        "adres_board": 40,
+        "adres_registr": 32
+    }
+},
+{
+    "model": "supply.supplyswitch",
+    "pk": 10,
+    "fields": {
+        "name": "4-pin - 4",
         "adres_board": 40,
         "adres_registr": 32
     }

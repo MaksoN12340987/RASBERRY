@@ -47,6 +47,7 @@ class SwitchON(ListView):
         return reverse("supply:home")
 
 
+
 class SwitchOFF(ListView):
     model = SupplySwitch
     template_name = "supply/on_off.html"
