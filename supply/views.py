@@ -38,10 +38,6 @@ class SwitchON(DetailView):
         
         return reverse('supply:home')
     
-    def get_success_url(self):
-        logger_views.info("get_success_url")
-        return reverse('supply:home')
-    
     
 class SwitchOFF(DetailView):
     model = SupplySwitch
@@ -55,12 +51,7 @@ class SwitchOFF(DetailView):
         i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
         i2c.turn_off()
         
-        return super().get_queryset()
-    
-    def get_success_url(self):
-        logger_views.info("get_success_url")
         return reverse('supply:home')
-
 
 class CreateButtonSwitch(CreateView):
     model = SupplySwitch
