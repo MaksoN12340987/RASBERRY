@@ -51,9 +51,9 @@ class SwitchOFF(DetailView):
 
     def get_queryset(self) -> QuerySet:
         switch = SupplySwitch.objects.get(pk=self.kwargs["pk"])
-        # logger_views.info(
-        #     f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
-        # )
+        logger_views.info(
+            f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
+        )
 
         i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
         i2c.turn_off()
