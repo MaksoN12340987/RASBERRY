@@ -2,7 +2,13 @@ from django.urls import path
 
 from supply.apps import SupplyConfig
 
-from .views import SwitchesButtonsView, CreateButtonSwitch, SwitchButtonDelete, SwitchON, SwitchOFF
+from .views import (
+    SwitchesButtonsView,
+    CreateButtonSwitch,
+    SwitchButtonDelete,
+    SwitchON,
+    SwitchOFF,
+)
 
 app_name = SupplyConfig.name
 

@@ -14,7 +14,7 @@ logger_i2c.addHandler(file_handler)
 logger_i2c.setLevel(logging.INFO)
 
 
-# sudo apt-get install smbus3 
+# sudo apt-get install smbus3
 
 
 class SwitchI2C(SMBus):
@@ -53,21 +53,6 @@ class SwitchI2C(SMBus):
         registr,
         force: bool = False,
     ):
-        validation = self.__validation_input(
-            [
-                i2c,
-                name,
-                adress,
-                registr,
-            ]
-        )
-        logger_i2c.info(validation)
-
-        self.bus = validation["i2c"]
-        self.name = validation["name"]
-        self.adress = validation["adress"]
-        self.registr = validation["registr"]
-        super().__init__(self.bus, force)
         self.matrix_addresses = {
             # 2-pin register
             "20": 32,
@@ -91,6 +76,21 @@ class SwitchI2C(SMBus):
             "64": 100,
             "65": 101,
         }
+        validation = self.__validation_input(
+            [
+                i2c,
+                name,
+                adress,
+                registr,
+            ]
+        )
+        logger_i2c.info(validation)
+
+        self.bus = validation["i2c"]
+        self.name = validation["name"]
+        self.adress = validation["adress"]
+        self.registr = validation["registr"]
+        super().__init__(self.bus, force)
         logger_i2c.info(f"INIT - {type(self.adress)}, {type(self.registr)}, 100")
 
     def __validation_input(self, validation_list: list = {}):
@@ -167,10 +167,10 @@ class SwitchI2C(SMBus):
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
-        
+
         logger_i2c.info(f"{self.adress}, {self.registr}, 100")
         self.write_byte_data(self.adress, self.registr, 100)
-        
+
         return self.read_byte_data(self.adress, self.registr)
 
     def turn_off(self, reg: int = 0):
@@ -188,10 +188,10 @@ class SwitchI2C(SMBus):
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
-        
+
         logger_i2c.info(f"{self.adress}, {self.registr}, 0")
         self.write_byte_data(self.adress, self.registr, 0)
-        
+
         return self.read_byte_data(self.adress, self.registr)
 
 
