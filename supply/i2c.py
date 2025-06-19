@@ -14,7 +14,7 @@ logger_i2c.addHandler(file_handler)
 logger_i2c.setLevel(logging.INFO)
 
 
-# sudo apt-get install smbus3
+# sudo apt-get install smbus3 add logers in classes
 
 
 class SwitchI2C(SMBus):
@@ -84,6 +84,7 @@ class SwitchI2C(SMBus):
             "33": 51,
             "34": 51,
         }
+        logger_i2c.info(f"INIT - {type(self.adress)}, {type(self.registr)}, 100")
 
     def __validation_input(self, validation_list: list = {}):
         """Приватный метод валидации данных, выполняет проверки
@@ -189,10 +190,10 @@ class SwitchI2C(SMBus):
         return self.read_byte_data(self.adress, self.registr)
 
 
-i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
+# i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
 
-reg = int(input("set reg: "))
-print(i2c.turn_on(reg))
+# reg = int(input("set reg: "))
+# print(i2c.turn_on(reg))
 
-reg = int(input("set reg: "))
-print(i2c.turn_off(reg))
+# reg = int(input("set reg: "))
+# print(i2c.turn_off(reg))
