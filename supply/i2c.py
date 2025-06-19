@@ -4,7 +4,7 @@ import time
 from smbus3 import SMBus
 
 logger_i2c = logging.getLogger(__name__)
-file_handler = logging.FileHandler(f"log/{__name__}.log", mode="w", encoding="UTF8")
+file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
 file_formatter = logging.Formatter(
     "\n%(asctime)s %(levelname)s %(name)s \n%(funcName)s %(lineno)d: \n%(message)s",
     datefmt="%H:%M:%S %d-%m-%Y",
@@ -14,7 +14,7 @@ logger_i2c.addHandler(file_handler)
 logger_i2c.setLevel(logging.INFO)
 
 
-# sudo apt-get install smbus3 add logers in classes
+# sudo apt-get install smbus3 
 
 
 class SwitchI2C(SMBus):
