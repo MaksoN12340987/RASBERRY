@@ -3,8 +3,8 @@
     "model": "supply.supplyswitch",
     "pk": 3,
     "fields": {
-        "name": "s-1",
-        "adres_board": 64,
+        "name": "Второй слот",
+        "adres_board": 40,
         "adres_registr": 21
     }
 },
@@ -12,8 +12,8 @@
     "model": "supply.supplyswitch",
     "pk": 4,
     "fields": {
-        "name": "s-2",
-        "adres_board": 64,
+        "name": "Третий слот",
+        "adres_board": 40,
         "adres_registr": 22
     }
 },
@@ -21,8 +21,8 @@
     "model": "supply.supplyswitch",
     "pk": 5,
     "fields": {
-        "name": "b-1",
-        "adres_board": 64,
+        "name": "4-пин первый слот",
+        "adres_board": 40,
         "adres_registr": 31
     }
 },
@@ -30,8 +30,8 @@
     "model": "supply.supplyswitch",
     "pk": 6,
     "fields": {
-        "name": "b-2",
-        "adres_board": 64,
+        "name": "4-пин второй слот",
+        "adres_board": 40,
         "adres_registr": 32
     }
 }

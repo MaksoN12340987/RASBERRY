@@ -83,6 +83,13 @@ class SwitchI2C(SMBus):
             "32": 50,
             "33": 51,
             "34": 51,
+            # Adress
+            "40": 64,
+            "41": 65,
+            "42": 66,
+            "50": 80,
+            "64": 100,
+            "65": 101,
         }
         logger_i2c.info(f"INIT - {type(self.adress)}, {type(self.registr)}, 100")
 
@@ -132,13 +139,13 @@ class SwitchI2C(SMBus):
                     raise ValueError("Адрес не должун быть больше 255")
                 else:
                     logger_i2c.info(value)
-                    result["adress"] = value
+                    result["adress"] = self.matrix_addresses[f"{value}"]
             else:
                 if value > 255:
                     raise ValueError("Адрес не должун быть больше 255")
                 else:
                     logger_i2c.info(value)
-                    result["registr"] = value
+                    result["registr"] = self.matrix_addresses[f"{value}"]
 
         return result
 
@@ -159,6 +166,7 @@ class SwitchI2C(SMBus):
         """
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
+            logger_i2c.info(f"{self.matrix_addresses[f"{reg}"]}")
         logger_i2c.info(f"{self.adress}, {self.registr}, 100")
         
         self.write_byte_data(self.adress, self.registr, 100)
@@ -179,6 +187,7 @@ class SwitchI2C(SMBus):
         """
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
+            logger_i2c.info(f"{self.matrix_addresses[f"{reg}"]}")
         logger_i2c.info(f"{self.adress}, {self.registr}, 0")
         
         self.write_byte_data(self.adress, self.registr, 0)
