@@ -50,7 +50,7 @@ class SwitchOFF(DetailView):
     context_object_name = "switches"
 
     def get_queryset(self) -> QuerySet:
-        switch = SupplySwitch.objects.get(pk=self.kwargs["pk"])
+        switch = SupplySwitch.objects.get()
         logger_views.info(
             f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
         )
