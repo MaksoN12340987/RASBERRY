@@ -159,11 +159,11 @@ class SwitchI2C(SMBus):
         """
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
-        logger_i2c.info(f"{self.adress}, {self.registr}, 1")
+        logger_i2c.info(f"{self.adress}, {self.registr}, 100")
         
-        self.write_byte_data(self.adress, self.registr, 1)
+        self.write_byte_data(self.adress, self.registr, 100)
         
-        return 1
+        return self.read_byte_data(self.adress, self.registr)
 
     def turn_off(self, reg: int = 0):
         """Выключи устройство
@@ -183,7 +183,7 @@ class SwitchI2C(SMBus):
         
         self.write_byte_data(self.adress, self.registr, 0)
         
-        return 1
+        return self.read_byte_data(self.adress, self.registr)
 
 
 # i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
