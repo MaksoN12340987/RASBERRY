@@ -13,33 +13,31 @@
     
     {% for switch in switches %}
       <div class="col mb-5">
-        <div class="card rounded-3 ms-3 me-3 bg-post-card text-white-card">
-                <div class="card-header mt-1 text-post-title">
-                  <h5>{{ switch.name }}</h5>
-                </div>
+        <div class="card-header mt-1 text-post-title">
+          <h5>{{ switch.name }}</h5>
+        </div>
 
-                <img src="../../media/{{ switch.image }}" alt="/media/not_found.png">
+        img src="../../media/{{ switch.image }}" alt="/media/not_found.png">
 
-                <div class="card-body">                    
-                    <div class="text-start bg-primary-footer text-white-card p-1">
-                        <p>{{ switch.adres_board }}</p>
-                        <p>{{ switch.adres_registr }}</p>
-                    </div>
+        <div class="card-body">                    
+          <div class="text-start bg-primary-footer text-white-card p-1">
+            <p>{{ switch.adres_board }}</p>
+            <p>{{ switch.adres_registr }}</p>
+          </div>
                     
-                    <form method="get" class="text-start mt-2">
+          <form method="get" class="text-start mt-2">
                       {% csrf_token %}
-                      <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-top-line">
+            <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-top-line">
                         Включить
-                      </a>
-                      <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-top-line">
+            </a>
+            <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-top-line">
                         Отключить
-                      </a>
-                      <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
+            </a>
+            <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
                         Обновить
-                      </a>
-                    </form>
-                </div>
-            </div>
+            </a>
+          </form>
+        </div>
       </div>
     {% endfor %}
 
