@@ -207,7 +207,7 @@
   justify-content: space-between;
 }
 .container-fluid-home {
-  --bs-form-select-bg-img-home: url("../images/Japan_train_full.jpg");
+  /* --bs-form-select-bg-img-home: url("../images/Japan_train_full.jpg"); */
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   width: 100%;
@@ -215,7 +215,8 @@
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-right: auto;
   margin-left: auto;
-  background-image: var(--bs-form-select-bg-img-home);
+  /* background-image: var(--bs-form-select-bg-img-home); */
+  background-color: #272727;
 }
 
 

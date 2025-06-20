@@ -9,21 +9,22 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container">
+  <div></div>
+
+
+
+  <div class="container container-fluid-home">
     
     {% for switch in switches %}
       <div class="col mb-5">
-        <div class="d-grid mt-1 text-post-title">
+        <div class="d-grid mt-1 text-title">
           <h5>{{ switch.name }}</h5>
         </div>
 
-        img src="../../media/{{ switch.image }}" alt="/media/not_found.png">
+        <img src="../../media/{{ switch.image }}" alt="/media/not_found.png">
 
-        <div class="d-grid">                    
-          <div class="text-start bg-primary-footer text-white-card p-1">
-            <p>{{ switch.adres_board }}  {{ switch.adres_registr }}</p>
-          </div>
-                    
+        <div class="text-start bg-primary-footer text-white-card p-1">
+          <p>{{ switch.adres_board }}  {{ switch.adres_registr }}</p>
           <form method="get" class="text-start mt-2">
                       {% csrf_token %}
             <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-top-line">
