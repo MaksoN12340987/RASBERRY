@@ -9,20 +9,19 @@
 {% endblock %}
 
 {% block content %}
-  <div class="row row-cols-2 p-1">
+  <div class="row p-1">
     
     {% for switch in switches %}
       <div class="col mb-5">
-        <div class="card-header mt-1 text-post-title">
+        <div class="d-grid mt-1 text-post-title">
           <h5>{{ switch.name }}</h5>
         </div>
 
         img src="../../media/{{ switch.image }}" alt="/media/not_found.png">
 
-        <div class="card-body">                    
+        <div class="d-grid">                    
           <div class="text-start bg-primary-footer text-white-card p-1">
-            <p>{{ switch.adres_board }}</p>
-            <p>{{ switch.adres_registr }}</p>
+            <p>{{ switch.adres_board }}  {{ switch.adres_registr }}</p>
           </div>
                     
           <form method="get" class="text-start mt-2">
