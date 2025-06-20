@@ -45,6 +45,9 @@ class SwitchON(ListView):
         i2c.turn_on()
 
         return reverse("supply:home")
+    
+    def get_success_url(self):
+        return reverse("supply:home")
 
 
 
@@ -62,6 +65,9 @@ class SwitchOFF(ListView):
         i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
         i2c.turn_off()
 
+        return reverse("supply:home")
+    
+    def get_success_url(self):
         return reverse("supply:home")
 
 

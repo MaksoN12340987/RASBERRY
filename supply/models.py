@@ -10,7 +10,10 @@ class SupplySwitch(models.Model):
         help_text="0x20", verbose_name="Адресс регистра"
     )
     image = models.ImageField(
-        upload_to="supply/media/photo", verbose_name="Фотография", null=True
+        upload_to="supply/media/photo", verbose_name="Иконка", null=True
+    )
+    connected = models.BooleanField(
+        help_text="Подключено ли?", verbose_name="Подключено", default=True
     )
 
     def __str__(self) -> str:
