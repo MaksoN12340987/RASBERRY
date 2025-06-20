@@ -1,101 +1,123 @@
 [
-{
-    "model": "supply.supplyswitch",
-    "pk": 1,
-    "fields": {
-        "name": "ALL off",
-        "adres_board": 40,
-        "adres_registr": 21
+    {
+        "model": "supply.supplyswitch",
+        "pk": 1,
+        "fields": {
+            "name": "ALL off",
+            "adres_board": 40,
+            "adres_registr": 21,
+            "image": "",
+            "connected": true
+        }
+    },
+    {
+        "model": "supply.supplyswitch",
+        "pk": 2,
+        "fields": {
+            "name": "2-pin - 2",
+            "adres_board": 40,
+            "adres_registr": 22,
+            "image": "",
+            "connected": true
+        }
+    },
+    {
+        "model": "supply.supplyswitch",
+        "pk": 3,
+        "fields": {
+            "name": "2-pin - 3",
+            "adres_board": 40,
+            "adres_registr": 23,
+            "image": "",
+            "connected": true
+        }
+    },
+    {
+        "model": "supply.supplyswitch",
+        "pk": 4,
+        "fields": {
+            "name": "2-pin - 4",
+            "adres_board": 40,
+            "adres_registr": 24,
+            "image": "",
+            "connected": true
+        }
+    },
+    {
+        "model": "supply.supplyswitch",
+        "pk": 5,
+        "fields": {
+            "name": "2-pin - 5",
+            "adres_board": 40,
+            "adres_registr": 25,
+            "image": "",
+            "connected": true
+        }
+    },
+    {
+        "model": "supply.supplyswitch",
+        "pk": 6,
+        "fields": {
+            "name": "2-pin - 6",
+            "adres_board": 40,
+            "adres_registr": 26,
+            "image": "",
+            "connected": true
+        }
+    },
+    {
+        "model": "supply.supplyswitch",
+        "pk": 7,
+        "fields": {
+            "name": "2-pin - 7",
+            "adres_board": 40,
+            "adres_registr": 27,
+            "image": "",
+            "connected": true
+        }
+    },
+    {
+        "model": "supply.supplyswitch",
+        "pk": 8,
+        "fields": {
+            "name": "4-pin - 1",
+            "adres_board": 40,
+            "adres_registr": 31,
+            "image": "",
+            "connected": true
+        }
+    },
+    {
+        "model": "supply.supplyswitch",
+        "pk": 9,
+        "fields": {
+            "name": "4-pin - 2",
+            "adres_board": 40,
+            "adres_registr": 32,
+            "image": "",
+            "connected": true
+        }
+    },
+    {
+        "model": "supply.supplyswitch",
+        "pk": 10,
+        "fields": {
+            "name": "4-pin - 3",
+            "adres_board": 40,
+            "adres_registr": 33,
+            "image": "",
+            "connected": true
+        }
+    },
+    {
+        "model": "supply.supplyswitch",
+        "pk": 11,
+        "fields": {
+            "name": "4-pin - 4",
+            "adres_board": 40,
+            "adres_registr": 34,
+            "image": "",
+            "connected": true
+        }
     }
-},
-{
-    "model": "supply.supplyswitch",
-    "pk": 2,
-    "fields": {
-        "name": "2-pin - 2",
-        "adres_board": 40,
-        "adres_registr": 22
-    }
-},
-{
-    "model": "supply.supplyswitch",
-    "pk": 3,
-    "fields": {
-        "name": "2-pin - 3",
-        "adres_board": 40,
-        "adres_registr": 23
-    }
-},
-{
-    "model": "supply.supplyswitch",
-    "pk": 4,
-    "fields": {
-        "name": "2-pin - 4",
-        "adres_board": 40,
-        "adres_registr": 24
-    }
-},
-{
-    "model": "supply.supplyswitch",
-    "pk": 5,
-    "fields": {
-        "name": "2-pin - 5",
-        "adres_board": 40,
-        "adres_registr": 25
-    }
-},
-{
-    "model": "supply.supplyswitch",
-    "pk": 6,
-    "fields": {
-        "name": "2-pin - 6",
-        "adres_board": 40,
-        "adres_registr": 26
-    }
-},
-{
-    "model": "supply.supplyswitch",
-    "pk": 7,
-    "fields": {
-        "name": "2-pin - 7",
-        "adres_board": 40,
-        "adres_registr": 27
-    }
-},
-{
-    "model": "supply.supplyswitch",
-    "pk": 8,
-    "fields": {
-        "name": "4-pin - 1",
-        "adres_board": 40,
-        "adres_registr": 31
-    }
-},
-{
-    "model": "supply.supplyswitch",
-    "pk": 9,
-    "fields": {
-        "name": "4-pin - 2",
-        "adres_board": 40,
-        "adres_registr": 32
-    }
-},
-{
-    "model": "supply.supplyswitch",
-    "pk": 10,
-    "fields": {
-        "name": "4-pin - 3",
-        "adres_board": 40,
-        "adres_registr": 33
-    }
-},
-{
-    "model": "supply.supplyswitch",
-    "pk": 11,
-    "fields": {
-        "name": "4-pin - 4",
-        "adres_board": 40,
-        "adres_registr": 34
-    }
-}
-]
+    ]

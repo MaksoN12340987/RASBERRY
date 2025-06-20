@@ -1,0 +1,46 @@
+git branch
+
+git switch Develop
+
+git pull https://github.com/MaksoN12340987/RASBERRY.git Develop
+
+
+python manage.py shell -i ipython
+
+python -Xutf8 manage.py dumpdata supply.SupplySwitch --output supply/fixture/supply.json --indent 4
+
+python manage.py loaddata supply/fixture/supply.json --format json
+
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+
+source venv/bin/activate
+
+python manage.py createsuperuser
+andrianov_maksim@outlook.com
+
+
+supply_1 = SupplySwitch.objects.create(name='s-1', adres_board=40, adres_registr=21)
+
+categories = Category.objects.all()
+for category in categories:
+    print(category.name)
+
+
+product = Product.objects.get(name='Сельдь')
+
+
+
+source djenv/bin/activate
+        server {
+                listen     192.168.1.5:110;
+                protocol   pop3;
+                proxy      on;
+                location / {
+                        root /home/pi/pidjango;
+                }
+        }
+

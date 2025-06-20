@@ -9,9 +9,12 @@ class SwitchAdmin(admin.ModelAdmin):
         "name",
         "adres_board",
         "adres_registr",
+        "connected",
+        "image",
     )
     list_filter = (
         "adres_board",
+        "connected",
     )
     search_fields = ("name",)
 
