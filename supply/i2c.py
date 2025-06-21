@@ -171,11 +171,8 @@ class SwitchI2C(SMBus):
         
         if self.adress in [100, 101]:
             dict_result = self.__device_maintenance_12_V(reg)
-            
             self.registr = dict_result["address"]
             level = dict_result["level"]
-            
-            logger_i2c.info(f"12_V = {self.registr}, {level}")
 
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
@@ -201,11 +198,7 @@ class SwitchI2C(SMBus):
         
         if self.adress in [100, 101]:
             dict_result = self.__device_maintenance_12_V(reg)
-            
             self.registr = dict_result["address"]
-            level = dict_result["level"]
-            
-            logger_i2c.info(f"12_V = {self.registr}, {level}")
 
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
