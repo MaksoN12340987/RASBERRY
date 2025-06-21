@@ -9,9 +9,9 @@ class SupplySwitch(models.Model):
     adres_registr = models.IntegerField(
         help_text="0x20", verbose_name="Адресс регистра"
     )
-    # location = models.CharField(
-    #     help_text="Где находится", verbose_name="Группа устройств", null=True
-    # )
+    location = models.CharField(
+        help_text="Где находится", verbose_name="Группа устройств", null=True
+    )
     image = models.ImageField(
         upload_to="supply/media/photo", verbose_name="Иконка", null=True
     )
