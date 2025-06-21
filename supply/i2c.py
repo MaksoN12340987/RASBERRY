@@ -167,7 +167,9 @@ class SwitchI2C(SMBus):
         Returns:
             _int_: значение указанного регистра памяти
         """
-        if self.address == 100 or self.address == 101:
+        logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
+        
+        if self.address in [100, 101]:
             dict_result = self.__device_maintenance_12_V(reg)
             
             self.registr = dict_result["address"]
@@ -179,7 +181,6 @@ class SwitchI2C(SMBus):
             self.registr = self.matrix_addresses[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
         
-        logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
         self.write_byte_data(self.adress, self.registr, level)
 
         return self.read_byte_data(self.adress, self.registr)
@@ -196,7 +197,9 @@ class SwitchI2C(SMBus):
         Returns:
             _int_: значение указанного регистра памяти
         """
-        if self.address == 100 or self.address == 101:
+        logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
+        
+        if self.address in [100, 101]:
             dict_result = self.__device_maintenance_12_V(reg)
             
             self.registr = dict_result["address"]
@@ -208,7 +211,6 @@ class SwitchI2C(SMBus):
             self.registr = self.matrix_addresses[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
         
-        logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
         self.write_byte_data(self.adress, self.registr, level)
 
         return self.read_byte_data(self.adress, self.registr)
