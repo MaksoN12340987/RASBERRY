@@ -10,7 +10,7 @@ from django.views.generic import (
     DetailView,
 )
 
-# from supply.i2c import SwitchI2C
+from supply.i2c import SwitchI2C
 from supply.models import SupplySwitch
 
 logger_views = logging.getLogger(__name__)
@@ -35,16 +35,16 @@ class SwitchON(ListView):
     template_name = "supply/on_off.html"
     context_object_name = "switches"
 
-    # def get_queryset(self) -> QuerySet:
-    #     switch = SupplySwitch.objects.get(pk=self.kwargs["pk"])
-    #     logger_views.info(
-    #         f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
-    #     )
+    def get_queryset(self) -> QuerySet:
+        switch = SupplySwitch.objects.get(pk=self.kwargs["pk"])
+        logger_views.info(
+            f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
+        )
 
-    #     i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
-    #     i2c.turn_on()
+        i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
+        i2c.turn_on()
 
-    #     return reverse("supply:home")
+        return reverse("supply:home")
     
     def get_success_url(self):
         return reverse("supply:home")
@@ -56,16 +56,16 @@ class SwitchOFF(ListView):
     template_name = "supply/on_off.html"
     context_object_name = "switches"
 
-    # def get_queryset(self) -> QuerySet:
-    #     switch = SupplySwitch.objects.get(pk=self.kwargs["pk"])
-    #     logger_views.info(
-    #         f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
-    #     )
+    def get_queryset(self) -> QuerySet:
+        switch = SupplySwitch.objects.get(pk=self.kwargs["pk"])
+        logger_views.info(
+            f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
+        )
 
-    #     i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
-    #     i2c.turn_off()
+        i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
+        i2c.turn_off()
 
-    #     return reverse("supply:home")
+        return reverse("supply:home")
     
     def get_success_url(self):
         return reverse("supply:home")

@@ -4,10 +4,13 @@ from django.db import models
 
 
 class SupplySwitch(models.Model):
-    name = models.CharField(max_length=200, verbose_name="Наименование", unique=True)
+    name = models.CharField(max_length=100, verbose_name="Наименование", unique=True)
     adres_board = models.IntegerField(help_text="0x40", verbose_name="Адресс платы")
     adres_registr = models.IntegerField(
         help_text="0x20", verbose_name="Адресс регистра"
+    )
+    group = models.BooleanField(
+        help_text="Группа", verbose_name="Группа", default='home'
     )
     image = models.ImageField(
         upload_to="supply/media/photo", verbose_name="Иконка", null=True
