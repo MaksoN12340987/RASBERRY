@@ -171,7 +171,11 @@ class SwitchI2C(SMBus):
             self.registr = self.matrix_addresses[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
         elif self.address == 100 or self.address == 101:
-            self.registr, level = self.__device_maintenance_12_V(reg)
+            dict_result = self.__device_maintenance_12_V(reg)
+            
+            self.registr = dict_result["address"]
+            level = dict_result["level"]
+            
             logger_i2c.info(f"12_V = {self.registr}, {level}")
 
         logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
@@ -195,7 +199,11 @@ class SwitchI2C(SMBus):
             self.registr = self.matrix_addresses[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
         elif self.address == 100 or self.address == 101:
-            self.registr, level = self.__device_maintenance_12_V(reg)
+            dict_result = self.__device_maintenance_12_V(reg)
+            
+            self.registr = dict_result["address"]
+            level = dict_result["level"]
+            
             logger_i2c.info(f"12_V = {self.registr}, {level}")
 
         logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
@@ -207,7 +215,7 @@ class SwitchI2C(SMBus):
         addresses = {
             "1": 1,
             "2": 2,
-            "3": 3,
+            "3": 4,
             "4": 8,
             "5": 16,
             "6": 32,
@@ -215,18 +223,24 @@ class SwitchI2C(SMBus):
             "8": 128,
             "9": 1,
             "10": 2,
-            "11": 3,
+            "11": 4,
             "12": 8,
             "13": 16,
             "14": 32,
             "15": 64,
             "16": 128,
         }
+        result = {}
         
         try:
             if reg < 9:
-                return 16, addresses[reg]
+                result["address"] = 16
+                result["level"] = addresses[reg]
             else:
-                return 17, addresses[reg]
+                result["address"] = 17
+                result["level"] = addresses[reg]
         except:
-            return 16, 1
+            result["address"] = 16
+            result["level"] = 1
+            
+        return result
