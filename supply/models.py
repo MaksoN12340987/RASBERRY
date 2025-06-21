@@ -10,7 +10,7 @@ class SupplySwitch(models.Model):
         help_text="0x20", verbose_name="Адресс регистра"
     )
     group = models.CharField(
-        help_text="Группа", verbose_name="Группа", null=True
+        help_text="Где находится", verbose_name="Группа устройств", null=True
     )
     image = models.ImageField(
         upload_to="supply/media/photo", verbose_name="Иконка", null=True
