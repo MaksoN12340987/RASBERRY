@@ -74,7 +74,7 @@ class SwitchOFF(ListView):
 class CreateButtonSwitch(CreateView):
     model = SupplySwitch
     fields = ["name", "adres_board", "adres_registr"]
-    template_name = "supply/"
+    template_name = "supply"
     success_url = reverse_lazy("supply:home")
 
 

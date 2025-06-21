@@ -1,1 +1,0 @@
-# The dirrectory of photos
