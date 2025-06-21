@@ -74,8 +74,6 @@ class SwitchI2C(SMBus):
             "50": 80,
             "64": 100,
             "65": 101,
-            # Register 12v
-            "10": 16,
         }
         validation = self.__validation_input(
             [
@@ -146,14 +144,18 @@ class SwitchI2C(SMBus):
                     raise ValueError("Адрес не должун быть больше 255")
                 else:
                     logger_i2c.info(value)
-                    result["registr"] = self.matrix_addresses[f"{value}"]
+                    try:
+                        result["registr"] = self.matrix_addresses[f"{value}"]
+                    except KeyError:
+                        print(f"Не нашли такой регистр, ставим {value}")
+                        result["registr"] = value
 
         return result
 
     def __str__(self):
         return f"Name {self.name}, i2c-{self.bus}: \n{self.read_byte_data(self.adress, self.registr)}"
 
-    def turn_on(self, reg: int = 0):
+    def turn_on(self, reg: int = 0, level: int = 100):
         """Включи устройство
 
         Args:
@@ -168,13 +170,15 @@ class SwitchI2C(SMBus):
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
+        elif self.address in [100, 101]:
+            self.registr, level = self.__device_maintenance_12_V(reg)
 
-        logger_i2c.info(f"{self.adress}, {self.registr}, 100")
-        self.write_byte_data(self.adress, self.registr, 100)
+        logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
+        self.write_byte_data(self.adress, self.registr, level)
 
         return self.read_byte_data(self.adress, self.registr)
 
-    def turn_off(self, reg: int = 0):
+    def turn_off(self, reg: int = 0, level: int = 0):
         """Выключи устройство
 
         Args:
@@ -189,17 +193,38 @@ class SwitchI2C(SMBus):
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
+        elif self.address in [100, 101]:
+            self.registr, level = self.__device_maintenance_12_V(reg)
 
-        logger_i2c.info(f"{self.adress}, {self.registr}, 0")
-        self.write_byte_data(self.adress, self.registr, 0)
+        logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
+        self.write_byte_data(self.adress, self.registr, level)
 
         return self.read_byte_data(self.adress, self.registr)
-
-
-# i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
-
-# reg = int(input("set reg: "))
-# print(i2c.turn_on(reg))
-
-# reg = int(input("set reg: "))
-# print(i2c.turn_off(reg))
+    
+    def __device_maintenance_12_V(self, reg: int):
+        addresses = {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 8,
+            "5": 16,
+            "6": 32,
+            "7": 64,
+            "8": 128,
+            "9": 1,
+            "10": 2,
+            "11": 3,
+            "12": 8,
+            "13": 16,
+            "14": 32,
+            "15": 64,
+            "16": 128,
+        }
+        
+        try:
+            if reg < 9:
+                return 10, addresses[reg]
+            else:
+                return 11, addresses[reg]
+        except:
+            return 10, 1
