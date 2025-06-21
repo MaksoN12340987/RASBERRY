@@ -41,7 +41,7 @@ class SwitchON(ListView):
             f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
         )
 
-        i2c = SwitchI2C(1, "super_1", int(switch.adres_board), int(switch.adres_registr))
+        i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
         i2c.turn_on()
 
         return reverse("supply:home")
@@ -62,7 +62,7 @@ class SwitchOFF(ListView):
             f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
         )
 
-        i2c = SwitchI2C(1, "super_1", int(switch.adres_board), int(switch.adres_registr))
+        i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
         i2c.turn_off()
 
         return reverse("supply:home")

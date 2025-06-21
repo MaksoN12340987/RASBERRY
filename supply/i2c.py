@@ -74,6 +74,8 @@ class SwitchI2C(SMBus):
             "50": 80,
             "64": 100,
             "65": 101,
+            # Register 12v
+            "11": 17,
         }
         validation = self.__validation_input(
             [

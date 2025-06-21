@@ -1,7 +1,7 @@
 {% extends 'supply/base.html' %}
 
 {% block title %}
-    Новости
+  Свет
 {% endblock %}
 
 {% block page_title %}
@@ -18,12 +18,12 @@
           
           <div class="d-flex align-items-center ms-1">
             <img src="{{ switch.image }}" alt="" width="34" height="34" class="d-inline-block">
-            <div class="flex-grow-0"><h4 class="mt-1 ms-1">Свет</h4></div>
+            <div class="flex-grow-0"><h4 class="mt-1 ms-1">{{ switch.name }}</h4></div>
           </div>
 
           <div class="container text-start">
               
-            <p>{{ switch.name }}  0x{{ switch.adres_board }}  0x{{ switch.adres_registr }}</p>
+            <p>0x{{ switch.adres_board }}  0x{{ switch.adres_registr }}</p>
 
             <form method="get" class="text-start mb-1">
               {% csrf_token %}
