@@ -14,27 +14,56 @@
 
 
 {% block bottom %}
-  <div class="row p-2">
-    <div class="col-3"></div>
+<div class="row row-cols-2 mb-5">
+    
+  {% for switch in switches %}
+    <div class="col">
 
-    <div class="col-6">
-      <div class="row p-1">
-        <div class="col-4 mt-1">
+      <div class="container bg-item text-white-card p-1 mb-3 rounded-4">
+        
+        <div class="d-flex align-items-center ms-1">
+          <img src="{{ switch.image }}" alt="" width="34" height="34" class="d-inline-block">
+          <div class="flex-grow-0"><h4 class="mt-1 ms-1">{{ switch.name }}</h4></div>
         </div>
-    
-        <div class="col-4 text-post-title">
-          <div class="d-grid gap-2">
-            <a href="{% url 'supply:home' %}" class="btn btn-success">Вернуться домой...</a>
-          </div>
+
+        <div class="container text-start">
+            
+          <p>0x{{ switch.adres_board }}  0x{{ switch.adres_registr }}</p>
+
+          <form method="get" class="text-start mb-1">
+            {% csrf_token %}
+            <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-outline-success p-1 rounded-1">
+                          Включить
+            </a>
+            <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-warning p-1 rounded-1">
+                          Отключить
+            </a>
+            <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
+                          Обновить
+            </a> -->
+          </form>
+        
         </div>
+      </div>
+          
+    </div>
+  {% endfor %}
+
+</div>
+{% endblock %}
+
+
+{% block bottom %}
+  <div class="container text-center p-1">
     
-        <div class="col-4 mt-1">
-        </div>
-    
+    <div class="row p-1">
+      <div class="col-6">
+        <a href="{% url 'supply:create' %}" class="btn btn-success rounded-2">Создать кнопку</a>
+      </div>
+      <div class="col-6">
+        <a href="{% url 'supply:home' %}" class="btn btn-success rounded-2">Обновить</a>
       </div>
     </div>
-
-    <div class="col-3"></div>
 
   </div>
 {% endblock %}
