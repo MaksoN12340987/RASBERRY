@@ -9,7 +9,7 @@ class SupplySwitch(models.Model):
     adres_registr = models.IntegerField(
         help_text="0x20", verbose_name="Адресс регистра"
     )
-    group = models.BooleanField(
+    group = models.CharField(
         help_text="Группа", verbose_name="Группа", default='home'
     )
     image = models.ImageField(
