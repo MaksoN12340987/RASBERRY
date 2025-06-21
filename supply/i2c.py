@@ -169,6 +169,8 @@ class SwitchI2C(SMBus):
         """
         logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
         
+        print(self.address in [100, 101])
+        
         if self.address in [100, 101]:
             dict_result = self.__device_maintenance_12_V(reg)
             
@@ -198,6 +200,8 @@ class SwitchI2C(SMBus):
             _int_: значение указанного регистра памяти
         """
         logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
+        
+        print(self.address in [100, 101])
         
         if self.address in [100, 101]:
             dict_result = self.__device_maintenance_12_V(reg)
