@@ -90,7 +90,7 @@ class SwitchI2C(SMBus):
         self.adress = validation["adress"]
         self.registr = validation["registr"]
         super().__init__(self.bus, force)
-        logger_i2c.info(f"INIT - {type(self.adress)}, {type(self.registr)}, 100")
+        logger_i2c.info(f"INIT - {type(self.adress)}, {type(self.registr)}")
 
     def __validation_input(self, validation_list: list = {}):
         """Приватный метод валидации данных, выполняет проверки
@@ -167,10 +167,6 @@ class SwitchI2C(SMBus):
         Returns:
             _int_: значение указанного регистра памяти
         """
-        if reg:
-            self.registr = self.matrix_addresses[f"{reg}"]
-            logger_i2c.info(f"if reg = {self.registr}")
-        
         if self.address == 100 or self.address == 101:
             dict_result = self.__device_maintenance_12_V(reg)
             
@@ -179,6 +175,10 @@ class SwitchI2C(SMBus):
             
             logger_i2c.info(f"12_V = {self.registr}, {level}")
 
+        if reg:
+            self.registr = self.matrix_addresses[f"{reg}"]
+            logger_i2c.info(f"if reg = {self.registr}")
+        
         logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
         self.write_byte_data(self.adress, self.registr, level)
 
@@ -196,10 +196,6 @@ class SwitchI2C(SMBus):
         Returns:
             _int_: значение указанного регистра памяти
         """
-        if reg:
-            self.registr = self.matrix_addresses[f"{reg}"]
-            logger_i2c.info(f"if reg = {self.registr}")
-        
         if self.address == 100 or self.address == 101:
             dict_result = self.__device_maintenance_12_V(reg)
             
@@ -208,6 +204,10 @@ class SwitchI2C(SMBus):
             
             logger_i2c.info(f"12_V = {self.registr}, {level}")
 
+        if reg:
+            self.registr = self.matrix_addresses[f"{reg}"]
+            logger_i2c.info(f"if reg = {self.registr}")
+        
         logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
         self.write_byte_data(self.adress, self.registr, level)
 
