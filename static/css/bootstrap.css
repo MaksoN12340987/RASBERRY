@@ -206,8 +206,8 @@
   align-items: center;
   justify-content: space-between;
 }
-.container-fluid-home {
-  /* --bs-form-select-bg-img-home: url("../images/Japan_train_full.jpg"); */
+.container-fluid-base {
+  --bs-form-select-bg-img-home: url("../images/china_three.jpg");
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   width: 100%;
@@ -215,13 +215,15 @@
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-right: auto;
   margin-left: auto;
-  /* background-image: var(--bs-form-select-bg-img-home); */
-  background-color: #272727;
+  background-image: var(--bs-form-select-bg-img-home);
+  /* background-color: #c9c9c9; */
 }
 
 
 .container-sm {
-  --bs-gutter-x: 1.5rem;
+  --bs-form-select-bg-img-home: url("../images/china_three.jpg");
+  background-image: var(--bs-form-select-bg-img-home);
+  --bs-gutter-x: 0.2rem;
   --bs-gutter-y: 0;
   width: 65%;
   padding-right: calc(var(--bs-gutter-x) * 0.5);
@@ -247,8 +249,8 @@
   background-image: var(--bg-img-top-line);
 }
 
-.bg-title {
-  --bs-rgb-title: 0, 59, 115;
+.bg-item {
+  --bs-rgb-title: 20, 20, 20;
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-rgb-title), 0.8) !important;
 }
@@ -278,7 +280,7 @@
 
 .text-white-card {
   --bs-text-opacity: 1;
-  color: rgb(39, 39, 39) !important;
+  color: rgb(255, 255, 255) !important;
 }
 
 .card-text:last-child {

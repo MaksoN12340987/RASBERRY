@@ -6,7 +6,7 @@
             "name": "ALL off",
             "adres_board": 40,
             "adres_registr": 21,
-            "image": "",
+            "image": "home.png",
             "connected": true
         }
     },
@@ -17,7 +17,7 @@
             "name": "2-pin - 2",
             "adres_board": 40,
             "adres_registr": 22,
-            "image": "",
+            "image": "home.png",
             "connected": true
         }
     },
@@ -28,7 +28,7 @@
             "name": "2-pin - 3",
             "adres_board": 40,
             "adres_registr": 23,
-            "image": "",
+            "image": "home.png",
             "connected": true
         }
     },
@@ -39,7 +39,7 @@
             "name": "2-pin - 4",
             "adres_board": 40,
             "adres_registr": 24,
-            "image": "",
+            "image": "home.png",
             "connected": true
         }
     },
@@ -50,7 +50,7 @@
             "name": "2-pin - 5",
             "adres_board": 40,
             "adres_registr": 25,
-            "image": "",
+            "image": "home.png",
             "connected": true
         }
     },
@@ -61,7 +61,7 @@
             "name": "2-pin - 6",
             "adres_board": 40,
             "adres_registr": 26,
-            "image": "",
+            "image": "home.png",
             "connected": true
         }
     },
@@ -72,7 +72,7 @@
             "name": "2-pin - 7",
             "adres_board": 40,
             "adres_registr": 27,
-            "image": "",
+            "image": "home.png",
             "connected": true
         }
     },
@@ -83,7 +83,7 @@
             "name": "4-pin - 1",
             "adres_board": 40,
             "adres_registr": 31,
-            "image": "",
+            "image": "home.png",
             "connected": true
         }
     },
@@ -94,7 +94,7 @@
             "name": "4-pin - 2",
             "adres_board": 40,
             "adres_registr": 32,
-            "image": "",
+            "image": "home.png",
             "connected": true
         }
     },
@@ -105,7 +105,7 @@
             "name": "4-pin - 3",
             "adres_board": 40,
             "adres_registr": 33,
-            "image": "",
+            "image": "home.png",
             "connected": true
         }
     },
@@ -116,7 +116,7 @@
             "name": "4-pin - 4",
             "adres_board": 40,
             "adres_registr": 34,
-            "image": "",
+            "image": "home.png",
             "connected": true
         }
     }

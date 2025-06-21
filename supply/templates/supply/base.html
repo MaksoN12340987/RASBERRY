@@ -7,31 +7,19 @@
     <link href="\static\css\bootstrap.css" rel="stylesheet">
     <script defer src="\static\js\bootstrap.bundle.js"></script>
   <body>
-    <div class="container-fluid-home text-center">
+    <div class="container-fluid-base text-center vh-100">
         
-        <div class="container-sm text-center bg-primary-main-block">
-          <div class="row">
+      {% block page_title %}<h1>Блог</h1>{% endblock %}
+          
+      {% block content %}{% endblock %}
 
-            <div class="col mb-5">
-              <div class="container">
-                
-                <div class="container-sm-page_title text-center text-title bg-title rounded-5 mt-4 mb-4 p-2">
-                  {% block page_title %}<h1>Блог</h1>{% endblock %}
-                </div>
-  
-                {% block content %}{% endblock %}
+    </div>
 
-              </div>
-            </div>
-  
-          </div>
-        </div>
-
-        <div class="fixed-bottom">
-          <div class="bg-bottom">
-              {% block bottom %}{% endblock %}
-          </div>
-        </div>
+    <div class="fixed-bottom">
+      <div class="bg-bottom">
+        {% block bottom %}{% endblock %}
+      </div>
+    </div>
     
     </div>
     
