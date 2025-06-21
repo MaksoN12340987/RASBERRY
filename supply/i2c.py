@@ -223,8 +223,8 @@ class SwitchI2C(SMBus):
         
         try:
             if reg < 9:
-                return 10, addresses[reg]
+                return 16, addresses[reg]
             else:
-                return 11, addresses[reg]
+                return 17, addresses[reg]
         except:
             return 10, 1
