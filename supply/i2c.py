@@ -209,8 +209,12 @@ class SwitchI2C(SMBus):
             self.registr = self.matrix_addresses[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
         
-        self.write_byte_data(self.adress, self.registr, level)
-
+        try:
+            self.write_byte_data(self.adress, self.registr, level)
+        except:          
+            self.write_byte_data(self.adress, self.registr, 1)
+            self.write_byte_data(self.adress, self.registr, 0)
+            
         try:
             return self.read_byte_data(self.adress, self.registr)
         except:          
