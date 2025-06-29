@@ -179,13 +179,16 @@ class SwitchI2C(SMBus):
             self.registr = self.matrix_addresses[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
         
-        self.write_byte_data(self.adress, self.registr, level)
-        
-
         try:
+            self.write_byte_data(self.adress, self.registr, level)
+
             return self.read_byte_data(self.adress, self.registr)
-        except:          
-            return 1
+        
+        except OSError:     
+            return self.read_byte_data(self.adress, self.registr)
+        
+        finally:
+            logger_i2c.info("Хм, нечего не получилось(")
 
     def turn_off(self, reg: int = 0, level: int = 0):
         """Выключи устройство
@@ -209,12 +212,20 @@ class SwitchI2C(SMBus):
             self.registr = self.matrix_addresses[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
         
-        self.write_byte_data(self.adress, self.registr, level)
-            
         try:
+            self.write_byte_data(self.adress, self.registr, level)
+
             return self.read_byte_data(self.adress, self.registr)
-        except:          
-            return 1
+        
+        except OSError:
+            self.write_byte_data(self.adress, self.registr, 1)
+            self.write_byte_data(self.adress, self.registr, 0)      
+            return self.read_byte_data(self.adress, self.registr)
+        
+        finally:
+            logger_i2c.info("Хм, нечего не получилось(")
+            
+            
     
     def __device_maintenance_12_V(self, reg: int):
         addresses = {
