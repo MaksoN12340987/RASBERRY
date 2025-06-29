@@ -1,7 +1,6 @@
 import logging
-import time
 
-from smbus3 import SMBus
+from smbus3 import SMBus # type: ignore
 
 logger_i2c = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -93,7 +92,7 @@ class SwitchI2C(SMBus):
         super().__init__(self.bus, force)
         logger_i2c.info(f"INIT - {type(self.adress)}, {type(self.registr)}")
 
-    def __validation_input(self, validation_list: list = {}):
+    def __validation_input(self, validation_list: list = []):
         """Приватный метод валидации данных, выполняет проверки
         переданных значений
 
@@ -251,10 +250,10 @@ class SwitchI2C(SMBus):
         try:
             if reg < 9:
                 result["address"] = 16
-                result["level"] = addresses[reg]
+                result["level"] = addresses[reg] # type: ignore
             else:
                 result["address"] = 17
-                result["level"] = addresses[reg]
+                result["level"] = addresses[reg] # type: ignore
         except:
             result["address"] = 16
             result["level"] = 1
