@@ -184,7 +184,7 @@ class SwitchI2C(SMBus):
 
             return self.read_byte_data(self.adress, self.registr)
         
-        except OSError:     
+        except:     
             return self.read_byte_data(self.adress, self.registr)
         
         finally:
@@ -217,7 +217,7 @@ class SwitchI2C(SMBus):
 
             return self.read_byte_data(self.adress, self.registr)
         
-        except OSError:
+        except:
             self.write_byte_data(self.adress, self.registr, 1)
             self.write_byte_data(self.adress, self.registr, 0)      
             return self.read_byte_data(self.adress, self.registr)
