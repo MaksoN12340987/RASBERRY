@@ -283,7 +283,7 @@
 }
 
 .bg-item {
-  --bs-rgb-title: 200, 200, 200;
+  --bs-rgb-title: 160, 160, 160;
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-rgb-title), 0.8) !important;
 }
