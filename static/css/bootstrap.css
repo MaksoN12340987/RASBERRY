@@ -220,7 +220,7 @@
 }
 
 
-.container-sm {
+.container-md-images {
   --bs-form-select-bg-img-home: url("../images/Japan_cars.jpg");
   background-image: var(--bs-form-select-bg-img-home);
   --bs-gutter-x: 0.2rem;
