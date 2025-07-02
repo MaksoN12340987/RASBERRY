@@ -253,6 +253,11 @@
     max-width: 300px;
   }
 }
+@media (min-width: 1920px) {
+  .container-md {
+    max-width: 300px;
+  }
+}
 :root {
   --bs-breakpoint-md: 300px;
 }
