@@ -31,10 +31,10 @@
 
             <form method="get" class="text-start mb-1">
               {% csrf_token %}
-              <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-outline-success p-1 rounded-1">
+              <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-outline-warning p-1 rounded-1">
                             Включить
               </a>
-              <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-warning p-1 rounded-1">
+              <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger p-1 rounded-1">
                             Отключить
               </a>
               <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
