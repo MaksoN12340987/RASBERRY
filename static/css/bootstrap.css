@@ -225,16 +225,13 @@
   background-image: var(--bs-form-select-bg-img-home);
   --bs-gutter-x: 0.2rem;
   --bs-gutter-y: 0;
+  width: 100%;
   padding-right: calc(var(--bs-gutter-x) * 0.5);
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-right: auto;
   margin-left: auto;
 }
-@media (min-width: 1200px) {
-    .container-sm{
-        max-width: 970px;
-    }
-}
+
 
 
 .container-sm-page_title {
@@ -942,9 +939,9 @@ progress {
   margin-left: auto;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 100px) {
   .container-sm, .container {
-    max-width: 540px;
+    max-width: 100px;
   }
 }
 @media (min-width: 768px) {
