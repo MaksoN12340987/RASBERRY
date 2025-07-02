@@ -236,31 +236,31 @@
 
 @media (min-width: 768px) {
   .container-md {
-    max-width: 720px;
+    max-width: 736px;
   }
 }
 @media (min-width: 992px) {
   .container-md {
-    max-width: 800px;
+    max-width: 736px;
   }
 }
 @media (min-width: 1200px) {
   .container-md {
-    max-width: 800px;
+    max-width: 736px;
   }
 }
 @media (min-width: 1400px) {
   .container-md {
-    max-width: 800px;
+    max-width: 736px;
   }
 }
 @media (min-width: 1920px) {
   .container-md {
-    max-width: 800px;
+    max-width: 736px;
   }
 }
 :root {
-  --bs-breakpoint-md: 768px;
+  --bs-breakpoint-md: 736px;
 }
 
 
