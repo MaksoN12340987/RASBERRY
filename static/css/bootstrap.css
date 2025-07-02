@@ -221,9 +221,9 @@
 
 
 .container-md-images {
-  --bs-form-select-bg-img-home: url("../images/Japan_cars.jpg");
-  background-image: var(--bs-form-select-bg-img-home);
-  --bs-gutter-x: 0.2rem;
+  /* --bs-form-select-bg-img-home: url("../images/Japan_cars.jpg");
+  background-image: var(--bs-form-select-bg-img-home); */
+  --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   width: 100%;
   padding-right: calc(var(--bs-gutter-x) * 0.5);
