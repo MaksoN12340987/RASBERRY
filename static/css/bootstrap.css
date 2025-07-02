@@ -231,7 +231,11 @@
   margin-right: auto;
   margin-left: auto;
 }
-
+@media (min-width: 768px) {
+  .container-md, .container-sm, .container {
+    max-width: 720px;
+  }
+}
 
 
 .container-sm-page_title {
