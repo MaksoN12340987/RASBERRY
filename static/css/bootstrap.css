@@ -207,7 +207,7 @@
   justify-content: space-between;
 }
 .container-fluid-base {
-  --bs-form-select-bg-img-home: url("../images/Japan_cars.jpg");
+  /* --bs-form-select-bg-img-home: url("../images/Japan_cars.jpg"); */
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   width: 100%;
@@ -215,13 +215,13 @@
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-right: auto;
   margin-left: auto;
-  background-image: var(--bs-form-select-bg-img-home);
-  /* background-color: #c9c9c9; */
+  /* background-image: var(--bs-form-select-bg-img-home); */
+  background-color: #2e2e2e;
 }
 
 
 .container-sm {
-  --bs-form-select-bg-img-home: url("../images/china_three.jpg");
+  --bs-form-select-bg-img-home: url("../images/Japan_cars.jpg");
   background-image: var(--bs-form-select-bg-img-home);
   --bs-gutter-x: 0.2rem;
   --bs-gutter-y: 0;
