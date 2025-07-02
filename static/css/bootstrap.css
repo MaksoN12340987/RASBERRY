@@ -225,11 +225,16 @@
   background-image: var(--bs-form-select-bg-img-home);
   --bs-gutter-x: 0.2rem;
   --bs-gutter-y: 0;
-  width: 97%;
+  width: 100%;
   padding-right: calc(var(--bs-gutter-x) * 0.5);
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-right: auto;
   margin-left: auto;
+}
+@media (min-width: 1200px) {
+    .container-sm{
+        max-width: 970px;
+    }
 }
 
 
@@ -390,6 +395,13 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   line-height: 1.2;
   color: var(--bs-heading-color);
 }
+
+
+
+
+
+
+
 
 h1, .h1 {
   font-size: calc(1.375rem + 1.5vw);
