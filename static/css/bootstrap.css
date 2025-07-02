@@ -221,9 +221,8 @@
 
 
 
+
 .container-md {
-  /* --bs-form-select-bg-img-home: url("../images/Japan_cars.jpg");
-  background-image: var(--bs-form-select-bg-img-home); */
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   width: 100%;
@@ -235,32 +234,29 @@
 
 @media (min-width: 768px) {
   .container-md {
-    max-width: 300px;
+    max-width: 720px;
   }
 }
 @media (min-width: 992px) {
   .container-md {
-    max-width: 300px;
+    max-width: 960px;
   }
 }
 @media (min-width: 1200px) {
   .container-md {
-    max-width: 300px;
+    max-width: 1140px;
   }
 }
 @media (min-width: 1400px) {
   .container-md {
-    max-width: 300px;
-  }
-}
-@media (min-width: 1920px) {
-  .container-md {
-    max-width: 300px;
+    max-width: 1320px;
   }
 }
 :root {
-  --bs-breakpoint-md: 300px;
+  --bs-breakpoint-md: 768px;
 }
+
+
 
 
 .container-sm-page_title {
@@ -967,9 +963,9 @@ progress {
   margin-left: auto;
 }
 
-@media (min-width: 100px) {
+@media (min-width: 576px) {
   .container-sm, .container {
-    max-width: 100px;
+    max-width: 540px;
   }
 }
 @media (min-width: 768px) {
@@ -995,7 +991,6 @@ progress {
 :root {
   --bs-breakpoint-xs: 0;
   --bs-breakpoint-sm: 576px;
-  --bs-breakpoint-md: 768px;
   --bs-breakpoint-lg: 992px;
   --bs-breakpoint-xl: 1200px;
   --bs-breakpoint-xxl: 1400px;
