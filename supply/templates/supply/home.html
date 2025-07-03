@@ -21,18 +21,18 @@
         <div class="container bg-item text-white-card mb-3 p-1 rounded-4">
           
           <div class="d-flex align-items-center">
-            <img src="/media/{{ switch.image }}" alt="" width="34" height="34" class="d-inline-block mt-1">
+            <img src="/media/{{ switch.image }}" alt="" width="34" height="34" class="d-inline-block mt-1 ms-1">
             <div class="flex-grow-0"><h4 class="mt-2 ms-1">{{ switch.name }}</h4></div>
           </div>
 
-          <p>Адреса  {{ switch.adres_board }}  {{ switch.adres_registr }}</p>
+          <p class=" ms-1">Адреса  {{ switch.adres_board }}  {{ switch.adres_registr }}</p>
 
           <form method="get" class="text-start">
             {% csrf_token %}
-            <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2">
+            <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2 ms-1">
               Включить
             </a>
-            <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2">
+            <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-1">
               Отключить
             </a>
             <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
