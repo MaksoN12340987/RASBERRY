@@ -312,6 +312,7 @@
 }
 
 .text-white-card {
+  text-align: left !important;
   --bs-text-opacity: 1;
   color: rgb(255, 255, 255) !important;
 }
