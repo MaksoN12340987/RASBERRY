@@ -13,7 +13,9 @@
 {% endblock %}
 
 {% block content %}
-  <h2>Корридор</h2>
+  <div class="container text-start ms-5">
+    <h2>Корридор</h2>
+  </div>
   {% for switch in switches %}
         
     {% if switch.location == 'корридор' %}
