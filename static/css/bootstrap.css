@@ -317,6 +317,11 @@
   color: rgb(255, 255, 255) !important;
 }
 
+.text-white-start {
+  text-align: left !important;
+  color: rgb(148, 148, 148) !important;
+}
+
 .card-text:last-child {
   margin-bottom: 0;
   color: rgb(0, 0, 0) !important;
