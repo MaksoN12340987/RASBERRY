@@ -27,12 +27,12 @@
 
           <p>Адреса  {{ switch.adres_board }}  {{ switch.adres_registr }}</p>
 
-          <form method="get" class="text-start mb-2">
+          <form method="get" class="text-start">
             {% csrf_token %}
-            <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-outline-warning rounded-1">
+            <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2">
               Включить
             </a>
-            <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1">
+            <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2">
               Отключить
             </a>
             <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
