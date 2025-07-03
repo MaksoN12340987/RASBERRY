@@ -322,6 +322,11 @@
   color: rgb(148, 148, 148) !important;
 }
 
+.text-gray-right {
+  text-align: right !important;
+  color: rgb(148, 148, 148) !important;
+}
+
 .card-text:last-child {
   margin-bottom: 0;
   color: rgb(0, 0, 0) !important;
