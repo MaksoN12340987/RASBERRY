@@ -11,10 +11,12 @@ class SwitchAdmin(admin.ModelAdmin):
         "adres_registr",
         "connected",
         "image",
+        "location",
     )
     list_filter = (
         "adres_board",
         "connected",
+        "location",
     )
     search_fields = ("name",)
 
