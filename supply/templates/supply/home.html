@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container text-start ms-5">
+  <div class="container text-white-card ms-5 p-2">
     <h2>Корридор</h2>
   </div>
   {% for switch in switches %}
@@ -31,7 +31,7 @@
               <div class="flex-grow-0"><h4 class="mt-2 ms-1">{{ switch.name }}</h4></div>
             </div>
 
-            <p class=" ms-2">Адреса  {{ switch.adres_board }}  {{ switch.adres_registr }}</p>
+            <p class="ms-2">Адреса  {{ switch.adres_board }}  {{ switch.adres_registr }}</p>
 
             <form method="get" class="text-start">
               {% csrf_token %}
