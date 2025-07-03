@@ -13,12 +13,13 @@
 {% endblock %}
 
 {% block content %}
-  <div class="row row-cols-2 mb-5 ms-1 me-1">
-    
-    <h2>Корридор</h2>
-    {% for switch in switches %}
+  <h2>Корридор</h2>
+  {% for switch in switches %}
         
-      {% if switch.location == 'корридор' %}
+    {% if switch.location == 'корридор' %}
+      <div class="row row-cols-2 mb-5 ms-1 me-1">
+    
+    
         <div class="col">
 
           <div class="container bg-item text-white-card mb-3 p-1 rounded-4">
@@ -46,12 +47,14 @@
           </div>
               
         </div>
-      {% endif %}
+      </div>
     
-    {% endfor %}
+      {% endif %}
+  {% endfor %}
 
-  </div>
-{% endblock %}
+
+
+  {% endblock %}
 
 
 {% block bottom %}
