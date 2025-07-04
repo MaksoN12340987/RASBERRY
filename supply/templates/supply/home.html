@@ -16,16 +16,14 @@
   <div class="container text-white-start ms-5 p-2">
     <h2>Корридор</h2>
   </div>
-  {% for switch in switches %}
-        
-    {% if switch.location == 'корридор' %}
-      <div class="row row-cols-2 ms-1 me-1">
+  <div class="row row-cols-2 mb-5 ms-1 me-1">
+    {% for switch in switches %}
     
-    
-        <div class="col">
+      {% if switch.location == 'корридор' %}
+        <div class="col mb-5">
 
           <div class="container bg-item text-white-card mb-3 p-1 rounded-4">
-            
+              
             <div class="d-flex align-items-center">
               <img src="/media/{{ switch.image }}" alt="" width="34" height="34" class="d-inline-block mt-1 ms-1">
               <div class="flex-grow-0"><h4 class="mt-2 ms-1">{{ switch.name }}</h4></div>
@@ -39,34 +37,30 @@
                 Включить
               </a>
               <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
-                Отключить
+                  Отключить
               </a>
               <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
                 Обновить
               </a> -->
-            </form>
-            
-          </div>
-              
+            </form>  
+          </div>    
+        
         </div>
-      </div>
-    
       {% endif %}
-  {% endfor %}
+    {% endfor %}
+  </div>
 
   <div class="container text-white-start ms-5 p-2">
     <h2>Кухня</h2>
   </div>
-  {% for switch in switches %}
-        
-    {% if switch.location == 'кухня' %}
-      <div class="row row-cols-2 ms-1 me-1">
+  <div class="row row-cols-2 mb-5 ms-1 me-1">
+    {% for switch in switches %}
     
-    
-        <div class="col">
+      {% if switch.location == 'кухня' %}
+        <div class="col mb-5">
 
           <div class="container bg-item text-white-card mb-3 p-1 rounded-4">
-            
+              
             <div class="d-flex align-items-center">
               <img src="/media/{{ switch.image }}" alt="" width="34" height="34" class="d-inline-block mt-1 ms-1">
               <div class="flex-grow-0"><h4 class="mt-2 ms-1">{{ switch.name }}</h4></div>
@@ -80,34 +74,30 @@
                 Включить
               </a>
               <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
-                Отключить
+                  Отключить
               </a>
               <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
                 Обновить
               </a> -->
-            </form>
-            
-          </div>
-              
+            </form>  
+          </div>    
+        
         </div>
-      </div>
-    
       {% endif %}
-  {% endfor %}
+    {% endfor %}
+  </div>
 
   <div class="container text-white-start ms-5 p-2">
     <h2>Макс</h2>
   </div>
-  {% for switch in switches %}
-        
-    {% if switch.location == 'Макс' %}
-      <div class="row row-cols-2 ms-1 me-1">
+  <div class="row row-cols-2 mb-5 ms-1 me-1">
+    {% for switch in switches %}
     
-    
-        <div class="col">
+      {% if switch.location == 'Макс' %}
+        <div class="col mb-5">
 
           <div class="container bg-item text-white-card mb-3 p-1 rounded-4">
-            
+              
             <div class="d-flex align-items-center">
               <img src="/media/{{ switch.image }}" alt="" width="34" height="34" class="d-inline-block mt-1 ms-1">
               <div class="flex-grow-0"><h4 class="mt-2 ms-1">{{ switch.name }}</h4></div>
@@ -121,34 +111,30 @@
                 Включить
               </a>
               <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
-                Отключить
+                  Отключить
               </a>
               <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
                 Обновить
               </a> -->
-            </form>
-            
-          </div>
-              
+            </form>  
+          </div>    
+        
         </div>
-      </div>
-    
       {% endif %}
-  {% endfor %}
+    {% endfor %}
+  </div>
 
   <div class="container text-white-start ms-5 p-2">
     <h2>Остальные</h2>
   </div>
-  {% for switch in switches %}
-        
-    {% if switch.location == 'остальные' %}
-      <div class="row row-cols-2 mb-5 ms-1 me-1">
+  <div class="row row-cols-2 mb-5 ms-1 me-1">
+    {% for switch in switches %}
     
-    
+      {% if switch.location == 'остальные' %}
         <div class="col mb-5">
 
           <div class="container bg-item text-white-card mb-3 p-1 rounded-4">
-            
+              
             <div class="d-flex align-items-center">
               <img src="/media/{{ switch.image }}" alt="" width="34" height="34" class="d-inline-block mt-1 ms-1">
               <div class="flex-grow-0"><h4 class="mt-2 ms-1">{{ switch.name }}</h4></div>
@@ -162,20 +148,18 @@
                 Включить
               </a>
               <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
-                Отключить
+                  Отключить
               </a>
               <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
                 Обновить
               </a> -->
-            </form>
-            
-          </div>
-              
+            </form>  
+          </div>    
+        
         </div>
-      </div>
-    
       {% endif %}
-  {% endfor %}
+    {% endfor %}
+  </div>
 
   {% endblock %}
 
