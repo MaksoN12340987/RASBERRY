@@ -16,6 +16,7 @@ from pathlib import Path
 from dotenv import load_dotenv  # type: ignore
 
 from supply.apps import SupplyConfig
+from users.apps import UsersConfig
 
 load_dotenv()
 
@@ -36,6 +37,28 @@ DEBUG = True if os.getenv("DEBUG") == "True" else False
 ALLOWED_HOSTS = ["localhost", "192.168.1.2", "192.168.0.114", "192.168.1.5"]
 
 
+# Users setings
+AUTH_USER_MODEL = "users.BaseUser"
+LOGIN_REDIRECT_URL = "catalog:home"
+LOGOUT_REDIRECT_URL = "users:logout"
+
+
+# Email setings
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
+EMAIL_HOST = os.getenv("EMAIL_HOST", default="smtp.yandex.ru")
+EMAIL_PORT = os.getenv("EMAIL_PORT", default="465")
+EMAIL_USE_TLS = True if os.getenv("EMAIL_USE_TLS") == "True" else False
+EMAIL_USE_SSL = True if os.getenv("EMAIL_USE_SSL") == "True" else False
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", default="gorscheneow2018@yandex.ru")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.getenv(
+    "DEFAULT_FROM_EMAIL", default="gorscheneow2018@yandex.ru"
+)
+
+# Login config
+LOGIN_URL = 'users:login'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,6 +69,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     f"{SupplyConfig.name}",
+    f"{UsersConfig.name}",
 ]
 
 MIDDLEWARE = [

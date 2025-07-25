@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Авторизация{% endblock %}</title>
+    <link href="\static\css\bootstrap.css" rel="stylesheet">
+    <script defer src="\static\js\bootstrap.bundle.js"></script>
+  <body>
+    
+    {% block content %}{% endblock %}
+
+    <div class="fixed-bottom">
+      <div class="bg-bottom">
+        {% block bottom %}{% endblock %}
+      </div>
+    </div>
+    
+  </body>
+</html>

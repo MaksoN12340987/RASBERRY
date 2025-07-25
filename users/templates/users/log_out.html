@@ -1,0 +1,45 @@
+{% extends 'users/base.html' %}
+
+{% block title %}
+  Авторизация
+{% endblock %}
+
+{% block page_title %}
+
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid-base text-start">
+        
+      <div class="container-md vh-100 text-start text-title p-3">
+        
+        <div class="container-fluid text-start" style="height: 2rem;"></div>
+
+        <div class="container-fluid text-gray-right p-4">
+          <h1>Авторизация пользователей</h1>
+        </div>
+        
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <a class="btn btn-outline-success rounded-2" href="{% url 'users:create' %}">Зарегистрироваться</a>
+        </div>
+
+        <div class="d-grid mt-4 gap-2 col-6 mx-auto">
+          <a class="btn btn-outline-success rounded-2" href="{% url 'users:login' %}">Вход</a>
+        </div>
+      </div>
+
+    </div> 
+{% endblock %}
+
+
+{% block bottom %}
+  <div class="container text-center p-1">
+    
+    <div class="row p-1">
+      <div class="col">
+        <a href="{% url 'users:create' %}" class="btn btn-success rounded-2">Обновить</a>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}
