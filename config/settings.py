@@ -39,7 +39,7 @@ ALLOWED_HOSTS = ["localhost", "192.168.1.2", "192.168.0.114", "192.168.1.5"]
 
 # Users setings
 AUTH_USER_MODEL = "users.BaseUser"
-LOGIN_REDIRECT_URL = "catalog:home"
+LOGIN_REDIRECT_URL = "supply:home"
 LOGOUT_REDIRECT_URL = "users:logout"
 
 
