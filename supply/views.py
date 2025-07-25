@@ -75,7 +75,7 @@ class SwitchOFF(ListView):
 class CreateButtonSwitch(CreateView):
     model = SupplySwitch
     form_class = CreatePostForm
-    template_name = "supply"
+    template_name = "supply/create.html"
     success_url = reverse_lazy("supply:home")
 
 
