@@ -11,6 +11,7 @@ from django.views.generic import (
 )
 
 from supply.i2c import SwitchI2C
+from supply.forms import CreatePostForm, UpdateForm
 from supply.models import SupplySwitch
 
 logger_views = logging.getLogger(__name__)
@@ -73,16 +74,16 @@ class SwitchOFF(ListView):
 
 class CreateButtonSwitch(CreateView):
     model = SupplySwitch
-    fields = ["name", "adres_board", "adres_registr"]
+    form_class = CreatePostForm
     template_name = "supply"
     success_url = reverse_lazy("supply:home")
 
 
 class PostsUpdate(UpdateView):
     model = SupplySwitch
+    form_class = UpdateForm
     template_name = "supply/update.html"
     context_object_name = "switch"
-    fields = ["name", "adres_board", "adres_registr"]
 
     def get_success_url(self):
         return reverse("supply:home")
