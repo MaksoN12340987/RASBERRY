@@ -1,11 +1,11 @@
 {% extends 'supply/base.html' %}
 
 {% block title %}
-    Создание поста
+    Создание кнопки
 {% endblock %}
 
 {% block page_title %}
-    <h1>Создание поста</h1>
+    <h1>Создание кнопки</h1>
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,9 @@
             <div class="container vh-100">
                 
                 <div class="card rounded-3 ms-2 me-2 p-2 text-start bg-dark text-white">
-                    {% form.as_p %}
+                    {% csrf_token %}
+                        
+                    {{ form.as_p }}
                 </div>
         
             </div>
