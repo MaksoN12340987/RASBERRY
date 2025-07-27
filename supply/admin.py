@@ -19,4 +19,3 @@ class SwitchAdmin(admin.ModelAdmin):
         "location",
     )
     search_fields = ("name",)
-
