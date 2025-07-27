@@ -79,7 +79,7 @@ class CreateButtonSwitch(CreateView):
     success_url = reverse_lazy("supply:home")
 
 
-class PostsUpdate(UpdateView):
+class ButtonUpdate(UpdateView):
     model = SupplySwitch
     form_class = UpdateForm
     template_name = "supply/update.html"
@@ -89,7 +89,7 @@ class PostsUpdate(UpdateView):
         return reverse("supply:home")
 
 
-class SwitchButtonDelete(DeleteView):
+class ButtonDelete(DeleteView):
     model = SupplySwitch
     template_name = "supply/delite.html"
     context_object_name = "switch"
