@@ -11,7 +11,7 @@ from django.views.generic import (
 )
 
 from supply.i2c import SwitchI2C
-from supply.forms import CreatePostForm, UpdateForm
+from supply.forms import CreateSwitchForm, UpdateForm
 from supply.models import SupplySwitch
 
 logger_views = logging.getLogger(__name__)
@@ -74,7 +74,7 @@ class SwitchOFF(ListView):
 
 class CreateButtonSwitch(CreateView):
     model = SupplySwitch
-    form_class = CreatePostForm
+    form_class = CreateSwitchForm
     template_name = "supply/create.html"
     success_url = reverse_lazy("supply:home")
 
