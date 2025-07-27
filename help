@@ -17,7 +17,7 @@ python manage.py makemigrations
 python manage.py migrate
 
 # отменить все миграции по аутентификации3
-python manage.py migrate auth zero
+python manage.py migrate zero
 
 
 

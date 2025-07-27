@@ -23,7 +23,7 @@ class SwitchAdmin(admin.ModelAdmin):
 
 
 @admin.register(BaseUser)
-class SwitchAdmin(admin.ModelAdmin):
+class UsersAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "last_login",
