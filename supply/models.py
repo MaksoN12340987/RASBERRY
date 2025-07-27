@@ -13,7 +13,7 @@ class SupplySwitch(models.Model):
         help_text="Где находится", verbose_name="Группа устройств", null=True
     )
     image = models.ImageField(
-        upload_to="supply/media/photo", verbose_name="Иконка", null=True
+        upload_to="supply/media/photo/", verbose_name="Иконка", null=True
     )
     connected = models.BooleanField(
         help_text="Подключено ли?", verbose_name="Подключено", default=True
