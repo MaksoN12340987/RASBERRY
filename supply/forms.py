@@ -11,16 +11,16 @@ class CreateSwitchForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields["name"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Введите имя"}
+            {"class": "form-control", "placeholder": "Название переключателя"}
         )
         self.fields["adres_board"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Введите фамилию"}
+            {"class": "form-control", "placeholder": "Адрес платы целым числом: 40"}
         )
         self.fields["adres_registr"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Введите фамилию"}
+            {"class": "form-control", "placeholder": "Регистр целым числом: 21"}
         )
         self.fields["location"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Введите фамилию"}
+            {"class": "form-control", "placeholder": "Макс, Кладовая, Кухня, Корридор"}
         )
         self.fields["image"].widget.attrs.update({"class": "form-control"})
         self.fields["connected"].widget.attrs.update(
@@ -38,16 +38,16 @@ class UpdateForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields["name"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Введите имя"}
+            {"class": "form-control", "placeholder": "Название переключателя"}
         )
         self.fields["adres_board"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Введите фамилию"}
+            {"class": "form-control", "placeholder": "Адрес платы целым числом: 40"}
         )
         self.fields["adres_registr"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Введите фамилию"}
+            {"class": "form-control", "placeholder": "Регистр целым числом: 21"}
         )
         self.fields["location"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Введите фамилию"}
+            {"class": "form-control", "placeholder": "Макс, Кладовая, Кухня, Корридор"}
         )
         self.fields["image"].widget.attrs.update({"class": "form-control"})
         self.fields["connected"].widget.attrs.update(
