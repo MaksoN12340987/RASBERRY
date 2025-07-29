@@ -9,30 +9,17 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-
-        <div class="col-8 bg-gray">
-            <div class="container vh-100">
+    <div class="container vh-100">
                 
-                <div class="card rounded-3 ms-2 me-2 p-2 text-start bg-dark text-white">
-                    <form method="post" class="bg-dark text-white" enctype="multipart/form-data">
+        <div class="card rounded-3 ms-2 me-2 p-2 text-start bg-dark text-white">
+            <form method="post" class="bg-dark text-white" enctype="multipart/form-data">
                         
-                        {% csrf_token %}
+                {% csrf_token %}
                         
-                        {{ form.as_p }}
+                {{ form.as_p }}
                         
-                        <button type="submit" class="btn btn-primary">Сохранить</button>
-                    </form>
-                </div>
-        
-            </div>
-
-        </div>
-
-        <div class="col-4">
-            <div class="container vh-100">
-
-            </div>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </form>
         </div>
 
     </div>
