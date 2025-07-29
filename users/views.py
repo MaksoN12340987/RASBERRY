@@ -60,3 +60,9 @@ class Logout(LogoutView):
     model = BaseUser
     template_name = "users/log_out.html"
     success_url = reverse_lazy("users:login")
+
+
+class Profile(DetailView):
+    model = BaseUser
+    template_name = "users/profile.html"
+    context_object_name = "user"
