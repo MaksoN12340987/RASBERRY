@@ -16,7 +16,7 @@
       </div>
 
       <h2>Вход</h2>
-      <form method="post" class="mb-5">
+      <form method="post" class="mb-5" enctype="multipart/form-data">
           
         {% csrf_token %}
         {{ form.as_p }}
