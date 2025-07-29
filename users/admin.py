@@ -18,7 +18,6 @@ class UsersAdmin(admin.ModelAdmin):
         "email",
         "phone_number",
         "id",
-        "location",
         "date_joined",
         "last_login",
     )
