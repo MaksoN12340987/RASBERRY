@@ -19,7 +19,7 @@ class BaseUser(AbstractUser):
     #           Пользователь получит все разрешения, предоставленные каждой из его групп
     # "user_permissions" - Конкретные разрешения для этого пользователя
     preview = models.ImageField(
-        upload_to="../media/",
+        upload_to="users/",
         verbose_name="Фотография",
         null=True,
         blank=True,
