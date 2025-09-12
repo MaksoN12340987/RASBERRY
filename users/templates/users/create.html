@@ -1,0 +1,54 @@
+{% extends 'users/base.html' %}
+
+{% block title %}
+  Авторизация
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid-base text-start">
+
+    <div class="container-md text-start text-title p-3">
+
+      <div class="container-fluid text-start" style="height: 2rem;"></div>
+
+      <div class="container-fluid text-gray-right p-4">
+        <h1>Авторизация пользователей</h1>
+      </div>
+
+      <h2>Вход</h2>
+      <form method="post" class="mb-5" enctype="multipart/form-data">
+          
+        {% csrf_token %}
+        {{ form.as_p }}
+          
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button type="submit" class="btn btn-warning btn-lg mb-5">Создать аккаунт</button>
+        </div>
+          
+      </form>
+
+    </div>
+  </div> 
+{% endblock %}
+
+
+{% block bottom %}
+  <div class="container text-center p-1">
+    
+    <div class="row p-1">
+      {% if user.is_authenticated %}
+        <div class="col">
+          <a href="{% url 'users:logout' %}" class="btn btn-success rounded-2">Выход</a>
+        </div>
+      {% else %}
+        <div class="col">
+          <a href="{% url 'users:login' %}" class="btn btn-success rounded-2">Войти</a>
+        </div>
+        <div class="col">
+          <a href="{% url 'users:create' %}" class="btn btn-success rounded-2">Обновить</a>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+{% endblock %}

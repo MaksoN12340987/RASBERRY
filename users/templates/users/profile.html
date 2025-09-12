@@ -1,0 +1,90 @@
+{% extends 'users/base.html' %}
+
+{% block title %}
+  Авторизация
+{% endblock %}
+
+{% block page_title %}
+
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid-base text-start">
+        
+      <div class="container-md vh-100 text-start text-title p-3">
+        
+        <div class="container-fluid text-start" style="height: 2rem;"></div>
+
+        {% if user.is_authenticated %}
+        
+          <div class="container-fluid text-gray-right p-4">
+            <h1>Ваш профиль {{ user.username }}</h1>
+          </div>
+          
+          <div class="row p-4 text-start">
+
+            <div class="col-5">
+              <div>
+                <img src="../../../media/{{ user.preview }}" class="card-img-top">
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div>
+                {% if user.is_active %}
+                  <h6>Пользователь: Admin</h6>
+                {% else %}
+                  <h6>Пользователь: Standard</h6>
+                {% endif %}
+              </div>
+
+              <div>
+                <h6>{{ user.first_name }}</h6>
+              </div>
+
+              <div>
+                <h6>{{ user.last_name }}</h6>
+              </div>
+
+              <div>
+                <h6>Привязанный номер:</h6>
+                <p>+7 {{ user.phone_number }}</p>
+              </div>
+
+              <div>
+                {% if user.is_active %}
+                  <h6>Профиль активен</h6>
+                {% else %}
+                  <h6>Профиль деактивирован</h6>
+                {% endif %}
+              </div>
+
+              <div>
+                <h6>Последний вход: {{ user.last_login }}</h6>
+              </div>
+
+            </div>
+          </div>
+      
+        {% else %}
+
+          <h3>Войдите или зарегистрируйтесь, чтобы просмотреть профиль</h3>
+
+        {% endif %}
+        </div>
+
+    </div> 
+{% endblock %}
+
+
+{% block bottom %}
+  <div class="container text-center p-1">
+    
+    <div class="row p-1">
+      <div class="col">
+        <a href="{% url 'users:login' %}" class="btn btn-success rounded-2">Вход</a>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

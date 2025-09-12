@@ -1,10 +1,9 @@
-from smbus3 import SMBus
-import time
 import logging
 
+from smbus3 import SMBus # type: ignore
 
 logger_i2c = logging.getLogger(__name__)
-file_handler = logging.FileHandler(f"log/{__name__}.log", mode="w", encoding="UTF8")
+file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
 file_formatter = logging.Formatter(
     "\n%(asctime)s %(levelname)s %(name)s \n%(funcName)s %(lineno)d: \n%(message)s",
     datefmt="%H:%M:%S %d-%m-%Y",
@@ -25,6 +24,10 @@ class SwitchI2C(SMBus):
         SMBus (Python библиотека smbus3): родительский класс
         библиотеки, позволяющей управлять устройствами по
         шине i2c
+        i2c - номер шины
+        name - название устройства
+        adress - адресс устройства
+        registr - регистр памяти по умолчанию
 
     Raises:
     Исключения метода __validation_input
@@ -34,7 +37,8 @@ class SwitchI2C(SMBus):
 
     Returns:
         _int_: значения регистра памяти
-    """    
+    """
+
     i2c: int
     name: str
     adress: int
@@ -48,6 +52,29 @@ class SwitchI2C(SMBus):
         registr,
         force: bool = False,
     ):
+        self.matrix_addresses = {
+            # 2-pin register
+            "21": 33,
+            "22": 34,
+            "23": 35,
+            "24": 36,
+            "25": 37,
+            "26": 38,
+            "27": 39,
+            # 4-pin register
+            "31": 49,
+            "32": 50,
+            "33": 51,
+            "34": 52,
+            # Adress
+            "40": 64,
+            "41": 65,
+            "42": 66,
+            "50": 80,
+            "51": 81,
+            "64": 100,
+            "65": 101,
+        }
         validation = self.__validation_input(
             [
                 i2c,
@@ -63,24 +90,9 @@ class SwitchI2C(SMBus):
         self.adress = validation["adress"]
         self.registr = validation["registr"]
         super().__init__(self.bus, force)
-        self.matrix_addresses = {
-            # 2-pin register
-            "20": 32,
-            "21": 33,
-            "22": 34,
-            "23": 35,
-            "24": 36,
-            "25": 37,
-            "26": 38,
-            # 4-pin register
-            "30": 48,
-            "31": 49,
-            "32": 50,
-            "33": 51,
-            "34": 51,
-        }
+        logger_i2c.info(f"INIT - {type(self.adress)}, {type(self.registr)}")
 
-    def __validation_input(self, validation_list: list = {}):
+    def __validation_input(self, validation_list: list = []):
         """Приватный метод валидации данных, выполняет проверки
         переданных значений
 
@@ -102,7 +114,7 @@ class SwitchI2C(SMBus):
             _dict_: ключи - короткое наименование
                     значения переменных, прошедших
                     валидацию
-        """        
+        """
         result = {}
         for i, value in enumerate(validation_list):
             if i == 0:
@@ -126,72 +138,124 @@ class SwitchI2C(SMBus):
                     raise ValueError("Адрес не должун быть больше 255")
                 else:
                     logger_i2c.info(value)
-                    result["adress"] = value
+                    result["adress"] = self.matrix_addresses[f"{value}"]
             else:
                 if value > 255:
                     raise ValueError("Адрес не должун быть больше 255")
                 else:
                     logger_i2c.info(value)
-                    result["registr"] = value
+                    try:
+                        result["registr"] = self.matrix_addresses[f"{value}"]
+                    except KeyError:
+                        print(f"Не нашли такой регистр, ставим {value}")
+                        result["registr"] = value
 
         return result
 
     def __str__(self):
         return f"Name {self.name}, i2c-{self.bus}: \n{self.read_byte_data(self.adress, self.registr)}"
 
-    def turn_on(self, reg: int = 20):
+    def turn_on(self, reg: int = 0, level: int = 100):
         """Включи устройство
 
         Args:
             reg (int, optional): регистр памяти в диапозоне:
             [20 ... 26]
             [30 ... 34]
-            Defaults to 20.
+            Defaults to 0.
 
         Returns:
             _int_: значение указанного регистра памяти
-        """        
+        """
+        logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
+        
+        if self.adress in [100, 101]:
+            dict_result = self.__device_maintenance_12_V(reg)
+            self.registr = dict_result["address"]
+            level = dict_result["level"]
+
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
-        self.open(self.bus)
+            logger_i2c.info(f"if reg = {self.registr}")
+        
+        try:
+            self.write_byte_data(self.adress, self.registr, level)
 
-        super().write_byte_data(self.adress, self.registr, 100)
+            return self.read_byte_data(self.adress, self.registr)
+        
+        except:     
+            return self.read_byte_data(self.adress, self.registr)
+        
+        finally:
+            logger_i2c.info("Хм, нечего не получилось(")
 
-        result = self.read_byte_data(self.adress, self.registr)
-        logger_i2c.info(f"{result}, {self.adress}, {self.registr}, 100")
-
-        self.close()
-        return result
-
-    def turn_off(self, reg: int = 20):
+    def turn_off(self, reg: int = 0, level: int = 0):
         """Выключи устройство
 
         Args:
             reg (int, optional): регистр памяти в диапозоне:
             [20 ... 26]
             [30 ... 34]
-            Defaults to 20.
+            Defaults to 0.
 
         Returns:
             _int_: значение указанного регистра памяти
-        """        
+        """
+        logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
+        
+        if self.adress in [100, 101]:
+            dict_result = self.__device_maintenance_12_V(reg)
+            self.registr = dict_result["address"]
+
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
-        self.open(self.bus)
+            logger_i2c.info(f"if reg = {self.registr}")
+        
+        try:
+            self.write_byte_data(self.adress, self.registr, level)
 
-        super().write_byte_data(self.adress, self.registr, 0)
-
-        result = self.read_byte_data(self.adress, self.registr)
-        logger_i2c.info(f"{result}, {self.adress}, {self.registr}, 0")
-
-        self.close()
+            return self.read_byte_data(self.adress, self.registr)
+        
+        except:
+            self.write_byte_data(self.adress, self.registr, 1)
+            self.write_byte_data(self.adress, self.registr, 0)      
+            return self.read_byte_data(self.adress, self.registr)
+        
+        finally:
+            logger_i2c.info("Хм, нечего не получилось(")
+            
+            
+    
+    def __device_maintenance_12_V(self, reg: int):
+        addresses = {
+            "1": 1,
+            "2": 2,
+            "3": 4,
+            "4": 8,
+            "5": 16,
+            "6": 32,
+            "7": 64,
+            "8": 128,
+            "9": 1,
+            "10": 2,
+            "11": 4,
+            "12": 8,
+            "13": 16,
+            "14": 32,
+            "15": 64,
+            "16": 128,
+        }
+        result = {}
+        
+        try:
+            if reg < 9:
+                result["address"] = 16
+                result["level"] = addresses[reg] # type: ignore
+            else:
+                result["address"] = 17
+                result["level"] = addresses[reg] # type: ignore
+        except:
+            result["address"] = 16
+            result["level"] = 1
+            
         return result
-
-
-# i2c = SwitchI2C(1, "super_1", 0x40, 0x22)
-
-# reg = int(input("set reg: "))
-# print(i2c.turn_on(reg))
-
-# reg = int(input("set reg: "))
-# print(i2c.turn_off(reg))

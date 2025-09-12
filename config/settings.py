@@ -10,12 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
-from supply.apps import SupplyConfig
-
-import os
 from dotenv import load_dotenv  # type: ignore
+
+from supply.apps import SupplyConfig
+from users.apps import UsersConfig
 
 load_dotenv()
 
@@ -33,7 +34,29 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.getenv("DEBUG") == "True" else False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "192.168.1.2", "192.168.0.114", "192.168.1.5"]
+
+
+# Users setings
+AUTH_USER_MODEL = "users.BaseUser"
+LOGIN_REDIRECT_URL = "supply:home"
+LOGOUT_REDIRECT_URL = "users:logout"
+
+
+# Email setings
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
+EMAIL_HOST = os.getenv("EMAIL_HOST", default="smtp.yandex.ru")
+EMAIL_PORT = os.getenv("EMAIL_PORT", default="465")
+EMAIL_USE_TLS = True if os.getenv("EMAIL_USE_TLS") == "True" else False
+EMAIL_USE_SSL = True if os.getenv("EMAIL_USE_SSL") == "True" else False
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", default="gorscheneow2018@yandex.ru")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.getenv(
+    "DEFAULT_FROM_EMAIL", default="gorscheneow2018@yandex.ru"
+)
+
+# Login config
+LOGIN_URL = 'users:login'
 
 
 # Application definition
@@ -46,6 +69,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     f"{SupplyConfig.name}",
+    f"{UsersConfig.name}",
 ]
 
 MIDDLEWARE = [
@@ -85,7 +109,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "PORT": os.getenv("DATABASE_PORT", default="5432"),
-        "NAME": os.getenv("DATABASE_NAME", default="postgres"),
+        "NAME": os.getenv("DATABASE_NAME", default="supply"),
         "USER": os.getenv("DATABASE_USER", default="postgres"),
         "HOST": os.getenv("DATABASE_HOST", default="localhost"),
         "PASSWORD": os.getenv("DATABASE_PASSWORD"),

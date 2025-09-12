@@ -1,0 +1,57 @@
+git branch
+
+git switch Develop
+
+git pull https://github.com/MaksoN12340987/RASBERRY.git Develop
+
+
+python manage.py shell -i ipython
+
+python -Xutf8 manage.py dumpdata supply.SupplySwitch --output supply/fixture/supply.json --indent 4
+
+python manage.py loaddata supply/fixture/supply.json --format json
+
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+# отменить все миграции по аутентификации3
+python manage.py migrate auth zero
+python manage.py migrate mailings zero
+python manage.py migrate zero
+
+source venv/bin/activate
+
+python manage.py createadmin
+andrianov_maksim@outlook.com
+
+
+Параметры 
+LOGIN_REDIRECT_URL
+ и 
+LOGOUT_REDIRECT_URL
+ используются для указания URL-адресов, на которые будет перенаправлен пользователь после успешного входа и выхода
+
+
+supply_1 = SupplySwitch.objects.create(name='s-1', adres_board=40, adres_registr=21)
+
+categories = Category.objects.all()
+for category in categories:
+    print(category.name)
+
+
+product = Product.objects.get(name='Сельдь')
+
+
+
+source djenv/bin/activate
+        server {
+                listen     192.168.1.5:110;
+                protocol   pop3;
+                proxy      on;
+                location / {
+                        root /home/pi/pidjango;
+                }
+        }
+

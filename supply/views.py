@@ -1,9 +1,18 @@
-from django.shortcuts import render
-
 import logging
 
-from supply.apps import SupplyConfig
+from django.db.models.query import QuerySet
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    ListView,
+    UpdateView,
+    DetailView,
+)
 
+from supply.i2c import SwitchI2C
+from supply.forms import CreateSwitchForm, UpdateForm
+from supply.models import SupplySwitch
 
 logger_views = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -16,23 +25,72 @@ logger_views.addHandler(file_handler)
 logger_views.setLevel(logging.INFO)
 
 
-from django.shortcuts import render
-from django.http import HttpResponse
+class SwitchesButtonsView(ListView):
+    model = SupplySwitch
+    template_name = "supply/home.html"
+    context_object_name = "switches"
 
 
-# Create your views here.
-def home(request):
-    logger_views.info(request)
+class SwitchON(ListView):
+    model = SupplySwitch
+    template_name = "supply/on_off.html"
+    context_object_name = "switches"
 
-    if "home" in f"{request}":
-        return render(request, f"{SupplyConfig.name}/home.html")
+    def get_queryset(self) -> QuerySet:
+        switch = SupplySwitch.objects.get(pk=self.kwargs["pk"])
+        logger_views.info(
+            f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
+        )
+
+        i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
+        i2c.turn_on()
+
+        return super().get_queryset()
+    
+    def get_success_url(self):
+        return reverse("supply:home")
 
 
-def contacts(request):
-    logger_views.debug(request)
-    if request.method == "POST":
-        name = request.POST.get("name")
-        message = request.POST.get("message")
 
-        return HttpResponse(f"Спасибо, {name}! Сообщение отправлено.")
-    return render(request, f"{SupplyConfig.name}/contacts.html")
+class SwitchOFF(ListView):
+    model = SupplySwitch
+    template_name = "supply/on_off.html"
+    context_object_name = "switches"
+    
+    def get_queryset(self) -> QuerySet:
+        switch = SupplySwitch.objects.get(pk=self.kwargs["pk"])
+        logger_views.info(
+            f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
+        )
+
+        i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
+        i2c.turn_off()
+        
+        return super().get_queryset()
+    
+    def get_success_url(self):
+        return reverse("supply:home")
+
+
+class CreateButtonSwitch(CreateView):
+    model = SupplySwitch
+    form_class = CreateSwitchForm
+    template_name = "supply/create.html"
+    success_url = reverse_lazy("supply:home")
+
+
+class ButtonUpdate(UpdateView):
+    model = SupplySwitch
+    form_class = UpdateForm
+    template_name = "supply/update.html"
+    context_object_name = "switch"
+
+    def get_success_url(self):
+        return reverse("supply:home")
+
+
+class ButtonDelete(DeleteView):
+    model = SupplySwitch
+    template_name = "supply/delite.html"
+    context_object_name = "switch"
+    success_url = reverse_lazy("supply:home")
