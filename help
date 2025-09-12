@@ -12,6 +12,9 @@ python -Xutf8 manage.py dumpdata supply.SupplySwitch --output supply/fixture/sup
 python manage.py loaddata supply/fixture/supply.json --format json
 
 
+python manage.py createadmin
+
+
 python manage.py makemigrations
 
 python manage.py migrate
