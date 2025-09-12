@@ -4,76 +4,92 @@
   Авторизация
 {% endblock %}
 
-{% block page_title %}
-
-{% endblock %}
-
 {% block content %}
   <div class="container-fluid-base text-start">
-        
-      <div class="container-md vh-100 text-start text-title p-3">
-        
-        <div class="container-fluid text-start" style="height: 2rem;"></div>
 
-        {% if user.is_authenticated %}
-        
-          <div class="container-fluid text-gray-right p-4">
-            <h1>Ваш профиль {{ user.username }}</h1>
+    <div class="container-md-user text-start text-title p-4">
+
+      <div class="container-fluid text-start" style="height: 3rem;"></div>
+
+      <div class="container-fluid text-white p-4">
+        <h1>Ваш профиль {{ user.username }}</h1>
+      </div>
+
+      <div class="row p-2 mb-3 text-start bg-user-create-form rounded-3">
+
+          <div class="col-5">
+            <div class="border">
+              <img src="/media/{{ user.photo }}" class="card-img-top">
+            </div>
           </div>
-          
-          <div class="row p-4 text-start">
 
-            <div class="col-5">
-              <div>
-                <img src="../../../media/{{ user.preview }}" class="card-img-top">
-              </div>
+          <div class="col-7">
+            <div>
+              {% if user.is_active %}
+                <h6>Пользователь: Admin</h6>
+              {% else %}
+                <h6>Пользователь: Standard</h6>
+              {% endif %}
             </div>
 
-            <div class="col-7">
-              <div>
-                {% if user.is_active %}
-                  <h6>Пользователь: Admin</h6>
-                {% else %}
-                  <h6>Пользователь: Standard</h6>
-                {% endif %}
-              </div>
-
-              <div>
-                <h6>{{ user.first_name }}</h6>
-              </div>
-
-              <div>
-                <h6>{{ user.last_name }}</h6>
-              </div>
-
-              <div>
-                <h6>Привязанный номер:</h6>
-                <p>+7 {{ user.phone_number }}</p>
-              </div>
-
-              <div>
-                {% if user.is_active %}
-                  <h6>Профиль активен</h6>
-                {% else %}
-                  <h6>Профиль деактивирован</h6>
-                {% endif %}
-              </div>
-
-              <div>
-                <h6>Последний вход: {{ user.last_login }}</h6>
-              </div>
-
+            <div>
+              <h6>{{ user.first_name }}</h6>
             </div>
+
+            <div>
+              <h6>{{ user.last_name }}</h6>
+            </div>
+
+            <div>
+              <h6>Привязанный номер:</h6>
+              <p>+7 {{ user.phone_number }}</p>
+            </div>
+
+            <div>
+              {% if user.is_active %}
+                <h6>Профиль активен</h6>
+              {% else %}
+                <h6>Профиль деактивирован</h6>
+              {% endif %}
+            </div>
+
+            <div>
+              <h6>Группа: {{ user.groups }}</h6>
+            </div>
+
+            <div>
+              <h6>Последний вход: {{ user.last_login }}</h6>
+            </div>
+
           </div>
       
-        {% else %}
+      </div>
 
-          <h3>Войдите или зарегистрируйтесь, чтобы просмотреть профиль</h3>
 
-        {% endif %}
+        <div class="row text-start">
+
+            <div class="col-5">
+              <div class="container text-gray-right bg-user-create-form rounded-4 me-4">
+                <h1>Обновления профиля:</h1>
+
+                <form method="post" class="mb-5" enctype="multipart/form-data">
+                    
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                    
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-warning btn-lg mt-3 mb-3 me-5">Сохранить</button>
+                  </div>
+                    
+                </form>
+              </div>
+            </div>
+            
         </div>
 
     </div> 
+        </div>
+
 {% endblock %}
 
 
@@ -81,9 +97,30 @@
   <div class="container text-center p-1">
     
     <div class="row p-1">
-      <div class="col">
-        <a href="{% url 'users:login' %}" class="btn btn-success rounded-2">Вход</a>
-      </div>
+      {% if user.is_authenticated %}
+        <div class="col">
+          <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <div class="flex-grow-0 ms-2 mt-1">
+              <button type="submit" class="btn btn-success rounded-2">Выйти</button>
+            </div>
+          </form>
+        </div>
+        
+        {% if user.is_superuser %}
+          <div class="col">
+            <a href="{% url 'users:list' %}" class="btn btn-success rounded-2 me-4 mt-1">Все юзеры</a>
+          </div>
+        {% endif %}
+
+      {% else %}
+        <div class="col">
+          <a href="{% url 'users:login' %}" class="btn btn-success rounded-2">Войти</a>
+        </div>
+        <div class="col">
+          <a href="{% url 'users:create' %}" class="btn btn-success rounded-2">Обновить</a>
+        </div>
+      {% endif %}
     </div>
 
   </div>

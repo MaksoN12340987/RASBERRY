@@ -1,19 +1,17 @@
 import logging
 
-from django.urls import reverse_lazy
-from django.views.generic import (
-    CreateView,
-    DetailView,
-    ListView,
-    UpdateView,
-    DeleteView,
-)
+from django.contrib.auth import login
+from django.contrib.auth.mixins import (LoginRequiredMixin,
+                                        PermissionRequiredMixin)
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.mail import send_mail
-from django.contrib.auth import login
+from django.http import HttpResponse, HttpResponseForbidden
 
-from .models import BaseUser
-from .forms import UserCreateForm, CustomAuthenticationForm
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView, UpdateView
+
+from .forms import AuthForm, RedactProfileForm, UserCreateForm
+from .models import HomeUser
 
 logger_views_users = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -27,7 +25,7 @@ logger_views_users.setLevel(logging.INFO)
 
 
 class UsersCreate(CreateView):
-    model = BaseUser
+    model = HomeUser
     form_class = UserCreateForm
     template_name = "users/create.html"
     success_url = reverse_lazy("users:login")
@@ -50,19 +48,36 @@ class UsersCreate(CreateView):
         send_mail(subject, message, from_email, recipient_list)
 
 
+class UsersList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    model = HomeUser
+    template_name = "users/list.html"
+    context_object_name = "users"
+    permission_required = "users.view_baseuser"
+
+
 class Login(LoginView):
-    model = BaseUser
-    form_class = CustomAuthenticationForm
+    model = HomeUser
+    form_class = AuthForm
     template_name = "users/log_in.html"
 
 
 class Logout(LogoutView):
-    model = BaseUser
+    model = HomeUser
     template_name = "users/log_out.html"
-    success_url = reverse_lazy("users:login")
 
 
-class Profile(DetailView):
-    model = BaseUser
+class UpdateProfile(LoginRequiredMixin, UpdateView):
+    model = HomeUser
+    form_class = RedactProfileForm
     template_name = "users/profile.html"
     context_object_name = "user"
+
+    def post(self, request, *args, **kwargs) -> HttpResponse:
+        if not request.user.has_perm("change_baseuser"):
+            return HttpResponseForbidden(
+                "У вас нет прав для обновления данных пользователя."
+            )
+
+        return super().post(request, *args, **kwargs)
+
+    success_url = reverse_lazy("users:login")

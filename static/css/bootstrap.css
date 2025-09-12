@@ -233,7 +233,6 @@
   margin-right: auto;
   margin-left: auto;
 }
-
 @media (min-width: 768px) {
   .container-md {
     max-width: 736px;
@@ -262,6 +261,56 @@
 :root {
   --bs-breakpoint-md: 736px;
 }
+
+
+
+
+
+.container-md-user {
+  --bs-form-select-bg-img-home: url("../images/kot.jpg");
+  background-image: var(--bs-form-select-bg-img-home);
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 900px) {
+  .container-md {
+    max-width: 930px;
+  }
+}
+@media (min-width: 1920px) {
+  .container-md {
+    max-width: 930px;
+  }
+}
+:root {
+  --bs-breakpoint-md: 930px;
+}
+
+.bg-user-create-form {
+  --create-form: 255, 255, 255;
+  background-color: rgba(var(--create-form), 0.45) !important;
+}
+
+.bg-user-create-text {
+  --bs-rgb-post-card: 186, 124, 0;
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-rgb-post-card), 0.5) !important;
+  color: rgb(255, 255, 255);
+}
+
+.bg-user-create-unit {
+  --bs-rgb-post-card: 1, 1, 1;
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-rgb-post-card), 0.7) !important;
+  color: rgb(255, 255, 255);
+}
+
+
 
 
 

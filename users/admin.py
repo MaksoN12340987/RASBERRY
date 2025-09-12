@@ -1,28 +1,29 @@
 from django.contrib import admin
 
-from .models import BaseUser
+from .models import HomeUser
 
 
-@admin.register(BaseUser)
+@admin.register(HomeUser)
 class UsersAdmin(admin.ModelAdmin):
     list_display = (
         "id",
-        "is_superuser",
+        "email",
         "username",
         "password",
-        "first_name",
-        "last_name",
         "is_staff",
         "is_active",
-        "preview",
-        "email",
-        "phone_number",
-        "id",
-        "date_joined",
+        "is_superuser",
         "last_login",
+        "first_name",
+        "last_name",
+        "phone_number",
+        "date_joined",
+        "comment",
+        "photo",
     )
     list_filter = (
         "username",
+        "is_active",
         "is_superuser",
     )
-    search_fields = ("username",)
+    search_fields = ("first_name", "last_name")
