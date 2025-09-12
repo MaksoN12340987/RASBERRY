@@ -1,6 +1,6 @@
 import logging
 
-from smbus3 import SMBus # type: ignore
+from smbus3 import SMBus  # type: ignore
 
 logger_i2c = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -168,7 +168,7 @@ class SwitchI2C(SMBus):
             _int_: значение указанного регистра памяти
         """
         logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
-        
+
         if self.adress in [100, 101]:
             dict_result = self.__device_maintenance_12_V(reg)
             self.registr = dict_result["address"]
@@ -177,15 +177,15 @@ class SwitchI2C(SMBus):
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
-        
+
         try:
             self.write_byte_data(self.adress, self.registr, level)
 
             return self.read_byte_data(self.adress, self.registr)
-        
-        except:     
+
+        except:
             return self.read_byte_data(self.adress, self.registr)
-        
+
         finally:
             logger_i2c.info("Хм, нечего не получилось(")
 
@@ -202,7 +202,7 @@ class SwitchI2C(SMBus):
             _int_: значение указанного регистра памяти
         """
         logger_i2c.info(f"{self.adress}, {self.registr}, {level}")
-        
+
         if self.adress in [100, 101]:
             dict_result = self.__device_maintenance_12_V(reg)
             self.registr = dict_result["address"]
@@ -210,22 +210,20 @@ class SwitchI2C(SMBus):
         if reg:
             self.registr = self.matrix_addresses[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
-        
+
         try:
             self.write_byte_data(self.adress, self.registr, level)
 
             return self.read_byte_data(self.adress, self.registr)
-        
+
         except:
             self.write_byte_data(self.adress, self.registr, 1)
-            self.write_byte_data(self.adress, self.registr, 0)      
+            self.write_byte_data(self.adress, self.registr, 0)
             return self.read_byte_data(self.adress, self.registr)
-        
+
         finally:
             logger_i2c.info("Хм, нечего не получилось(")
-            
-            
-    
+
     def __device_maintenance_12_V(self, reg: int):
         addresses = {
             "1": 1,
@@ -246,16 +244,16 @@ class SwitchI2C(SMBus):
             "16": 128,
         }
         result = {}
-        
+
         try:
             if reg < 9:
                 result["address"] = 16
-                result["level"] = addresses[reg] # type: ignore
+                result["level"] = addresses[reg]  # type: ignore
             else:
                 result["address"] = 17
-                result["level"] = addresses[reg] # type: ignore
+                result["level"] = addresses[reg]  # type: ignore
         except:
             result["address"] = 16
             result["level"] = 1
-            
+
         return result

@@ -5,7 +5,14 @@ from .models import SupplySwitch
 class CreateSwitchForm(forms.ModelForm):
     class Meta:
         model = SupplySwitch
-        fields = ["name", "adres_board", "adres_registr", "location", "image", "connected"]
+        fields = [
+            "name",
+            "adres_board",
+            "adres_registr",
+            "location",
+            "image",
+            "connected",
+        ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -23,16 +30,20 @@ class CreateSwitchForm(forms.ModelForm):
             {"class": "form-control", "placeholder": "Макс, Кладовая, Кухня, Корридор"}
         )
         self.fields["image"].widget.attrs.update({"class": "form-control"})
-        self.fields["connected"].widget.attrs.update(
-            {"class": "form-check-input"}
-        )
-
+        self.fields["connected"].widget.attrs.update({"class": "form-check-input"})
 
 
 class UpdateForm(forms.ModelForm):
     class Meta:
         model = SupplySwitch
-        fields = ["name", "adres_board", "adres_registr", "location", "image", "connected"]
+        fields = [
+            "name",
+            "adres_board",
+            "adres_registr",
+            "location",
+            "image",
+            "connected",
+        ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -50,6 +61,4 @@ class UpdateForm(forms.ModelForm):
             {"class": "form-control", "placeholder": "Макс, Кладовая, Кухня, Корридор"}
         )
         self.fields["image"].widget.attrs.update({"class": "form-control"})
-        self.fields["connected"].widget.attrs.update(
-            {"class": "form-check-input"}
-        )
+        self.fields["connected"].widget.attrs.update({"class": "form-check-input"})
