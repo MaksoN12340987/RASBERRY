@@ -1,8 +1,8 @@
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class BaseUser(AbstractUser):
+class HomeUser(AbstractUser):
     # Поля модели по умолчанию:
     # "id"
     # "last_login"
@@ -18,14 +18,16 @@ class BaseUser(AbstractUser):
     # "groups" - Группы, к которым принадлежит этот пользователь.
     #           Пользователь получит все разрешения, предоставленные каждой из его групп
     # "user_permissions" - Конкретные разрешения для этого пользователя
-    preview = models.ImageField(
+    photo = models.ImageField(
         upload_to="users/",
         verbose_name="Фотография",
         null=True,
-        blank=True,
     )
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True, verbose_name="Почта клиента")
     phone_number = models.CharField(max_length=15, blank=True, null=True)
+    comment = models.CharField(
+        max_length=15, blank=True, null=True, verbose_name="Коммантарий"
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = [
@@ -34,3 +36,8 @@ class BaseUser(AbstractUser):
 
     def __str__(self):
         return self.email
+
+    class Meta:
+        verbose_name = "Получатель"
+        verbose_name_plural = "Получатели"
+        ordering = ["id", "username"]

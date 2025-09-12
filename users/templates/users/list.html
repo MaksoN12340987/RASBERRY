@@ -1,0 +1,65 @@
+{% extends 'users/base.html' %}
+
+{% block title %}
+  Авторизация
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid-base text-start">
+
+    <div class="container-md-user vh-100 text-start text-title p-3">
+
+      <div class="container-fluid text-start" style="height: 3rem;"></div>
+
+      <div class="d-flex text-white p-5">
+        <h1 class="p-2 ms-3 me-3 mb-3 bg-user-create-text rounded-5">Список пользователей</h1>
+      </div>
+
+      <div class="row row-cols-2 ms-1 me-1">
+        {% for user in users %}
+      
+          <div class="col rounded-5">
+            <div class="container bg-user-create-unit text-white-card ms-1 me-1 mb-3 rounded-4">
+                
+              <div class="d-flex align-items-center p-2">
+                <img src="/media/{{ user.photo }}" alt="" width="50" height="50" class="d-inline-block mt-1 ms-1 rounded-5">
+                <div class="flex-grow-0"><h4 class="mt-2 ms-3">{{ user.first_name }}</h4></div>
+              </div>
+
+              <p class="ms-2">
+                {% if user.is_active %}
+                    <h6>Пользователь: Admin</h6>
+                  {% else %}
+                    <h6>Пользователь: Standard</h6>
+                  {% endif %}
+              </p>
+
+              <a href="{% url 'users:profile' user.pk %}" class="btn btn-outline-warning rounded-1 mb-2 ms-2">
+                Просмотреть
+              </a>
+            </div>    
+          
+          </div>
+        {% endfor %}
+      
+      </div>
+
+    </div>
+  </div> 
+{% endblock %}
+
+
+{% block bottom %}
+  <div class="container text-center p-1">
+    
+    <div class="row p-1">
+      <div class="col">
+          <a href="{% url 'users:login' %}" class="btn btn-success rounded-2">Войти</a>
+        </div>
+        <div class="col">
+          <a href="{% url 'users:create' %}" class="btn btn-success rounded-2">Обновить</a>
+        </div>
+    </div>
+
+  </div>
+{% endblock %}

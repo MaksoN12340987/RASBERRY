@@ -1,0 +1,65 @@
+[
+{
+    "model": "users.mailingrecipient",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$IrTab5AkLJ8Fa8j8OyFdd6$oRcn6p7W8Pr2PIJwalj6OsHdf3LC+vfw1JS5O23pM7k=",
+        "last_login": "2025-09-11T07:01:39.422Z",
+        "is_superuser": true,
+        "username": "Admin",
+        "first_name": "Admin",
+        "last_name": "Admin",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-09-11T06:57:19.525Z",
+        "photo": "users/my.JPG",
+        "email": "andrianov_maksim@outlook.com",
+        "phone_number": null,
+        "comment": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.mailingrecipient",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$DMpHAHAhwsuKiaHLbNrxPE$5T3UWHXwsaaY2Tcj/D1H4DgPHzb73FHDFAgrwM03E5c=",
+        "last_login": "2025-09-11T18:31:58.707Z",
+        "is_superuser": false,
+        "username": "FirstUser",
+        "first_name": "User",
+        "last_name": "Lastname",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-09-11T07:38:04.560Z",
+        "photo": "users/whie_dog.jpg",
+        "email": "user@domen.com",
+        "phone_number": "79990001122",
+        "comment": "Island",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.mailingrecipient",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$UAW0mnvEcmLtxF3lAK5b9z$xvc3zGd1LhwIm5El1Co0o3IcYIulIp2DZVIQL0IhQio=",
+        "last_login": "2025-09-11T07:40:56.671Z",
+        "is_superuser": false,
+        "username": "SecondUser",
+        "first_name": "SecondUser",
+        "last_name": "Lastname",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-09-11T07:40:56.089Z",
+        "photo": "users/Sever.jpg",
+        "email": "m.andrianov.fibbee@gmail.com",
+        "phone_number": "79990001122",
+        "comment": "Russia",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

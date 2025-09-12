@@ -8,7 +8,7 @@ from .views import (
     ButtonDelete,
     SwitchON,
     SwitchOFF,
-    ButtonUpdate
+    ButtonUpdate,
 )
 
 app_name = SupplyConfig.name

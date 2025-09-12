@@ -6,10 +6,54 @@
     <title>{% block title %}Блог{% endblock %}</title>
     <link href="\static\css\bootstrap.css" rel="stylesheet">
     <script defer src="\static\js\bootstrap.bundle.js"></script>
+    <script defer src="\static\js\time.js"></script>
   <body>
     <div class="container-fluid-base text-center">
         
       <div class="container-md text-center p-0">
+
+        <div class="container-fluid" style="height: 1rem;"></div>
+        <div class="hstack gap-3">
+            <div class="p-2 d-flex text-white">
+              <p>TIME: </p>
+              <p class="ms-2" id="clock"></p>
+            </div>
+            
+            {% if user.is_authenticated %}
+              <div class="p-2 ms-auto bg-auth rounded-5">
+                <img src="/media/{{ user.photo }}" alt="/static/images/icon.png" width="30" height="30" class="d-inline-block mt-1 rounded-5">
+              </div>
+
+              <div class="d-flex bg-auth rounded-5">
+                <a class="icon-link icon-link-hover link-success link-underline-success link-underline-opacity-25 p-1 mt-1 mb-2 ms-3" href="{% url 'users:list' %}">
+                  {{ user.username }}
+                  <svg xmlns="/static/images/balloon-heart.svg" class="bi" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                  </svg>
+                </a>
+
+                <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
+                  {% csrf_token %}
+                  <div class="flex-grow-0 ms-2 mt-1">
+                    <button type="submit" class="btn rounded-2 mb-2 me-2">Выйти</button>
+                  </div>
+                </form>
+              </div>
+            {% else %}
+              <div class="p-2 ms-auto bg-auth rounded-5">
+                <img src="/static/images/icon.png" width="30" height="30" class="d-inline-block mt-1 mb-1 rounded-5">
+              </div>
+
+              <div class="d-flex bg-auth rounded-5">
+                <a class="icon-link icon-link-hover link-success link-underline-success link-underline-opacity-25 p-2 mt-1 mb-2 ms-3 me-3" href="{% url 'users:login' %}">
+                  Вход
+                  <svg xmlns="/static/images/balloon-heart.svg" class="bi" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                  </svg>
+                </a>
+              </div>
+            {% endif %}
+          </div>
         
         {% block page_title %}<h1>Блог</h1>{% endblock %}
           

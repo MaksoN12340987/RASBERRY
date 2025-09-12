@@ -1,0 +1,74 @@
+[
+{
+    "model": "supply.supplyswitch",
+    "pk": 1,
+    "fields": {
+        "name": "Кладовая",
+        "adres_board": 64,
+        "adres_registr": 1,
+        "location": "коридор",
+        "image": "media/11747953.png",
+        "connected": true
+    }
+},
+{
+    "model": "supply.supplyswitch",
+    "pk": 2,
+    "fields": {
+        "name": "RGB",
+        "adres_board": 50,
+        "adres_registr": 50,
+        "location": "Макс",
+        "image": "media/351428.png",
+        "connected": true
+    }
+},
+{
+    "model": "supply.supplyswitch",
+    "pk": 3,
+    "fields": {
+        "name": "Верх",
+        "adres_board": 50,
+        "adres_registr": 51,
+        "location": "Макс",
+        "image": "media/2338838.png",
+        "connected": true
+    }
+},
+{
+    "model": "supply.supplyswitch",
+    "pk": 4,
+    "fields": {
+        "name": "Зеркало",
+        "adres_board": 42,
+        "adres_registr": 23,
+        "location": "Макс",
+        "image": "media/226477.png",
+        "connected": true
+    }
+},
+{
+    "model": "supply.supplyswitch",
+    "pk": 5,
+    "fields": {
+        "name": "Всегда вкл",
+        "adres_board": 40,
+        "adres_registr": 21,
+        "location": "остальные",
+        "image": "media/5158443.png",
+        "connected": true
+    }
+},
+{
+    "model": "supply.supplyswitch",
+    "pk": 6,
+    "fields": {
+        "name": "Шторы",
+        "adres_board": 42,
+        "adres_registr": 22,
+        "location": "Макс",
+        "image": "media/1171894.png",
+        "connected": true
+    }
+}
+]
