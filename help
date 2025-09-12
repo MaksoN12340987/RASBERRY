@@ -18,7 +18,7 @@ python manage.py migrate
 
 # отменить все миграции по аутентификации3
 python manage.py migrate auth zero
-
+python manage.py migrate mailings zero
 python manage.py migrate zero
 
 source venv/bin/activate
