@@ -278,12 +278,12 @@
   margin-left: auto;
 }
 @media (min-width: 900px) {
-  .container-md {
+  .container-md-user {
     max-width: 930px;
   }
 }
 @media (min-width: 1920px) {
-  .container-md {
+  .container-md-user {
     max-width: 930px;
   }
 }
