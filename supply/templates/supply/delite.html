@@ -1,11 +1,11 @@
 {% extends 'supply/base.html' %}
 
 {% block title %}
-    Пост
+  Удаление переключателя
 {% endblock %}
 
 {% block page_title %}
-  <h3 class=" text-white">Удаление текущего поста</h3>
+  <h3 class=" text-white">Удаление переключателя</h3>
 {% endblock %}
 
 {% block content %}
@@ -13,8 +13,8 @@
     <div class="card rounded-3 bg-dark text-white">
       
         <div class="card-body mt-2 p-3 rounded-3">
-          <h4>{{ post.title }}</h4>
-          <p>{{ post.content }}</p>
+          <h4>{{ switches.name }}</h4>
+          <p>{{ switches.location }}</p>
           <h3>Уверены, что хотите удалить такую красоту?</h3>
         </div>
     
@@ -37,18 +37,11 @@
 
     <div class="col-6">
       <div class="row p-1">
-        <div class="col-4 mt-1">
-          <p class="text-white">Создан {{ post.creation_date | date:"d M Y" }}</p>
-        </div>
-    
+        
         <div class="col-4 text-post-title">
           <div class="d-grid gap-2">
-            <a href="{% url 'blog:home' %}" class="btn btn-success">На главную...</a>
+            <a href="{% url 'supply:home' %}" class="btn btn-success">На главную...</a>
           </div>
-        </div>
-    
-        <div class="col-4 mt-1">
-          <p class="text-white">Пост просмотрели {{ post.number_views }} раз</p>
         </div>
     
       </div>
