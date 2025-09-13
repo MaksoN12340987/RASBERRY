@@ -103,3 +103,10 @@ class ButtonDelete(DeleteView):
     template_name = "supply/delite.html"
     context_object_name = "switch"
     success_url = reverse_lazy("supply:home")
+
+
+
+class RaedactButtonsView(ListView):
+    model = SupplySwitch
+    template_name = "supply/redacters.html"
+    context_object_name = "switches"

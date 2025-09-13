@@ -171,9 +171,17 @@
       <div class="col-6">
         <a href="{% url 'supply:create' %}" class="btn btn-success rounded-2">Создать кнопку</a>
       </div>
-      <div class="col-6">
-        <a href="{% url 'supply:home' %}" class="btn btn-success rounded-2">Обновить</a>
-      </div>
+
+      {% if user.is_superuser %}
+        <div class="col-6">
+          <a href="{% url 'supply:redact' %}" class="btn btn-success rounded-2">Редактировать список</a>
+        </div>
+
+      {% else %}
+        <div class="col-6">
+          <a href="{% url 'supply:home' %}" class="btn btn-success rounded-2">Обновить</a>
+        </div>
+      {% endif %}
     </div>
 
   </div>

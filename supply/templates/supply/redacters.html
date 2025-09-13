@@ -1,0 +1,64 @@
+{% extends 'supply/base.html' %}
+
+{% block title %}
+  Свет
+{% endblock %}
+
+{% block page_title %}
+<div class="container-fluid text-start" style="height: 3rem;"></div>
+
+<div class="container-fluid text-gray-right p-4">
+  <h1>Наш дом</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+  <div class="container text-white-start ms-5 p-2">
+    <h2>Корридор</h2>
+  </div>
+  <div class="row row-cols-2 ms-1 me-1">
+    {% for switch in switches %}
+    
+      <div class="col">
+          <div class="container bg-item text-white-card mb-3 p-1 rounded-4">
+              
+            <div class="d-flex align-items-center">
+              <img src="/media/{{ switch.image }}" alt="" width="34" height="34" class="d-inline-block mt-1 ms-1">
+              <div class="flex-grow-0"><h4 class="mt-2 ms-1">{{ switch.name }}</h4></div>
+            </div>
+
+            <p class="ms-2">Статус  {{ switch.on_off }}</p>
+
+            <div class="d-flex">
+              
+              <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
+                Обновить
+              </a>
+              
+              <a href="{% url 'supply:delite' switch.pk %}" class="btn btn-top-line">
+                Удалить
+              </a>
+            
+            </div>  
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+
+{% endblock %}
+
+
+{% block bottom %}
+  <div class="container text-center p-1">
+    
+    <div class="row p-1">
+      <div class="col-6">
+        <a href="{% url 'supply:create' %}" class="btn btn-success rounded-2">Создать кнопку</a>
+      </div>
+      <div class="col-6">
+        <a href="{% url 'supply:home' %}" class="btn btn-success rounded-2">Обновить</a>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}
