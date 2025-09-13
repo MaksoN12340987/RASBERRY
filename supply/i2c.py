@@ -227,11 +227,11 @@ class SwitchI2C(SMBus):
 
         try:
             self.write_byte_data(self.adress, self.registr, level)
-            return 1
+            return 0
 
         except:
             self.write_byte_data(self.adress, self.registr, level)
-            return 1
+            return 0
 
         finally:
             logger_i2c.info("Хм, че-то получилось")
