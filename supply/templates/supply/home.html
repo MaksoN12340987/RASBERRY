@@ -39,9 +39,6 @@
               <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
                   Отключить
               </a>
-              <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
-                Обновить
-              </a> -->
             </form>  
           </div>    
         
@@ -76,9 +73,6 @@
               <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
                   Отключить
               </a>
-              <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
-                Обновить
-              </a> -->
             </form>  
           </div>    
         
@@ -113,9 +107,6 @@
               <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
                   Отключить
               </a>
-              <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
-                Обновить
-              </a> -->
             </form>  
           </div>    
         
@@ -150,9 +141,6 @@
               <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
                   Отключить
               </a>
-              <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
-                Обновить
-              </a> -->
             </form>  
           </div>    
         
@@ -171,9 +159,17 @@
       <div class="col-6">
         <a href="{% url 'supply:create' %}" class="btn btn-success rounded-2">Создать кнопку</a>
       </div>
-      <div class="col-6">
-        <a href="{% url 'supply:home' %}" class="btn btn-success rounded-2">Обновить</a>
-      </div>
+
+      {% if user.is_superuser %}
+        <div class="col-6">
+          <a href="{% url 'supply:redact' %}" class="btn btn-success rounded-2">Редактировать список</a>
+        </div>
+
+      {% else %}
+        <div class="col-6">
+          <a href="{% url 'supply:home' %}" class="btn btn-success rounded-2">Обновить</a>
+        </div>
+      {% endif %}
     </div>
 
   </div>
