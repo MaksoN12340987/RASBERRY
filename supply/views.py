@@ -44,7 +44,10 @@ class SwitchON(ListView):
 
         i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
         result = i2c.turn_on()
-        switch.on_off = result
+        if result:
+            switch.on_off = result
+        else:
+            switch.on_off = 0
         switch.save()
 
         return super().get_queryset()
@@ -66,7 +69,10 @@ class SwitchOFF(ListView):
 
         i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
         result = i2c.turn_off()
-        switch.on_off = result
+        if result:
+            switch.on_off = result
+        else:
+            switch.on_off = 0
         switch.save()
 
         return super().get_queryset()

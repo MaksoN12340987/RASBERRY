@@ -191,13 +191,13 @@ class SwitchI2C(SMBus):
         try:
             # Записываем
             self.write_byte_data(self.adress, self.registr, level)
-            # Смотрим значение
-            return self.read_byte_data(self.adress, self.registr)
+            return 1
 
         except:
             # Записываем и возвращяем результат, если не
             # получилось в первый раз
-            return self.read_byte_data(self.adress, self.registr)
+            self.write_byte_data(self.adress, self.registr, level)
+            return 1
 
         finally:
             logger_i2c.info("Хм, че-то получилось")
@@ -227,16 +227,14 @@ class SwitchI2C(SMBus):
 
         try:
             self.write_byte_data(self.adress, self.registr, level)
-
-            return self.read_byte_data(self.adress, self.registr)
+            return 1
 
         except:
-            self.write_byte_data(self.adress, self.registr, 1)
-            self.write_byte_data(self.adress, self.registr, 0)
-            return self.read_byte_data(self.adress, self.registr)
+            self.write_byte_data(self.adress, self.registr, level)
+            return 1
 
         finally:
-            logger_i2c.info("Хм, нечего не получилось(")
+            logger_i2c.info("Хм, че-то получилось")
 
     def __device_maintenance_12_V(self, reg: int) -> dict:
         """Включение устройств на платах с адресоь 6х
