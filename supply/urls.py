@@ -15,9 +15,9 @@ from .views import (
 app_name = SupplyConfig.name
 
 urlpatterns = [
-    path("home/", SwitchesButtonsView.as_view(), name="home"),
-    path("home/turn_on/<int:pk>/", SwitchON.as_view(), name="turn_on"),
-    path("home/turn_off/<int:pk>/", SwitchOFF.as_view(), name="turn_off"),
+    path("", SwitchesButtonsView.as_view(), name="home"),
+    path("turn_on/<int:pk>/", SwitchON.as_view(), name="turn_on"),
+    path("turn_off/<int:pk>/", SwitchOFF.as_view(), name="turn_off"),
     path("create/", CreateButtonSwitch.as_view(), name="create"),
     path("redact/", RaedactButtonsView.as_view(), name="redact"),
     path("update/<int:pk>/", ButtonUpdate.as_view(), name="update"),
