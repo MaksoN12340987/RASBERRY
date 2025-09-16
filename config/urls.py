@@ -9,7 +9,7 @@ from users.apps import UsersConfig
 urlpatterns = [
     path("admin/", admin.site.urls),
     path(
-        f"{SupplyConfig.name}/",
+        f"",
         include(f"{SupplyConfig.name}.urls", namespace=f"{SupplyConfig.name}"),
     ),
     path(
