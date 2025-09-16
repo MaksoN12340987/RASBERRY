@@ -1,4 +1,3 @@
-// @ts-check
 const cli = require("commander");
 // const { persistence } = require("./superpersistence");
 const { connectErp } = require("./supererp");

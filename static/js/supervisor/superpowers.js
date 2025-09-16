@@ -1,4 +1,3 @@
-// @ts-check
 const { groupBy, keys, prop, sortBy, values } = require('ramda');
 const { sleep } = require('u-queue');
 const { CronJob } = require('cron');
@@ -202,3 +201,173 @@ const powers = async ({ db, hw,  }) => {
 module.exports = {
   powers,
 };
+
+
+
+/* // old stuff
+
+const util = require("util");
+const exec = util.promisify(require("child_process").exec);
+const { Gpio, pinmap } = require("./config");
+const pto = (t) => new Promise((res, rej) => setTimeout(res, t));
+const DeviceControl = require("./device-control");
+const KioskControl = require("./kiosk-control");
+
+const controls = {};
+
+const decorateWifi = async () => {
+  const oldDown = controls.wifi.down;
+  controls.wifi.down = () => {
+    if (controls.wifi.respawnTimer) {
+      clearTimeout(controls.wifi.respawnTimer);
+    }
+    const result = oldDown();
+    console.log("Setting wifi respawn timer");
+    controls.wifi.respawnTimer = setTimeout(controls.wifi.up, 4700);
+    return result;
+  };
+};
+
+const shutdown = async () => {
+  exec('ssh complexos "sudo poweroff"');
+  await pto(1000);
+
+  // controls.lift1.down();
+  // controls.lift2.down();
+  // controls.lift3.down();
+
+  controls.light.down();
+  controls.kiosk1 && controls.kiosk1.down();
+  controls.kiosk2 && controls.kiosk2.down();
+  await pto(1000);
+
+  controls.arm1.down();
+  controls.arm2.down();
+  await pto(1000);
+
+  controls.milksys.down();
+  controls.sirups.down();
+  controls.smallcups.down();
+  controls.bigcups.down();
+  await pto(1000);
+
+  controls.os.down();
+};
+
+const startup = async () => {
+  controls.pump.up();
+
+  controls.sirups.up();
+  controls.smallcups.up();
+  controls.bigcups.up();
+  await pto(500);
+  controls.lift1.up();
+  controls.lift2.up();
+  controls.lift3.up();
+  await pto(500);
+  controls.arm1.up();
+  controls.arm2.up();
+  await pto(5000);
+
+  controls.os.up();
+  controls.kiosk1 && controls.kiosk1.up();
+  controls.kiosk2 && controls.kiosk2.up();
+  await pto(30000);
+
+  controls.milksys.up();
+  controls.light.up();
+  // controls.neonglow.up();
+};
+
+const boot = async (initialState) => {
+  controls.pump.up();
+  controls.wifi.up();
+  await pto(90000);
+
+  // controls.cameras.up();
+  await startup();
+};
+
+const init = ({ kiosk1mac, kiosk2mac }) => async (db) => {
+  console.log("Starting gpio powers", { kiosk1mac, kiosk2mac });
+  const devids = [];
+  const state = await db.loadState();
+
+  console.log("Powering", { state });
+
+  var boost;
+  if (Gpio) {
+    boost = new Gpio(pinmap._boost, { mode: Gpio.OUTPUT });
+    boost.digitalWrite(0);
+  }
+
+  for (const device of Object.keys(pinmap)) {
+    if (device.slice(0, 1) == "_") {
+      // something internal
+    } else {
+      devids.push(device);
+      controls[device] = DeviceControl({
+        pin: pinmap[device],
+        initialState: state[device],
+      });
+    }
+  }
+
+  const addKioskCtrl = ({ label, mac }) => {
+    console.log("Adding kiosk", { label, mac });
+    controls[label] = KioskControl({
+      hostname: `${label}.local`,
+      mac,
+    });
+  };
+
+  kiosk1mac && addKioskCtrl({ label: "Kiosk1", mac: kiosk1mac });
+  kiosk2mac && addKioskCtrl({ label: "Kiosk2", mac: kiosk2mac });
+
+  await pto(250);
+  if (boost) {
+    boost.digitalWrite(1);
+    await pto(250);
+  }
+
+  boot(state); // don't await
+
+  decorateWifi();
+
+  // test
+  // while(true) {
+  //   // return;
+  //   for (let i = 0; i < devids.length; i++) {
+  //     console.log({ i, d: devids[i] });
+  //     controls[ devids[i] ].up();
+  //     await pto(15);
+  //   }
+  //   for (let i = 0; i < devids.length; i++) {
+  //     controls[ devids[i] ].down();
+  //     await pto(15);
+  //   }
+  // }
+  // real
+
+  return {
+    devices: () => Object.keys(controls),
+    up: async (dev) => {
+      controls[dev].up();
+      state[dev] = true;
+      db.saveState(state);
+    },
+    down: async (dev) => {
+      controls[dev].down();
+      state[dev] = false;
+      db.saveState(state);
+    },
+    isup: async (dev) => controls[dev].isup(),
+    shutdown,
+    startup,
+  };
+};
+
+module.exports = {
+  powers: init,
+};
+*/

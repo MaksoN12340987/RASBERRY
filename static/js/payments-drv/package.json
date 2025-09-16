@@ -1,0 +1,25 @@
+{
+  "name": "aerp-payments-drv",
+  "version": "2.1.0",
+  "description": "Fibbee Payments driver",
+  "main": "payments-drv.js",
+  "dependencies": {
+    "aerp-service-transport": "github:foodtronics/aerp-service-transport#master",
+    "commander": "^2.17.1",
+    "iconv": "^3.0.1",
+    "logger": "github:foodtronics/logger",
+    "ramda": "^0.27.0",
+    "reconnecting-websocket": "^4.4.0",
+    "shelljs": "^0.8.2",
+    "u-queue": "^1.1.0",
+    "ulid": "^2.3.0",
+    "ws": "^8.18.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node payments-drv.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "private": true
+}

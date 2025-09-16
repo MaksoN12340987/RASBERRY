@@ -1,0 +1,52 @@
+[Unit]
+Description=cm
+
+[Service]
+WorkingDirectory=/home/pi/complexos-coffeemachine-drv/
+Type=simple
+User=root
+Environment=COMPLEXSYSNAME=014
+Environment=NATSD_URI=nats://complexos.local:4222
+ExecStart=/home/pi/bin/start-node.sh coffeemachine-drv.js --hwid=cm \
+                                                          --deterg-flowmeter-i2c-addr=0x73 \
+                                                          --deterg-flowmeter-resolution=250 \
+                                                          --deterg-flowmeter-ticks-CM=50 \
+                                                          --deterg-flowmeter-ticks-MS=51 \
+                                                          --i2c-valves-bus=1 \
+                                                          --i2c-valves-addr 0x64 0x65 \
+                                                          --i2c-valves-version=2 \
+                                                          --valves-count 10 10 \
+							                              --no-common-valve \
+                                                          --water-factors 1.15 1 \
+                                                          --port=/dev/ttyUSB0 \
+                                                          --pressure-threshold=45 \
+                                                          --hysteresis=5 \
+                                                          --pressure-dump=0 \
+                                                          --gear-pump \
+                                                          --separate-cleaning \
+                                                          --purge-time=200000
+# --hwid=cm - идентификатор устройства
+# --deterg-flowmeter-i2c-addr=0x73 - Адрес платы расходомера моющего средства. Значение по умолчанию 0x73, допустимые 0x70...0x73
+# --deterg-flowmeter-resolution=250 - Число импульсов физического расходомера на один литр жидкости (взять из даташита на расходомер или измерить вручную)
+# --deterg-flowmeter-ticks-CM=50 - Количество моющего средства для промывочной ёмкости кофемашины, в мл
+# --deterg-flowmeter-ticks-MS=51 - Количество моющего средства для промывочной ёмкости молочной системы, в мл
+# --i2c-valves-bus=1 - шина i2c, по умолчанию 1, возможные значения 1, 3, 4, 6
+# --i2c-valves-addr 0x64 0x65 - Адреса плат молочных клапанов в порядке возрастания номеров физических клапанов в холодильнике, возможные адреса 0x64...0x67, адреса не должны быть одинаковыми
+# --i2c-valves-version=2 - Версия молочных клапанов. Версия 1 более не используется.
+# --valves-count 10 10 - Количество клапанов, подключенных к каждой плате в соответствии с порядком указания адресов плат. Number Number Сумма клапанов должна быть чётной
+# --no-common-valve - Если параметр не задан, для каждого молочного клапана включается сливной клапан
+# --water-factors 1.15 1 - Поправочный коэффициент для параметров water quantity и bypass в рецептах для 0 и 1 группы.
+# --port=/dev/ttyUSB0 - Порт конвертера USB↔RS232
+# --pressure-threshold=45 - Давление, до которого накачивается воздух в канистры. Возможные значения 11...250
+# --hysteresis=5 - Гистерезис переключения воздушного насоса, возможные значения 11...250
+# --pressure-dump=0 - не используется
+# --gear-pump - Если параметр задан, для накачки молока используются насосы в холодильнике
+# --separate-cleaning - Если параметр задан, выполняется раздельная мойка кофемашины и молочной системы
+# --purge-time=200000 - Не используется
+
+Restart=always
+RestartSec=2s
+SyslogIdentifier=fibbee-cm
+
+[Install]
+WantedBy=multi-user.target

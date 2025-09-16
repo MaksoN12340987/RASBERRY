@@ -1,0 +1,25 @@
+{
+  "name": "aerp-printer-drv",
+  "version": "4.0.0",
+  "description": "Fibbee Complex UI cheques printer driver",
+  "main": "printer-drv.js",
+  "dependencies": {
+    "aerp-service-transport": "github:foodtronics/aerp-service-transport#master",
+    "commander": "^10.0.1",
+    "jsbarcode": "^3.11.6",
+    "logger": "github:foodtronics/logger",
+    "niimbotjs": "^0.3.2",
+    "ramda": "^0.27.0",
+    "serialport": "^8.0.8",
+    "sharp": "^0.33.5",
+    "u-queue": "^1.1.0",
+    "xmldom": "^0.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node printer-drv.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "private": true
+}
