@@ -10,7 +10,7 @@ from django.views.generic import (
     DetailView,
 )
 
-from supply.i2c import SwitchI2C
+# from supply.i2c import SwitchI2C
 from supply.forms import CreateSwitchForm, UpdateForm
 from supply.models import SupplySwitch
 
@@ -42,13 +42,13 @@ class SwitchON(ListView):
             f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
         )
 
-        i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
-        result = i2c.turn_on()
-        if result:
-            switch.on_off = result
-        else:
-            switch.on_off = 0
-        switch.save()
+        # i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
+        # result = i2c.turn_on()
+        # if result:
+        #     switch.on_off = result
+        # else:
+        #     switch.on_off = 0
+        # switch.save()
 
         return super().get_queryset()
 
@@ -67,13 +67,13 @@ class SwitchOFF(ListView):
             f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
         )
 
-        i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
-        result = i2c.turn_off()
-        if result:
-            switch.on_off = result
-        else:
-            switch.on_off = 0
-        switch.save()
+        # i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
+        # result = i2c.turn_off()
+        # if result:
+        #     switch.on_off = result
+        # else:
+        #     switch.on_off = 0
+        # switch.save()
 
         return super().get_queryset()
 

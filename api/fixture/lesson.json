@@ -1,0 +1,302 @@
+[
+  {
+    "model": "syllabus.lesson",
+    "pk": 1,
+    "fields": {
+      "title": "Русский язык",
+      "description": "Грамматика и синтаксис",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 2,
+    "fields": {
+      "title": "Литература",
+      "description": "Классика XIX века",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 3,
+    "fields": {
+      "title": "Алгебра",
+      "description": "Квадратные уравнения",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 4,
+    "fields": {
+      "title": "Геометрия",
+      "description": "Треугольники и окружности",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 5,
+    "fields": {
+      "title": "Физика",
+      "description": "Законы Ньютона",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 6,
+    "fields": {
+      "title": "Химия",
+      "description": "Периодическая система элементов",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 7,
+    "fields": {
+      "title": "Биология",
+      "description": "Клеточное строение организмов",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 8,
+    "fields": {
+      "title": "История",
+      "description": "Древний Египет",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 9,
+    "fields": {
+      "title": "География",
+      "description": "Материки и океаны",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 10,
+    "fields": {
+      "title": "Информатика",
+      "description": "Основы программирования",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 11,
+    "fields": {
+      "title": "Английский язык",
+      "description": "Времена глаголов",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 12,
+    "fields": {
+      "title": "Немецкий язык",
+      "description": "Основы грамматики",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 13,
+    "fields": {
+      "title": "Французский язык",
+      "description": "Лексика и произношение",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 14,
+    "fields": {
+      "title": "Обществознание",
+      "description": "Права и обязанности граждан",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 15,
+    "fields": {
+      "title": "Экономика",
+      "description": "Рыночная система",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 16,
+    "fields": {
+      "title": "Право",
+      "description": "Основы законодательства",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 17,
+    "fields": {
+      "title": "Философия",
+      "description": "Античная философия",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 18,
+    "fields": {
+      "title": "Логика",
+      "description": "Законы мышления",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 19,
+    "fields": {
+      "title": "Психология",
+      "description": "Основы психологии личности",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 20,
+    "fields": {
+      "title": "Экология",
+      "description": "Охрана окружающей среды",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 21,
+    "fields": {
+      "title": "Астрономия",
+      "description": "Солнечная система",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 22,
+    "fields": {
+      "title": "Музыка",
+      "description": "Нотная грамота",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 23,
+    "fields": {
+      "title": "ИЗО",
+      "description": "Основы рисунка",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 24,
+    "fields": {
+      "title": "Труд",
+      "description": "Технология обработки древесины",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 25,
+    "fields": {
+      "title": "Физкультура",
+      "description": "Легкая атлетика",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 26,
+    "fields": {
+      "title": "ОБЖ",
+      "description": "Правила дорожного движения",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 27,
+    "fields": {
+      "title": "Черчение",
+      "description": "Проекционное черчение",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 28,
+    "fields": {
+      "title": "МХК",
+      "description": "Архитектура Древней Греции",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 29,
+    "fields": {
+      "title": "Краеведение",
+      "description": "История родного края",
+      "preview": "",
+      "video_link": ""
+    }
+  },
+  {
+    "model": "syllabus.lesson",
+    "pk": 30,
+    "fields": {
+      "title": "Риторика",
+      "description": "Искусство убеждения",
+      "preview": "",
+      "video_link": ""
+    }
+  }
+]
