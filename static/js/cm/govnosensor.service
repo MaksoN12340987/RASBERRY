@@ -1,0 +1,16 @@
+[Unit]
+Description=govnosensor
+
+[Service]
+WorkingDirectory=/home/pi/complexos-coffeemachine-drv/govnosensor/
+Type=simple
+User=root
+Environment=COMPLEXSYSNAME=f14
+Environment=NATSD_URI=nats://complexos.local:4222
+ExecStart=/home/pi/bin/start-node.sh govnosensor.js --hwid=waterwatchdog
+Restart=always
+# RestartSec=1s
+SyslogIdentifier=fibbee-govnosensor
+
+[Install]
+WantedBy=multi-user.target

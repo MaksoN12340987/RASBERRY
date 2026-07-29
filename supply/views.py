@@ -42,8 +42,13 @@ class SwitchON(ListView):
             f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
         )
 
-        i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
-        i2c.turn_on()
+        i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
+        result = i2c.turn_on()
+        if result:
+            switch.on_off = result
+        else:
+            switch.on_off = 0
+        switch.save()
 
         return super().get_queryset()
 
@@ -62,8 +67,13 @@ class SwitchOFF(ListView):
             f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
         )
 
-        i2c = SwitchI2C(1, "super_1", switch.adres_board, switch.adres_registr)
-        i2c.turn_off()
+        i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
+        result = i2c.turn_off()
+        if result:
+            switch.on_off = result
+        else:
+            switch.on_off = 0
+        switch.save()
 
         return super().get_queryset()
 
@@ -93,3 +103,10 @@ class ButtonDelete(DeleteView):
     template_name = "supply/delite.html"
     context_object_name = "switch"
     success_url = reverse_lazy("supply:home")
+
+
+
+class RaedactButtonsView(ListView):
+    model = SupplySwitch
+    template_name = "supply/redacters.html"
+    context_object_name = "switches"

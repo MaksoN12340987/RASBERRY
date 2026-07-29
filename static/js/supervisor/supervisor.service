@@ -1,0 +1,17 @@
+[Unit]
+Description=AERP Supervisor
+
+[Service]
+#место размещения исполняемых файлов
+WorkingDirectory=/home/pi/andromeda/supervisor
+#токен (уникальный ключ) комплекса, генерируется в erp на странице комплекса
+Environment=SALESPOINT_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzYWxlc1BvaW50SWQiOiIwMUZUWlhZSjdUVFBQODI0SkQ1MEE0WEpYRCIsImlhdCI6MTY0OTQxNTg0OH0.eSh0-PaKtglOD-NTANtZHHTovRVk3KSfOP8cjEHAs9M
+Environment=GW_URI=http://back.fibbee.com/sales-point/v1
+Type=simple
+User=root
+ExecStart=/home/pi/bin/start-node.sh supervisor.js --i2c=1
+# --i2c=1 - шина данных i2c
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

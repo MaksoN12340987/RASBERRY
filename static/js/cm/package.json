@@ -1,0 +1,22 @@
+{
+  "name": "coffeemachine-drv",
+  "version": "2.2.2",
+  "description": "AERP Coffee Machine driver",
+  "main": "coffeemachine-drv.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "commander": "^9.4.1",
+    "i2c-bus": "^5.1.0",
+    "kefir": "^3.8.3",
+    "logger": "github:foodtronics/logger",
+    "nats": "^1.4.12",
+    "ramda": "^0.28.0",
+    "serialport": "^12.0.0",
+    "u-queue": "^1.1.0"
+  }
+}
