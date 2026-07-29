@@ -1,0 +1,33 @@
+[Unit]
+Description=cm
+
+[Service]
+WorkingDirectory=/home/pi/complexos-coffeemachine-drv/
+Type=simple
+User=root
+Environment=COMPLEXSYSNAME=014
+Environment=NATSD_URI=nats://complexos.local:4222
+ExecStart=/home/pi/bin/start-node.sh coffeemachine-drv.js --hwid=cm \
+                                                          --deterg-flowmeter-i2c-addr=0x71 \
+                                                          --deterg-flowmeter-ticks-per-liter=250 \
+                                                          --deterg-flowmeter-ticks-CM=50 \
+                                                          --deterg-flowmeter-ticks-MS=51 \
+                                                          --i2c-valves-bus=1 \
+                                                          --i2c-valves-addr 0x64 0x65 \
+                                                          --i2c-valves-version=2 \
+                                                          --valves-count 10 10 \
+							                              --no-common-valve \
+                                                          --water-factors 1.15 1 \
+                                                          --port=/dev/ttyUSB0 \
+                                                          --pressure-threshold=45 \
+                                                          --hysteresis=5 \
+                                                          --pressure-dump=0 \
+                                                          --gear-pump \
+                                                          --separate-cleaning \
+                                                          --purge-time=200000
+Restart=always
+RestartSec=2s
+SyslogIdentifier=fibbee-cm
+
+[Install]
+WantedBy=multi-user.target
