@@ -7,7 +7,7 @@
         "adres_board": 64,
         "adres_registr": 1,
         "location": "коридор",
-        "image": "media/11747953.png",
+        "image": "media/home_9.png",
         "connected": true
     }
 },
@@ -19,7 +19,7 @@
         "adres_board": 50,
         "adres_registr": 50,
         "location": "Макс",
-        "image": "media/351428.png",
+        "image": "media/home_9.png",
         "connected": true
     }
 },
@@ -31,7 +31,7 @@
         "adres_board": 50,
         "adres_registr": 51,
         "location": "Макс",
-        "image": "media/2338838.png",
+        "image": "media/home_9.png",
         "connected": true
     }
 },

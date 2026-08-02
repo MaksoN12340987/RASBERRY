@@ -1,4 +1,4 @@
-{% extends 'supply/base.html' %}
+{% extends 'supply/mobile/base.html' %}
 
 {% block title %}
   Свет
@@ -16,7 +16,7 @@
   <div class="container text-white-start ms-5 p-2">
     <h2>Корридор</h2>
   </div>
-  <div class="row row-cols-2 ms-1 me-1">
+  <div class="row row-cols-1 ms-1 me-1">
     {% for switch in switches %}
     
       {% if switch.location == 'коридор' %}
@@ -33,11 +33,11 @@
 
             <form method="get" class="text-start">
               {% csrf_token %}
-              <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2 ms-2">
+              <a href="{% url 'supply:mob_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2 ms-2">
                 Включить
               </a>
-              <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
-                  Отключить
+              <a href="{% url 'supply:mob_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
+                Отключить
               </a>
               <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
                 Обновить
@@ -53,7 +53,7 @@
   <div class="container text-white-start ms-5 p-2">
     <h2>Кухня</h2>
   </div>
-  <div class="row row-cols-2 ms-1 me-1">
+  <div class="row row-cols-1 ms-1 me-1">
     {% for switch in switches %}
     
       {% if switch.location == 'кухня' %}
@@ -70,10 +70,10 @@
 
             <form method="get" class="text-start">
               {% csrf_token %}
-              <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2 ms-2">
+              <a href="{% url 'supply:mob_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2 ms-2">
                 Включить
               </a>
-              <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
+              <a href="{% url 'supply:mob_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
                   Отключить
               </a>
               <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
@@ -90,7 +90,7 @@
   <div class="container text-white-start ms-5 p-2">
     <h2>Макс</h2>
   </div>
-  <div class="row row-cols-2 ms-1 me-1">
+  <div class="row row-cols-1 ms-1 me-1">
     {% for switch in switches %}
     
       {% if switch.location == 'Макс' %}
@@ -107,10 +107,10 @@
 
             <form method="get" class="text-start">
               {% csrf_token %}
-              <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2 ms-2">
+              <a href="{% url 'supply:mob_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2 ms-2">
                 Включить
               </a>
-              <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
+              <a href="{% url 'supply:mob_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
                   Отключить
               </a>
               <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
@@ -127,7 +127,7 @@
   <div class="container text-white-start ms-5 p-2">
     <h2>Остальные</h2>
   </div>
-  <div class="row row-cols-2 mb-5 ms-1 me-1">
+  <div class="row row-cols-1 mb-5 ms-1 me-1">
     {% for switch in switches %}
     
       {% if switch.location == 'остальные' %}
@@ -144,10 +144,10 @@
 
             <form method="get" class="text-start">
               {% csrf_token %}
-              <a href="{% url 'supply:turn_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2 ms-2">
+              <a href="{% url 'supply:mob_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2 ms-2">
                 Включить
               </a>
-              <a href="{% url 'supply:turn_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
+              <a href="{% url 'supply:mob_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
                   Отключить
               </a>
               <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
@@ -169,7 +169,7 @@
     
     <div class="row p-1">
       <div class="col-6">
-        <a href="{% url 'supply:mobile' %}" class="btn btn-success rounded-2">Мобильная</a>
+        <a href="{% url 'supply:create' %}" class="btn btn-success rounded-2">Мобильная</a>
       </div>
 
       {% if user.is_superuser %}

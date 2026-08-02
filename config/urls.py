@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+from api.apps import ApiConfig
 from supply.apps import SupplyConfig
 from users.apps import UsersConfig
 
@@ -15,6 +16,10 @@ urlpatterns = [
     path(
         f"{UsersConfig.name}/",
         include(f"{UsersConfig.name}.urls", namespace=f"{UsersConfig.name}"),
+    ),
+    path(
+        f"{ApiConfig.name}/",
+        include(f"{ApiConfig.name}.urls", namespace=f"{ApiConfig.name}"),
     ),
 ]
 

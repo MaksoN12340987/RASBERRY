@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 from supply.apps import SupplyConfig
 from users.apps import UsersConfig
+from api.apps import ApiConfig
 
 load_dotenv()
 
@@ -15,7 +16,7 @@ ROOT_URLCONF = "config.urls"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.getenv("DEBUG") == "True" else False
-ALLOWED_HOSTS = ["localhost", "supply", "192.168.0.114", "192.168.1.5"]
+ALLOWED_HOSTS = ["localhost", "supply", "192.168.0.149", "192.168.1.5"]
 
 # Users config
 LOGIN_URL = "users:login"
@@ -33,8 +34,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
     f"{SupplyConfig.name}",
     f"{UsersConfig.name}",
+    f"{ApiConfig.name}",
 ]
 
 

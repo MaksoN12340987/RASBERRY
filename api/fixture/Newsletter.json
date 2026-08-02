@@ -1,0 +1,44 @@
+[
+{
+    "model": "mailings.newsletter",
+    "pk": 1,
+    "fields": {
+        "сompletion_time": "2025-09-01T00:00:00Z",
+        "status": "Started",
+        "first_sending": "2025-08-31T17:59:14.625Z",
+        "message": 3,
+        "recipients": [
+            1,
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "mailings.newsletter",
+    "pk": 2,
+    "fields": {
+        "сompletion_time": "2025-09-01T00:00:00Z",
+        "status": "Created",
+        "first_sending": "2025-09-03T10:18:28.017Z",
+        "message": 2,
+        "recipients": [
+            1,
+            3
+        ]
+    }
+},
+{
+    "model": "mailings.newsletter",
+    "pk": 3,
+    "fields": {
+        "сompletion_time": "2025-09-01T00:00:00Z",
+        "status": "Created",
+        "first_sending": "2025-09-03T10:18:45.601Z",
+        "message": 1,
+        "recipients": [
+            2
+        ]
+    }
+}
+]

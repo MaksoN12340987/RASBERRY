@@ -1,0 +1,29 @@
+[
+{
+    "model": "mailings.message",
+    "pk": 1,
+    "fields": {
+        "subject": "Заполните профиль",
+        "content": "Здравствуйте уважаемый пользователь, заполните свой профиль,\n            чтобы мы могли предлагать вам больше индивидуального контента!\n                            \n            С уважением команда интернет-магазина)",
+        "attached_file": ""
+    }
+},
+{
+    "model": "mailings.message",
+    "pk": 2,
+    "fields": {
+        "subject": "Посмотрите новые товары!",
+        "content": "Загляните наш магазин и зацените новую каллекцию)",
+        "attached_file": "newsletter/4169390-middle.png"
+    }
+},
+{
+    "model": "mailings.message",
+    "pk": 3,
+    "fields": {
+        "subject": "Hello World!",
+        "content": "Привет мир)",
+        "attached_file": "newsletter/thumbnail-pink-blue.webp"
+    }
+}
+]

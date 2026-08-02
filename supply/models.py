@@ -1,7 +1,5 @@
 from django.db import models
 
-# from supply.models import SupplySwitch
-
 
 class SupplySwitch(models.Model):
     LOCATION_CHOICES = [

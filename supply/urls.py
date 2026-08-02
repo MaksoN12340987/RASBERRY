@@ -10,6 +10,7 @@ from .views import (
     SwitchOFF,
     ButtonUpdate,
     RaedactButtonsView,
+    MobileView
 )
 
 app_name = SupplyConfig.name
@@ -22,4 +23,10 @@ urlpatterns = [
     path("redact/", RaedactButtonsView.as_view(), name="redact"),
     path("update/<int:pk>/", ButtonUpdate.as_view(), name="update"),
     path("delite/<int:pk>/", ButtonDelete.as_view(), name="delite"),
+
+    # Mobile
+    path("mobile/", MobileView.as_view(), name="mobile"),
+    path("mob_on/<int:pk>/", SwitchON.as_view(), name="mob_on"),
+    path("mob_off/<int:pk>/", SwitchOFF.as_view(), name="mob_off"),
+
 ]
