@@ -1,0 +1,332 @@
+[
+    {
+        "id": "200",
+        "name": "Гроза",
+        "description": "гроза с лёгким дождём",
+        "icon": "thunderstorm-light-rain"
+    },
+    {
+        "id": "201",
+        "name": "Гроза",
+        "description": "гроза с дождём",
+        "icon": "thunderstorm-rain"
+    },
+    {
+        "id": "202",
+        "name": "Гроза",
+        "description": "гроза с сильным дождём",
+        "icon": "thunderstorm-heavy-rain"
+    },
+    {
+        "id": "210",
+        "name": "Гроза",
+        "description": "Лёгкая гроза",
+        "icon": "thunderstorm-light"
+    },
+    {
+        "id": "211",
+        "name": "Гроза",
+        "description": "гроза",
+        "icon": "thunderstorm"
+    },
+    {
+        "id": "212",
+        "name": "Гроза",
+        "description": "Сильная гроза",
+        "icon": "thunderstorm-heavy"
+    },
+    {
+        "id": "221",
+        "name": "Гроза",
+        "description": "Резкая гроза",
+        "icon": "thunderstorm-ragged"
+    },
+    {
+        "id": "230",
+        "name": "Гроза",
+        "description": "гроза с лёгким моросящим дождём",
+        "icon": "thunderstorm-light-drizzle"
+    },
+    {
+        "id": "231",
+        "name": "Гроза",
+        "description": "гроза с моросью.",
+        "icon": "thunderstorm-drizzle"
+    },
+    {
+        "id": "232",
+        "name": "Гроза",
+        "description": "гроза с сильной моросящей моросью",
+        "icon": "thunderstorm-heavy-drizzle"
+    },
+    {
+        "id": "300",
+        "name": "Морось.",
+        "description": "лёгкий моросящий дождь",
+        "icon": "drizzle-light"
+    },
+    {
+        "id": "301",
+        "name": "Морось.",
+        "description": "Моросик.",
+        "icon": "drizzle"
+    },
+    {
+        "id": "302",
+        "name": "Морось.",
+        "description": "Сильный дождь",
+        "icon": "drizzle-heavy"
+    },
+    {
+        "id": "310",
+        "name": "Морось.",
+        "description": "лёгкий дождь с лёгкой интенсивностью",
+        "icon": "drizzle-light-intensity"
+    },
+    {
+        "id": "311",
+        "name": "Морось.",
+        "description": "Мелкий дождь",
+        "icon": "drizzle-light-rain"
+    },
+    {
+        "id": "312",
+        "name": "Морось.",
+        "description": "Сильный моросящий дождь",
+        "icon": "drizzle-heavy-intensity"
+    },
+    {
+        "id": "313",
+        "name": "Морось.",
+        "description": "Дождь, дождь и морось.",
+        "icon": "drizzle-rain-mix"
+    },
+    {
+        "id": "314",
+        "name": "Морось.",
+        "description": "Сильный ливень, дождь и мелкая морось",
+        "icon": "drizzle-heavy-rain-mix"
+    },
+    {
+        "id": "321",
+        "name": "Морось.",
+        "description": "Дождь дождя",
+        "icon": "drizzle-shower"
+    },
+    {
+        "id": "500",
+        "name": "Дождь",
+        "description": "лёгкий дождь",
+        "icon": "rain-light"
+    },
+    {
+        "id": "501",
+        "name": "Дождь",
+        "description": "Умеренные дожди",
+        "icon": "rain-moderate"
+    },
+    {
+        "id": "502",
+        "name": "Дождь",
+        "description": "Сильный дождь",
+        "icon": "rain-heavy"
+    },
+    {
+        "id": "503",
+        "name": "Дождь",
+        "description": "Очень сильный дождь",
+        "icon": "rain-very-heavy"
+    },
+    {
+        "id": "504",
+        "name": "Дождь",
+        "description": "Сильные дожди",
+        "icon": "rain-extreme"
+    },
+    {
+        "id": "511",
+        "name": "Дождь",
+        "description": "Ледяной дождь",
+        "icon": "rain-freezing"
+    },
+    {
+        "id": "520",
+        "name": "Дождь",
+        "description": "Лёгкий дождь",
+        "icon": "rain-shower-light"
+    },
+    {
+        "id": "521",
+        "name": "Дождь",
+        "description": "Дождь и дождь",
+        "icon": "rain-shower"
+    },
+    {
+        "id": "522",
+        "name": "Дождь",
+        "description": "Дождь с сильной интенсивностью",
+        "icon": "rain-shower-heavy"
+    },
+    {
+        "id": "531",
+        "name": "Дождь",
+        "description": "Рваный дождь",
+        "icon": "rain-shower-ragged"
+    },
+    {
+        "id": "600",
+        "name": "Снег",
+        "description": "Лёгкий снег",
+        "icon": "snow-light"
+    },
+    {
+        "id": "601",
+        "name": "Снег",
+        "description": "Снег",
+        "icon": "snow"
+    },
+    {
+        "id": "602",
+        "name": "Снег",
+        "description": "Сильный снег",
+        "icon": "snow-heavy"
+    },
+    {
+        "id": "611",
+        "name": "Снег",
+        "description": "мокрый снег",
+        "icon": "snow-sleet"
+    },
+    {
+        "id": "612",
+        "name": "Снег",
+        "description": "Лёгкий дождевой мокрый снег",
+        "icon": "snow-light-rain-mix"
+    },
+    {
+        "id": "613",
+        "name": "Снег",
+        "description": "Дождевой мокрый снег",
+        "icon": "snow-rain-mix"
+    },
+    {
+        "id": "615",
+        "name": "Снег",
+        "description": "лёгкий дождь и снег",
+        "icon": "snow-light-rain"
+    },
+    {
+        "id": "616",
+        "name": "Снег",
+        "description": "Дождь и снег",
+        "icon": "snow-rain"
+    },
+    {
+        "id": "620",
+        "name": "Снег",
+        "description": "Лёгкий дождь и снег",
+        "icon": "snow-shower-light"
+    },
+    {
+        "id": "621",
+        "name": "Снег",
+        "description": "Дождь снега",
+        "icon": "snow-shower"
+    },
+    {
+        "id": "622",
+        "name": "Снег",
+        "description": "Сильный ливень, снег",
+        "icon": "snow-shower-heavy"
+    },
+    {
+        "id": "701",
+        "name": "Туман",
+        "description": "туман",
+        "icon": "mist"
+    },
+    {
+        "id": "711",
+        "name": "Дым",
+        "description": "дым",
+        "icon": "smoke"
+    },
+    {
+        "id": "721",
+        "name": "Туман",
+        "description": "Дымка",
+        "icon": "haze"
+    },
+    {
+        "id": "731",
+        "name": "Пыль",
+        "description": "Вихри песка и пыли",
+        "icon": "dust-whirls"
+    },
+    {
+        "id": "741",
+        "name": "Туман",
+        "description": "Туман",
+        "icon": "fog"
+    },
+    {
+        "id": "751",
+        "name": "Песок",
+        "description": "песок",
+        "icon": "sand"
+    },
+    {
+        "id": "761",
+        "name": "Пыль",
+        "description": "пыль",
+        "icon": "dust"
+    },
+    {
+        "id": "762",
+        "name": "Эш",
+        "description": "Вулканический пепел",
+        "icon": "volcanic-ash"
+    },
+    {
+        "id": "771",
+        "name": "Шквал",
+        "description": "Шквалы",
+        "icon": "squalls"
+    },
+    {
+        "id": "781",
+        "name": "Торнадо",
+        "description": "Торнадо",
+        "icon": "tornado"
+    },
+    {
+        "id": "800",
+        "name": "Ясно",
+        "description": "Ясно",
+        "icon": "mist"
+    },
+    {
+        "id": "801",
+        "name": "Облака",
+        "description": "Облачность: 11-25%",
+        "icon": "mist"
+    },
+    {
+        "id": "802",
+        "name": "Облака",
+        "description": "Облачность: 25-50%",
+        "icon": "smoke"
+    },
+    {
+        "id": "803",
+        "name": "Облака",
+        "description": "Облачность: 51-84%",
+        "icon": "haze"
+    },
+    {
+        "id": "804",
+        "name": "Облака",
+        "description": "Облачность: 85-100%",
+        "icon": "dust-whirls"
+    }
+]
