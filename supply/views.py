@@ -114,7 +114,7 @@ class RaedactButtonsView(ListView):
 
 class MobileView(ListView):
     model = SupplySwitch
-    template_name = "supply/mobile/on_off_mobile.html"
+    template_name = "supply/mobile/mobile.html"
     context_object_name = "switches"
 
 class MobileON(ListView):

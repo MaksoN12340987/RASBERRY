@@ -1,6 +1,6 @@
 import os
 import logging
-import requests
+import requests # type: ignore
 from django.http import JsonResponse
 
 logger_weather_conditions = logging.getLogger(__name__)
