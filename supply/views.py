@@ -13,6 +13,7 @@ from django.views.generic import (
 from supply.i2c import SwitchI2C
 from supply.forms import CreateSwitchForm, UpdateForm
 from supply.models import SupplySwitch
+from supply.service import WeatherConditions
 
 logger_views = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -116,10 +117,26 @@ class MobileView(ListView):
     model = SupplySwitch
     template_name = "supply/mobile/mobile.html"
     context_object_name = "switches"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        
+        weather = WeatherConditions()
+        weather.get_weather()
+        context["temp"] = weather.temp # type: ignore
+        context["icon"] = f"/icon_weather/day/{weather.icon}.png" # type: ignore
+        context["status"] = weather.status # type: ignore
+        context["pressure"] = weather.pressure # type: ignore
+        context["humidity"] = weather.humidity # type: ignore
+        context["clouds"] = weather.clouds # type: ignore
+        
+        logger_views.info(context)
+        
+        return context
 
 class MobileON(ListView):
     model = SupplySwitch
-    template_name = "supply/mobile/on_off.html"
+    template_name = "supply/mobile/on_off_mobile.html"
     context_object_name = "switches"
 
     def get_queryset(self) -> QuerySet:

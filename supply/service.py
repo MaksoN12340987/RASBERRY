@@ -21,16 +21,29 @@ class WeatherConditions():
     units = 'metric'
     lang = 'ru'
     
-    indicators = {
-        "code": '',
-        "temp": '',
-        # Давление
-        "pressure": '',
-        # Влажность
-        "humidity": '',
-        # Облачность
-        "clouds": '',
-    }
+    code = ''
+    temp = ''
+    icon = ''
+    status = ''
+    # Давление
+    pressure = ''
+    # Влажность
+    humidity = ''
+    # Облачность
+    clouds = ''
+    
+    # indicators = {
+    #     "code": '',
+    #     "temp": '',
+    #     "icon": '',
+    #     "description": '',
+    #     # Давление
+    #     "pressure": '',
+    #     # Влажность
+    #     "humidity": '',
+    #     # Облачность
+    #     "clouds": '',
+    # }
     
     def __str__(self) -> str:
         return f"lat {self.lat}, lon {self.lon}"
@@ -41,22 +54,19 @@ class WeatherConditions():
         )
         data = response.json()
         
-        logger_weather_conditions.info(f"{data}")
+        logger_weather_conditions.info(f"{type(data)}")
         
-        return JsonResponse(data)
+        return data
     
-    def weather(self):
+    def get_weather(self):
         
         raw_data = self._request_weather()
-        for indicator in raw_data:
-            if indicator == 'weather':
-                self.indicators["id"] = indicator["id"] # type: ignore
-            if indicator == '':
-                self.indicators["temp"] = indicator["main"] # type: ignore
-            if indicator == '':
-                self.indicators["pressure"] = indicator["weather"] # type: ignore
-            if indicator == '':
-                self.indicators["humidity"] = indicator["weather"] # type: ignore
-            if indicator == '':
-                self.indicators["clouds  "] = indicator["weather"] # type: ignore
-        
+        logger_weather_conditions.info(raw_data)
+                
+        self.code = raw_data["weather"][0]["id"] # type: ignore
+        self.icon = raw_data["weather"][0]["icon"] # type: ignore
+        self.status = raw_data["weather"][0]["description"] # type: ignore
+        self.temp = raw_data["main"]["temp"] # type: ignore
+        self.pressure = raw_data["main"]["grnd_level"] # type: ignore
+        self.humidity = raw_data["main"]["humidity"] # type: ignore
+        self.clouds = raw_data["clouds"]["all"] # type: ignore
