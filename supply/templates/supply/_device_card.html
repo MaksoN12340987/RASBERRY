@@ -1,17 +1,19 @@
-<div class="device-card">
-    <div class="device-info">
-      <img src="/media/{{ switch.image }}" class="device-icon">
-      <div>
-        <div class="device-name">{{ switch.name }}</div>
-        <div class="device-status {% if switch.on_off %}on{% else %}off{% endif %}">
-          <span class="dot"></span>
-          {{ switch.on_off|yesno:"Включено,Отключено" }}
+<div class="container">
+  <div class="device-card">
+      <div class="device-info">
+        <img src="/media/{{ switch.image }}" class="device-icon">
+        <div>
+          <div class="device-name">{{ switch.name }}</div>
+          <div class="device-status {% if switch.on_off %}on{% else %}off{% endif %}">
+            <span class="dot"></span>
+            {{ switch.on_off|yesno:"Включено,Отключено" }}
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="device-actions">
-      <a href="{% url 'supply:turn_on' switch.pk %}" class="btn-on">Вкл</a>
-      <a href="{% url 'supply:turn_off' switch.pk %}" class="btn-off">Выкл</a>
-    </div>
+      
+      <div class="device-actions">
+        <a href="{% url 'supply:turn_on' switch.pk %}" class="btn-on">Вкл</a>
+        <a href="{% url 'supply:turn_off' switch.pk %}" class="btn-off">Выкл</a>
+      </div>
+  </div>
 </div>
