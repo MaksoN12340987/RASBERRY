@@ -49,7 +49,7 @@
   <div class="container">
     {% for switch in switches %}
       {% if switch.location == 'коридор' %}
-        {% include 'supply/mobile/_device_card.html' %}
+        {% include 'supply/_device_card.html' %}
       {% endif %}
     {% endfor %}
   </div>
@@ -62,7 +62,7 @@
   <div class="container">
     {% for switch in switches %}
       {% if switch.location == 'Макс' %}
-        {% include 'supply/mobile/_device_card.html' %}
+        {% include 'supply/_device_card.html' %}
       {% endif %}
     {% endfor %}
   </div>
@@ -75,7 +75,7 @@
   <div class="container">
     {% for switch in switches %}
       {% if switch.location == 'остальные' %}
-        {% include 'supply/mobile/_device_card.html' %}
+        {% include 'supply/_device_card.html' %}
       {% endif %}
     {% endfor %}
   </div>
@@ -88,7 +88,7 @@
   <div class="container">
     {% for switch in switches %}
       {% if switch.location == 'кухня' %}
-        {% include 'supply/mobile/_device_card.html' %}
+        {% include 'supply/_device_card.html' %}
       {% endif %}
     {% endfor %}
   </div>
