@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block page_title %}
-<div class="container p-2">
+<div class="container">
   <div class="weather-widget ms-3">
       
     <div class="weather-main">
@@ -35,7 +35,7 @@
   <div class="container ms-5 p-2 text-title">
     <div class="section-title">Коридор</div>
   </div>
-  <div class="row row-cols-2 p-2">
+  <div class="row row-cols-2">
     {% for switch in switches %}
     
       {% if switch.location == 'коридор' %}
