@@ -6,6 +6,18 @@
 */
 :root,
 [data-bs-theme=light] {
+  --bg-primary: #0f1115;      /* основной фон */
+  --bg-secondary: #1a1d24;    /* карточки */
+  --bg-elevated: #232730;     /* hover / акценты */
+  --border-subtle: #2a2f3a;   /* границы */
+  --text-primary: #e8eaed;    /* основной текст */
+  --text-secondary: #9aa0a6;  /* второстепенный */
+  --accent-green: #22c55e;    /* включено */
+  --accent-red: #ef4444;      /* отключено */
+  --accent-blue: #3b82f6;     /* ссылки */
+
+
+
   /* Цвет беграунда верхней строки */
   --bs-primary-rgb-top-line: 4, 207, 207;
 
@@ -199,6 +211,157 @@
   box-sizing: border-box;
 }
 
+
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.device-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.device-card:hover {
+  background: var(--bg-elevated);
+  border-color: #3a4150;
+}
+
+.device-info { display: flex; align-items: center; gap: 14px; }
+.device-icon { width: 40px; height: 40px; border-radius: 10px; }
+
+.device-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.device-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.device-status .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--text-secondary);
+}
+.device-status.on .dot { background: var(--accent-green); box-shadow: 0 0 8px var(--accent-green); }
+.device-status.on { color: var(--accent-green); }
+.device-status.off .dot { background: var(--accent-red); }
+.device-status.off { color: var(--accent-red); }
+
+.device-actions { display: flex; gap: 8px; }
+
+.btn-on, .btn-off {
+  min-width: 100px;
+  text-align: center;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.btn-on {
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--accent-green);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+}
+.btn-on:hover { background: var(--accent-green); color: #0f1115; }
+
+.btn-off {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--accent-red);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+.btn-off:hover { background: var(--accent-red); color: #fff; }
+
+.section-title {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin: 28px 0 12px 4px;
+}
+
+
+.weather-widget {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 16px 20px;
+  display: inline-block;
+  min-width: 240px;
+}
+
+.weather-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.weather-icon {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.weather-temp {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+.weather-status {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.weather-details {
+  display: flex;
+  gap: 14px;
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+#clock {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .navbar > .container-sm-page_title
 .navbar > .container-fluid-home {
   display: flex;
@@ -216,7 +379,7 @@
   margin-right: auto;
   margin-left: auto;
   /* background-image: var(--bs-form-select-bg-img-home); */
-  background-color: #d18f2b;
+  background-color: #fdff7c;
 }
 
 

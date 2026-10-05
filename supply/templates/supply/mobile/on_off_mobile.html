@@ -1,162 +1,94 @@
 {% extends 'supply/mobile/base.html' %}
 
+
 {% block title %}
-  Свет
+<title>Свет</title>
+<script defer src="\static\js\time.js"></script>
 {% endblock %}
 
 {% block page_title %}
-<div class="container-fluid text-start" style="height: 3rem;"></div>
+<div class="row">
+  <div class="col-9">
+    <div class="weather-widget">
+    
+      <div class="weather-main">
+        <img src="/media/{{ icon }}" class="weather-icon">
+        <div>
+          <div class="weather-temp">{{ temp }}</div>
+          <div class="weather-status">{{ status }}</div>
+        </div>
+      </div>
+    
+      <div class="weather-details">
+        <span>💧 {{ humidity }}%</span>
+        <span>🌡 {{ pressure }}</span>
+        <span>☁ {{ clouds }}</span>
+      </div>
+    </div>
 
-<div class="container-fluid text-gray-right p-4">
+  </div>
+  <div class="col">
+    <h4 class="weather-clock text-end" id="clock"></h4>
+  </div>
+</div>
+
+
+<div class="container-fluid" style="height: 1.5rem;"></div>
+
+<div class="container-fluid text-end">
   <h1>Наш дом</h1>
 </div>
 {% endblock %}
 
 {% block content %}
-  <div class="container text-white-start ms-5 p-2">
-    <h2>Корридор</h2>
+  
+  <div class="container ms-5 p-2 text-title">
+    <div class="section-title">Коридор</div>
   </div>
-  <div class="row row-cols-1 ms-1 me-1">
+
+  <div class="container">
     {% for switch in switches %}
-    
       {% if switch.location == 'коридор' %}
-        <div class="col">
-
-          <div class="container bg-item text-white-card mb-3 p-1 rounded-4">
-              
-            <div class="d-flex align-items-center">
-              <img src="/media/{{ switch.image }}" alt="" width="34" height="34" class="d-inline-block mt-1 ms-1">
-              <div class="flex-grow-0"><h4 class="mt-2 ms-1">{{ switch.name }}</h4></div>
-            </div>
-
-            <p class="ms-2">Статус  {{ switch.on_off }}</p>
-
-            <form method="get" class="text-start">
-              {% csrf_token %}
-              <a href="{% url 'supply:mob_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2 ms-2">
-                Включить
-              </a>
-              <a href="{% url 'supply:mob_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
-                Отключить
-              </a>
-              <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
-                Обновить
-              </a> -->
-            </form>  
-          </div>    
-        
-        </div>
+        {% include 'supply/mobile/_device_card.html' %}
       {% endif %}
     {% endfor %}
   </div>
 
-  <div class="container text-white-start ms-5 p-2">
-    <h2>Кухня</h2>
+
+  <div class="container ms-5 p-2 text-title">
+    <div class="section-title">Макс</div>
   </div>
-  <div class="row row-cols-1 ms-1 me-1">
+
+  <div class="container">
     {% for switch in switches %}
-    
-      {% if switch.location == 'кухня' %}
-        <div class="col">
-
-          <div class="container bg-item text-white-card mb-3 p-1 rounded-4">
-              
-            <div class="d-flex align-items-center">
-              <img src="/media/{{ switch.image }}" alt="" width="34" height="34" class="d-inline-block mt-1 ms-1">
-              <div class="flex-grow-0"><h4 class="mt-2 ms-1">{{ switch.name }}</h4></div>
-            </div>
-
-            <p class="ms-2">Статус  {{ switch.on_off }}</p>
-
-            <form method="get" class="text-start">
-              {% csrf_token %}
-              <a href="{% url 'supply:mob_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2 ms-2">
-                Включить
-              </a>
-              <a href="{% url 'supply:mob_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
-                  Отключить
-              </a>
-              <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
-                Обновить
-              </a> -->
-            </form>  
-          </div>    
-        
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-
-  <div class="container text-white-start ms-5 p-2">
-    <h2>Макс</h2>
-  </div>
-  <div class="row row-cols-1 ms-1 me-1">
-    {% for switch in switches %}
-    
       {% if switch.location == 'Макс' %}
-        <div class="col">
-
-          <div class="container bg-item text-white-card mb-3 p-1 rounded-4">
-              
-            <div class="d-flex align-items-center">
-              <img src="/media/{{ switch.image }}" alt="" width="34" height="34" class="d-inline-block mt-1 ms-1">
-              <div class="flex-grow-0"><h4 class="mt-2 ms-1">{{ switch.name }}</h4></div>
-            </div>
-
-            <p class="ms-2">Статус  {{ switch.on_off }}</p>
-
-            <form method="get" class="text-start">
-              {% csrf_token %}
-              <a href="{% url 'supply:mob_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2 ms-2">
-                Включить
-              </a>
-              <a href="{% url 'supply:mob_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
-                  Отключить
-              </a>
-              <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
-                Обновить
-              </a> -->
-            </form>  
-          </div>    
-        
-        </div>
+        {% include 'supply/mobile/_device_card.html' %}
       {% endif %}
     {% endfor %}
   </div>
 
-  <div class="container text-white-start ms-5 p-2">
-    <h2>Остальные</h2>
+
+  <div class="container ms-5 p-2 text-title">
+    <div class="section-title">Остальные</div>
   </div>
-  <div class="row row-cols-1 mb-5 ms-1 me-1">
+
+  <div class="container">
     {% for switch in switches %}
-    
       {% if switch.location == 'остальные' %}
-        <div class="col mb-5">
+        {% include 'supply/mobile/_device_card.html' %}
+      {% endif %}
+    {% endfor %}
+  </div>
 
-          <div class="container bg-item text-white-card mb-3 p-1 rounded-4">
-              
-            <div class="d-flex align-items-center">
-              <img src="/media/{{ switch.image }}" alt="" width="34" height="34" class="d-inline-block mt-1 ms-1">
-              <div class="flex-grow-0"><h4 class="mt-2 ms-1">{{ switch.name }}</h4></div>
-            </div>
 
-            <p class="ms-2">Статус  {{ switch.on_off }}</p>
+  <div class="container ms-5 p-2 text-title">
+    <div class="section-title">Кухня</div>
+  </div>
 
-            <form method="get" class="text-start">
-              {% csrf_token %}
-              <a href="{% url 'supply:mob_on' switch.pk %}" class="btn btn-outline-warning rounded-1 mb-2 ms-2">
-                Включить
-              </a>
-              <a href="{% url 'supply:mob_off' switch.pk %}" class="btn btn-outline-danger rounded-1 mb-2 ms-2">
-                  Отключить
-              </a>
-              <!-- <a href="{% url 'supply:update' switch.pk %}" class="btn btn-top-line">
-                Обновить
-              </a> -->
-            </form>  
-          </div>    
-        
-        </div>
+  <div class="container">
+    {% for switch in switches %}
+      {% if switch.location == 'кухня' %}
+        {% include 'supply/mobile/_device_card.html' %}
       {% endif %}
     {% endfor %}
   </div>
@@ -169,7 +101,7 @@
     
     <div class="row p-1">
       <div class="col-6">
-        <a href="{% url 'supply:create' %}" class="btn btn-success rounded-2">Мобильная</a>
+        <a href="{% url 'supply:create' %}" class="btn btn-success rounded-2">Создать кнопку</a>
       </div>
 
       {% if user.is_superuser %}

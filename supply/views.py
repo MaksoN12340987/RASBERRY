@@ -124,7 +124,7 @@ class MobileView(ListView):
         weather = WeatherConditions()
         weather.get_weather()
         context["temp"] = weather.temp # type: ignore
-        context["icon"] = f"icon_weather/day/{weather.icon}.png" # type: ignore
+        context["icon"] = f"icon_weather/{weather.icon}.png" # type: ignore
         context["status"] = weather.status # type: ignore
         context["pressure"] = weather.pressure # type: ignore
         context["humidity"] = weather.humidity # type: ignore
@@ -138,6 +138,22 @@ class MobileON(ListView):
     model = SupplySwitch
     template_name = "supply/mobile/on_off_mobile.html"
     context_object_name = "switches"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        
+        weather = WeatherConditions()
+        weather.get_weather()
+        context["temp"] = weather.temp # type: ignore
+        context["icon"] = f"icon_weather/{weather.icon}.png" # type: ignore
+        context["status"] = weather.status # type: ignore
+        context["pressure"] = weather.pressure # type: ignore
+        context["humidity"] = weather.humidity # type: ignore
+        context["clouds"] = weather.clouds # type: ignore
+        
+        logger_views.info(context)
+        
+        return context
 
     def get_queryset(self) -> QuerySet:
         switch = SupplySwitch.objects.get(pk=self.kwargs["pk"])
@@ -158,8 +174,24 @@ class MobileON(ListView):
 
 class MobileOFF(ListView):
     model = SupplySwitch
-    template_name = "supply/mobile/on_off.html"
+    template_name = "supply/mobile/on_off_mobile.html"
     context_object_name = "switches"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        
+        weather = WeatherConditions()
+        weather.get_weather()
+        context["temp"] = weather.temp # type: ignore
+        context["icon"] = f"icon_weather/{weather.icon}.png" # type: ignore
+        context["status"] = weather.status # type: ignore
+        context["pressure"] = weather.pressure # type: ignore
+        context["humidity"] = weather.humidity # type: ignore
+        context["clouds"] = weather.clouds # type: ignore
+        
+        logger_views.info(context)
+        
+        return context
 
     def get_queryset(self) -> QuerySet:
         switch = SupplySwitch.objects.get(pk=self.kwargs["pk"])
