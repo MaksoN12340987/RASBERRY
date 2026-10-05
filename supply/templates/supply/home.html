@@ -35,10 +35,10 @@
   <div class="container ms-5 p-2 text-title">
     <div class="section-title">Коридор</div>
   </div>
-  <div class="row row-cols-2">
+  <div class="row row-cols-2 ms-1 me-1">
     {% for switch in switches %}
     
-      {% if switch.location == 'коридор' %}
+      {% if switch.location == 'корридор' %}
         {% include 'supply/_device_card.html' %}
       {% endif %}
     {% endfor %}

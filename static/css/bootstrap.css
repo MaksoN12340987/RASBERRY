@@ -261,7 +261,6 @@ body {
 .device-status.off .dot { background: var(--accent-red); }
 .device-status.off { color: var(--accent-red); }
 
-.device-home-actions { gap: 8px; }
 .device-actions { display: flex; gap: 8px; }
 
 .btn-on, .btn-off {
