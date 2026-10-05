@@ -283,19 +283,34 @@ body {
   text-decoration: none;
   transition: all 0.15s;
 }
-.btn-on, .btn-on-home {
+.btn-on-home {
   background: rgba(34, 197, 94, 0.12);
   color: var(--accent-green);
   border: 1px solid rgba(34, 197, 94, 0.35);
 }
-.btn-on, .btn-on-home:hover { background: var(--accent-green); color: #0f1115; }
+.btn-on-home:hover { background: var(--accent-green); color: #0f1115; }
 
-.btn-off, .btn-off-home {
+.btn-off-home {
   background: rgba(239, 68, 68, 0.12);
   color: var(--accent-red);
   border: 1px solid rgba(239, 68, 68, 0.35);
 }
-.btn-off, .btn-off-home:hover { background: var(--accent-red); color: #fff; }
+.btn-off-home:hover { background: var(--accent-red); color: #fff; }
+
+.btn-on {
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--accent-green);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+}
+.btn-on:hover { background: var(--accent-green); color: #0f1115; }
+
+.btn-off {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--accent-red);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+.btn-off:hover { background: var(--accent-red); color: #fff; }
+
 
 .section-title {
   font-size: 1.6rem;
