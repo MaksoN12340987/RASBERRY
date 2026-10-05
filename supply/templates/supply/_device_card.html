@@ -1,4 +1,4 @@
-<div class="device-card">
+<div class="device-card p-2">
     <div class="device-info">
       <img src="/media/{{ switch.image }}" class="device-icon">
       <div>
@@ -10,8 +10,16 @@
       </div>
     </div>
     
-    <div class="device-actions">
-      <a href="{% url 'supply:mob_on' switch.pk %}" class="btn-on">Вкл</a>
-      <a href="{% url 'supply:mob_off' switch.pk %}" class="btn-off">Выкл</a>
+    <div class="container">
+      <div class="device-actions">
+        <a href="{% url 'supply:mob_on' switch.pk %}" class="btn-on">Вкл</a>
+      </div>
     </div>
+
+    <div class="container">
+      <div class="device-actions">
+        <a href="{% url 'supply:mob_off' switch.pk %}" class="btn-off">Выкл</a>
+      </div>
+    </div>
+    
 </div>
