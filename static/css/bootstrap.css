@@ -263,6 +263,16 @@ body {
 
 .device-actions { display: flex; gap: 8px; }
 
+.btn-on-home, .btn-off-home {
+  min-width: 70px;
+  text-align: center;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.15s;
+}
 .btn-on, .btn-off {
   min-width: 100px;
   text-align: center;
@@ -273,19 +283,19 @@ body {
   text-decoration: none;
   transition: all 0.15s;
 }
-.btn-on {
+.btn-on, .btn-on-home {
   background: rgba(34, 197, 94, 0.12);
   color: var(--accent-green);
   border: 1px solid rgba(34, 197, 94, 0.35);
 }
-.btn-on:hover { background: var(--accent-green); color: #0f1115; }
+.btn-on, .btn-on-home:hover { background: var(--accent-green); color: #0f1115; }
 
-.btn-off {
+.btn-off, .btn-off-home {
   background: rgba(239, 68, 68, 0.12);
   color: var(--accent-red);
   border: 1px solid rgba(239, 68, 68, 0.35);
 }
-.btn-off:hover { background: var(--accent-red); color: #fff; }
+.btn-off, .btn-off-home:hover { background: var(--accent-red); color: #fff; }
 
 .section-title {
   font-size: 1.6rem;
