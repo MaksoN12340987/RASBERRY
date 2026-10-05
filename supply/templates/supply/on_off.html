@@ -5,20 +5,22 @@
 {% endblock %}
 
 {% block page_title %}
-<div class="weather-widget">
-    
-  <div class="weather-main">
-    <img src="/media/{{ icon }}" class="weather-icon">
-    <div>
-      <div class="weather-temp">{{ temp }}</div>
-      <div class="weather-status">{{ status }}</div>
+<div class="container">
+  <div class="weather-widget">
+      
+    <div class="weather-main">
+      <img src="/media/{{ icon }}" class="weather-icon">
+      <div>
+        <div class="weather-temp">{{ temp }}</div>
+        <div class="weather-status">{{ status }}</div>
+      </div>
     </div>
-  </div>
-    
-  <div class="weather-details">
-    <span>💧 {{ humidity }}%</span>
-    <span>🌡 {{ pressure }}</span>
-    <span>☁ {{ clouds }}</span>
+      
+    <div class="weather-details">
+      <span>💧 {{ humidity }}%</span>
+      <span>🌡 {{ pressure }}</span>
+      <span>☁ {{ clouds }}</span>
+    </div>
   </div>
 </div>
 
