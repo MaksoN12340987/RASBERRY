@@ -124,7 +124,7 @@ class MobileView(ListView):
         weather = WeatherConditions()
         weather.get_weather()
         context["temp"] = weather.temp # type: ignore
-        context["icon"] = f"/icon_weather/day/{weather.icon}.png" # type: ignore
+        context["icon"] = f"icon_weather/day/{weather.icon}.png" # type: ignore
         context["status"] = weather.status # type: ignore
         context["pressure"] = weather.pressure # type: ignore
         context["humidity"] = weather.humidity # type: ignore
