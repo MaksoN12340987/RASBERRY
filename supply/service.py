@@ -41,7 +41,7 @@ class WeatherConditions():
         logger_weather_conditions.info(raw_data)
         
         self.weather_now = {
-            "temp": f"{raw_data["main"]["temp"]}",
+            "temp": raw_data["main"]["temp"],
             "icon": f"icon_weather/{raw_data["weather"][0]["icon"]}.png",
             "status": raw_data["weather"][0]["description"],
             "pressure": raw_data["main"]["grnd_level"],
