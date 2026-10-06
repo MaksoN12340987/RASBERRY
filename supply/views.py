@@ -7,7 +7,6 @@ from django.views.generic import (
     DeleteView,
     ListView,
     UpdateView,
-    DetailView,
 )
 
 from supply.i2c import SwitchI2C
@@ -26,6 +25,10 @@ logger_views.addHandler(file_handler)
 logger_views.setLevel(logging.INFO)
 
 
+weather = WeatherConditions()
+weather.get_weather()
+
+
 class SwitchesButtonsView(ListView):
     model = SupplySwitch
     template_name = "supply/home.html"
@@ -33,15 +36,7 @@ class SwitchesButtonsView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        
-        weather = WeatherConditions()
-        weather.get_weather()
-        context["temp"] = weather.temp # type: ignore
-        context["icon"] = f"icon_weather/{weather.icon}.png" # type: ignore
-        context["status"] = weather.status # type: ignore
-        context["pressure"] = weather.pressure # type: ignore
-        context["humidity"] = weather.humidity # type: ignore
-        context["clouds"] = weather.clouds # type: ignore
+        context["weather"] = weather.weather_now
         
         logger_views.info(context)
         
@@ -55,15 +50,7 @@ class SwitchON(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        
-        weather = WeatherConditions()
-        weather.get_weather()
-        context["temp"] = weather.temp # type: ignore
-        context["icon"] = f"icon_weather/{weather.icon}.png" # type: ignore
-        context["status"] = weather.status # type: ignore
-        context["pressure"] = weather.pressure # type: ignore
-        context["humidity"] = weather.humidity # type: ignore
-        context["clouds"] = weather.clouds # type: ignore
+        context["weather"] = weather.weather_now
         
         logger_views.info(context)
         
@@ -96,15 +83,7 @@ class SwitchOFF(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        
-        weather = WeatherConditions()
-        weather.get_weather()
-        context["temp"] = weather.temp # type: ignore
-        context["icon"] = f"icon_weather/{weather.icon}.png" # type: ignore
-        context["status"] = weather.status # type: ignore
-        context["pressure"] = weather.pressure # type: ignore
-        context["humidity"] = weather.humidity # type: ignore
-        context["clouds"] = weather.clouds # type: ignore
+        context["weather"] = weather.weather_now
         
         logger_views.info(context)
         
@@ -168,17 +147,11 @@ class MobileView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        
-        weather = WeatherConditions()
-        weather.get_weather()
-        context["temp"] = weather.temp # type: ignore
-        context["icon"] = f"icon_weather/{weather.icon}.png" # type: ignore
-        context["status"] = weather.status # type: ignore
-        context["pressure"] = weather.pressure # type: ignore
-        context["humidity"] = weather.humidity # type: ignore
-        context["clouds"] = weather.clouds # type: ignore
+        context["weather"] = weather.weather_now
         
         logger_views.info(context)
+        
+        return context
         
         return context
 
@@ -189,15 +162,7 @@ class MobileON(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        
-        weather = WeatherConditions()
-        weather.get_weather()
-        context["temp"] = weather.temp # type: ignore
-        context["icon"] = f"icon_weather/{weather.icon}.png" # type: ignore
-        context["status"] = weather.status # type: ignore
-        context["pressure"] = weather.pressure # type: ignore
-        context["humidity"] = weather.humidity # type: ignore
-        context["clouds"] = weather.clouds # type: ignore
+        context["weather"] = weather.weather_now
         
         logger_views.info(context)
         
@@ -227,15 +192,7 @@ class MobileOFF(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        
-        weather = WeatherConditions()
-        weather.get_weather()
-        context["temp"] = weather.temp # type: ignore
-        context["icon"] = f"icon_weather/{weather.icon}.png" # type: ignore
-        context["status"] = weather.status # type: ignore
-        context["pressure"] = weather.pressure # type: ignore
-        context["humidity"] = weather.humidity # type: ignore
-        context["clouds"] = weather.clouds # type: ignore
+        context["weather"] = weather.weather_now
         
         logger_views.info(context)
         

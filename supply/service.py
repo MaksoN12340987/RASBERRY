@@ -20,30 +20,7 @@ class WeatherConditions():
     appid = os.getenv("API_KEY_weather")
     units = 'metric'
     lang = 'ru'
-    
-    code = ''
-    temp = ''
-    icon = ''
-    status = ''
-    # Давление
-    pressure = ''
-    # Влажность
-    humidity = ''
-    # Облачность
-    clouds = ''
-    
-    # indicators = {
-    #     "code": '',
-    #     "temp": '',
-    #     "icon": '',
-    #     "description": '',
-    #     # Давление
-    #     "pressure": '',
-    #     # Влажность
-    #     "humidity": '',
-    #     # Облачность
-    #     "clouds": '',
-    # }
+    weather_now = {}
     
     def __str__(self) -> str:
         return f"lat {self.lat}, lon {self.lon}"
@@ -62,11 +39,12 @@ class WeatherConditions():
         
         raw_data = self._request_weather()
         logger_weather_conditions.info(raw_data)
-                
-        self.code = raw_data["weather"][0]["id"] # type: ignore
-        self.icon = raw_data["weather"][0]["icon"] # type: ignore
-        self.status = raw_data["weather"][0]["description"] # type: ignore
-        self.temp = raw_data["main"]["temp"] # type: ignore
-        self.pressure = raw_data["main"]["grnd_level"] # type: ignore
-        self.humidity = raw_data["main"]["humidity"] # type: ignore
-        self.clouds = raw_data["clouds"]["all"] # type: ignore
+        
+        self.weather_now = {
+            "temp": f"{raw_data["main"]["temp"]}",
+            "icon": f"icon_weather/{raw_data["weather"][0]["icon"]}.png",
+            "status": raw_data["weather"][0]["description"],
+            "pressure": raw_data["main"]["grnd_level"],
+            "humidity": raw_data["main"]["humidity"],
+            "clouds": f"{raw_data["clouds"]["all"]} %"
+        }

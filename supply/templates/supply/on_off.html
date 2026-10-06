@@ -1,25 +1,23 @@
 {% extends 'supply/base.html' %}
 
-{% block title %}
-  Свет
-{% endblock %}
+{% block title %} Свет {% endblock %}
 
 {% block page_title %}
 <div class="container">
   <div class="weather-widget">
       
     <div class="weather-main">
-      <img src="/media/{{ icon }}" class="weather-icon">
+      <img src="/media/{{ weather.icon }}" class="weather-icon">
       <div>
-        <div class="weather-temp">{{ temp }}</div>
-        <div class="weather-status">{{ status }}</div>
+        <div class="weather-temp">{{ weather.temp }} °C</div>
+        <div class="weather-status">{{ weather.status }}</div>
       </div>
     </div>
       
     <div class="weather-details">
-      <span>💧 {{ humidity }}%</span>
-      <span>🌡 {{ pressure }}</span>
-      <span>☁ {{ clouds }}</span>
+      <span>💧 {{ weather.humidity }}%</span>
+      <span>🌡 {{ weather.pressure }}</span>
+      <span>☁ {{ weather.clouds }}</span>
     </div>
   </div>
 </div>
@@ -32,22 +30,21 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container ms-5 p-2 text-title">
+  <div class="container ms-3">
     <div class="section-title">Коридор</div>
   </div>
-  <div class="row row-cols-2 ms-1 me-1">
+  <div class="row row-cols-2 ms-2 me-2">
     {% for switch in switches %}
-    
       {% if switch.location == 'коридор' %}
         {% include 'supply/_device_card.html' %}
       {% endif %}
     {% endfor %}
   </div>
 
-  <div class="container text-white-start ms-5 p-2">
+  <div class="container ms-3">
     <div class="section-title">Макс</div>
   </div>
-  <div class="row row-cols-2 ms-1 me-1">
+  <div class="row row-cols-2 ms-2 me-2">
     {% for switch in switches %}
     
       {% if switch.location == 'Макс' %}
@@ -56,10 +53,10 @@
     {% endfor %}
   </div>
 
-  <div class="container text-white-start ms-5 p-2">
+  <div class="container ms-5 p-2">
     <div class="section-title">Остальные</div>
   </div>
-  <div class="row row-cols-2 mb-5 ms-1 me-1">
+  <div class="row row-cols-2">
     {% for switch in switches %}
     
       {% if switch.location == 'остальные' %}
@@ -68,10 +65,10 @@
     {% endfor %}
   </div>
 
-  <div class="container text-white-start ms-5 p-2">
+  <div class="container ms-5 p-2">
     <div class="section-title">Кухня</div>
   </div>
-  <div class="row row-cols-2 ms-1 me-1">
+  <div class="row row-cols-2">
     {% for switch in switches %}
       {% if switch.location == 'кухня' %}
         {% include 'supply/_device_card.html' %}

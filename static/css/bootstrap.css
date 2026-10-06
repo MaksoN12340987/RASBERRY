@@ -235,8 +235,31 @@ body {
   border-color: #3a4150;
 }
 
+.device-card-home {
+  /* display: flex; */
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 10px 10px;
+  margin-bottom: 12px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.device-card-home:hover {
+  background: var(--bg-elevated);
+  border-color: #3a4150;
+}
+
 .device-info { display: flex; align-items: center; gap: 14px; }
 .device-icon { width: 40px; height: 40px; border-radius: 10px; }
+
+.device-name-home {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
 
 .device-name {
   font-size: 1.05rem;
@@ -264,7 +287,8 @@ body {
 .device-actions { display: flex; gap: 8px; }
 
 .btn-on-home, .btn-off-home {
-  min-width: 70px;
+  flex: 1;              /* обе кнопки делят ширину поровну */
+  min-width: 0;         /* иначе flex не даст сжаться */
   text-align: center;
   padding: 8px 14px;
   border-radius: 10px;
