@@ -39,12 +39,15 @@ class WeatherConditions():
         
         raw_data = self._request_weather()
         logger_weather_conditions.info(raw_data)
+        temp = raw_data["main"]["temp"]
+        icon = raw_data["weather"][0]["icon"]
+        clouds = raw_data["clouds"]["all"]
         
         self.weather_now = {
-            "temp": raw_data["main"]["temp"],
-            "icon": f"icon_weather/{raw_data["weather"][0]["icon"]}.png",
+            "temp": f"{temp}",
+            "icon": f"icon_weather/{icon}.png",
             "status": raw_data["weather"][0]["description"],
             "pressure": raw_data["main"]["grnd_level"],
             "humidity": raw_data["main"]["humidity"],
-            "clouds": f"{raw_data["clouds"]["all"]} %"
+            "clouds": f"{clouds} %"
         }
