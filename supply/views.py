@@ -26,7 +26,6 @@ logger_views.setLevel(logging.INFO)
 
 
 weather = WeatherConditions()
-weather.get_weather()
 
 
 class SwitchesButtonsView(ListView):
@@ -36,6 +35,7 @@ class SwitchesButtonsView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
+        weather.get_weather()
         context["weather"] = weather.weather_now
         
         logger_views.info(context)
@@ -50,6 +50,7 @@ class SwitchON(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
+        weather.get_weather()
         context["weather"] = weather.weather_now
         
         logger_views.info(context)
@@ -83,6 +84,7 @@ class SwitchOFF(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
+        weather.get_weather()
         context["weather"] = weather.weather_now
         
         logger_views.info(context)
@@ -147,6 +149,7 @@ class MobileView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
+        weather.get_weather()
         context["weather"] = weather.weather_now
         
         logger_views.info(context)
@@ -162,6 +165,7 @@ class MobileON(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
+        weather.get_weather()
         context["weather"] = weather.weather_now
         
         logger_views.info(context)
@@ -192,6 +196,7 @@ class MobileOFF(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
+        weather.get_weather()
         context["weather"] = weather.weather_now
         
         logger_views.info(context)
