@@ -1,6 +1,6 @@
 import logging
 
-# from supply.i2c import SwitchI2C
+from supply.i2c import SwitchI2C
 
 from rest_framework import generics
 
@@ -22,42 +22,38 @@ class SwitchAPI(generics.ListAPIView):
     serializer_class = SupplySerializer
     queryset = SupplySwitch.objects.all()
 
-class OnAPI(generics.UpdateAPIView):
+class OnOffAPI(generics.UpdateAPIView):
     serializer_class = SupplySerializer
     queryset = SupplySwitch.objects.all()
     
     def update(self, request, *args, **kwargs):
-        serializer = SupplySerializer(self.queryset, many=True)
-        
-        # form = super().update(request, *args, **kwargs)
         data = request.data
 
-        # i2c = SwitchI2C(1, data.name, data.adres_board, data.adres_registr)
-        # result = i2c.turn_on()
-        # if result:
-        #     switch.on_off = result
-        # else:
-        #     switch.on_off = 0
-        # switch.save()
+        i2c = SwitchI2C(1, data.name, data.adres_board, data.adres_registr)
+        
+        if data.on_off:
+            i2c.turn_on()
+        else:
+            i2c.turn_off()
         
         logger_views.info(f"{data}")        
+        
         return super().update(request, *args, **kwargs)
     
-class OffAPI(generics.UpdateAPIView):
-    serializer_class = SupplySerializer
-    queryset = SupplySwitch.objects.all()
+# class OffAPI(generics.UpdateAPIView):
+#     serializer_class = SupplySerializer
+#     queryset = SupplySwitch.objects.all()
     
-    def update(self, request, *args, **kwargs):
-        form = super().update(request, *args, **kwargs)
-        data = form.data
+#     def update(self, request, *args, **kwargs):
+#         data = request.data
 
-        # i2c = SwitchI2C(1, data.name, data.adres_board, data.adres_registr)
-        # result = i2c.turn_off()
-        # if result:
-        #     switch.on_off = result
-        # else:
-        #     switch.on_off = 0
-        # switch.save()
+#         i2c = SwitchI2C(1, data.name, data.adres_board, data.adres_registr)
+#         result = i2c.turn_on()
+#         if result:
+#             data.on_off = True
+#         else:
+#             data.on_off = False
         
-        logger_views.info(f"{data}")
-        return form
+#         logger_views.info(f"{data}")        
+        
+#         return super().update(request, *args, **kwargs)
