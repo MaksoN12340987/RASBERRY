@@ -21,7 +21,9 @@ class SupplySwitch(models.Model):
     adres_registr = models.IntegerField(help_text="20", verbose_name="Адресс регистра")
     
     image = models.ImageField(upload_to="media", verbose_name="Иконка", null=True)
-    on_off = models.IntegerField(help_text="on_off", verbose_name="Статус", default=0)
+    on_off = models.BooleanField(
+        verbose_name="ON_OFF", default=True
+    )
     connected = models.BooleanField(
         help_text="Подключено ли?", verbose_name="Подключено", default=True
     )

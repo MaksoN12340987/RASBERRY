@@ -1,5 +1,7 @@
 import logging
 
+# from supply.i2c import SwitchI2C
+
 from rest_framework import generics
 
 from supply.models import SupplySwitch
@@ -20,5 +22,42 @@ class SwitchAPI(generics.ListAPIView):
     serializer_class = SupplySerializer
     queryset = SupplySwitch.objects.all()
 
-class OnOffSwitchAPI(generics.UpdateAPIView):
+class OnAPI(generics.UpdateAPIView):
     serializer_class = SupplySerializer
+    queryset = SupplySwitch.objects.all()
+    
+    def update(self, request, *args, **kwargs):
+        serializer = SupplySerializer(self.queryset, many=True)
+        
+        # form = super().update(request, *args, **kwargs)
+        data = request.data
+
+        # i2c = SwitchI2C(1, data.name, data.adres_board, data.adres_registr)
+        # result = i2c.turn_on()
+        # if result:
+        #     switch.on_off = result
+        # else:
+        #     switch.on_off = 0
+        # switch.save()
+        
+        logger_views.info(f"{data}")        
+        return super().update(request, *args, **kwargs)
+    
+class OffAPI(generics.UpdateAPIView):
+    serializer_class = SupplySerializer
+    queryset = SupplySwitch.objects.all()
+    
+    def update(self, request, *args, **kwargs):
+        form = super().update(request, *args, **kwargs)
+        data = form.data
+
+        # i2c = SwitchI2C(1, data.name, data.adres_board, data.adres_registr)
+        # result = i2c.turn_off()
+        # if result:
+        #     switch.on_off = result
+        # else:
+        #     switch.on_off = 0
+        # switch.save()
+        
+        logger_views.info(f"{data}")
+        return form

@@ -4,12 +4,19 @@ from rest_framework.routers import DefaultRouter
 from .apps import ApiConfig
 from .views import (
     SwitchAPI,
-    OnOffSwitchAPI
+    OnAPI,
+    OffAPI
 )
 
 app_name = ApiConfig.name
 
 urlpatterns = [
-    path("", SwitchAPI.as_view(), name="list_switches"),
-    path("", OnOffSwitchAPI.as_view(), name="on_off_switches")
+    path("", SwitchAPI.as_view(), name="JSON_switches"),
+    path("on/<int:pk>/", OnAPI.as_view(), name="JSON_on"),
+    path("off/<int:pk>/", OffAPI.as_view(), name="turn_off"),
+    # path("turn_on/<int:pk>/", SwitchON.as_view(), name="turn_on"),
+    # path("create/", CreateButtonSwitch.as_view(), name="create"),
+    # path("redact/", RaedactButtonsView.as_view(), name="redact"),
+    # path("update/<int:pk>/", ButtonUpdate.as_view(), name="update"),
+    # path("delite/<int:pk>/", ButtonDelete.as_view(), name="delite"),
 ]
