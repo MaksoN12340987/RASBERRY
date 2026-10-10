@@ -27,6 +27,8 @@ class OnOffAPI(generics.UpdateAPIView):
     queryset = SupplySwitch.objects.all()
     
     def put(self, request, *args, **kwargs):
+        data = self.get_object()
+        logger_views.info(f"{data}")        
         
         
         return super().put(request, *args, **kwargs)
