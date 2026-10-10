@@ -26,15 +26,14 @@ class OnOffAPI(generics.UpdateAPIView):
     serializer_class = SupplySerializer
     queryset = SupplySwitch.objects.all()
     
-    def put(self, request, *args, **kwargs):
+    def patch(self, request, *args, **kwargs):
         data = self.get_object()
-        logger_views.info(f"{data}")        
-        
-        
-        return super().put(request, *args, **kwargs)
+        logger_views.info(f"{data}")
+    
+        return super().patch(request, *args, **kwargs)
     
     def update(self, request, *args, **kwargs):
-        data = super().update(request, *args, **kwargs)
+        data = self.get_object()
         logger_views.info(f"{data}")        
 
         # i2c = SwitchI2C(1, data.name, data.adres_board, data.adres_registr)
@@ -45,7 +44,7 @@ class OnOffAPI(generics.UpdateAPIView):
         #     i2c.turn_off()
         
         
-        return data
+        return super().update(request, *args, **kwargs)
     
 # class OffAPI(generics.UpdateAPIView):
 #     serializer_class = SupplySerializer
