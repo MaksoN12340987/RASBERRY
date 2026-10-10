@@ -26,22 +26,16 @@ class OnOffAPI(generics.UpdateAPIView):
     serializer_class = SupplySerializer
     queryset = SupplySwitch.objects.all()
     
-    def patch(self, request, *args, **kwargs):
-        data = self.get_object()
-        logger_views.info(f"{data}")
-    
-        return super().patch(request, *args, **kwargs)
-    
     def update(self, request, *args, **kwargs):
-        data = self.get_object()
-        logger_views.info(f"{data}")        
+        switch = self.get_object()
+        logger_views.info(f"{switch}")        
 
-        # i2c = SwitchI2C(1, data.name, data.adres_board, data.adres_registr)
+        i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
         
-        # if data.on_off:
-        #     i2c.turn_on()
-        # else:
-        #     i2c.turn_off()
+        if switch.on_off:
+            i2c.turn_on()
+        else:
+            i2c.turn_off()
         
         
         return super().update(request, *args, **kwargs)
