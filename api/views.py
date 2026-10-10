@@ -28,6 +28,7 @@ class OnOffAPI(generics.UpdateAPIView):
     
     def update(self, request, *args, **kwargs):
         data = request.data
+        logger_views.info(f"{data}")        
 
         i2c = SwitchI2C(1, data.name, data.adres_board, data.adres_registr)
         
@@ -36,7 +37,6 @@ class OnOffAPI(generics.UpdateAPIView):
         else:
             i2c.turn_off()
         
-        logger_views.info(f"{data}")        
         
         return super().update(request, *args, **kwargs)
     
@@ -57,3 +57,6 @@ class OnOffAPI(generics.UpdateAPIView):
 #         logger_views.info(f"{data}")        
         
 #         return super().update(request, *args, **kwargs)
+
+class CreateSwitchAPI(generics.CreateAPIView):
+    serializer_class = SupplySerializer

@@ -69,8 +69,8 @@ class SwitchON(ListView):
             switch.on_off = True
         else:
             switch.on_off = False
+        
         switch.save()
-
         return super().get_queryset()
 
     def get_success_url(self):
@@ -103,8 +103,8 @@ class SwitchOFF(ListView):
             switch.on_off = True
         else:
             switch.on_off = False
+        
         switch.save()
-
         return super().get_queryset()
 
     def get_success_url(self):
@@ -184,8 +184,8 @@ class MobileON(ListView):
             switch.on_off = True
         else:
             switch.on_off = False
+        
         switch.save()
-
         return super().get_queryset()
 
 
@@ -215,7 +215,7 @@ class MobileOFF(ListView):
             switch.on_off = True
         else:
             switch.on_off = False
+        
         switch.save()
-
         return super().get_queryset()
 
