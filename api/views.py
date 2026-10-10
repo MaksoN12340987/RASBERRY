@@ -28,16 +28,19 @@ class OnOffAPI(generics.UpdateAPIView):
     
     def update(self, request, *args, **kwargs):
         switch = self.get_object()
-        logger_views.info(f"{switch}")        
+        logger_views.info(
+            f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
+        )        
 
         i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
         
         if switch.on_off:
             i2c.turn_on()
+            logger_views.info("ON")
         else:
             i2c.turn_off()
-        
-        
+            logger_views.info("OFF")
+
         return super().update(request, *args, **kwargs)
     
 # class OffAPI(generics.UpdateAPIView):
