@@ -76,50 +76,11 @@ class SwitchOnOff(ListView):
         switch.save()
         return super().get_queryset()
 
-    def get_success_url(self):
-        return reverse("supply:home")
-
-
-class SwitchOFF(ListView):
-    model = SupplySwitch
-    template_name = "supply/on_off.html"
-    context_object_name = "switches"
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        weather.get_weather()
-        context["weather"] = weather.weather_now
-        
-        logger_views.info(context)
-        
-        return context
-
-    def get_queryset(self) -> QuerySet:
-        switch = SupplySwitch.objects.get(pk=self.kwargs["pk"])
-        logger_views.info(
-            f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
-        )
-
-        # i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
-        # result = i2c.turn_off()
-        # if result:
-        #     switch.on_off = True
-        # else:
-        #     switch.on_off = False
-        
-        switch.save()
-        return super().get_queryset()
-
-    def get_success_url(self):
-        return reverse("supply:home")
-
-
 class CreateButtonSwitch(CreateView):
     model = SupplySwitch
     form_class = CreateSwitchForm
     template_name = "supply/create.html"
     success_url = reverse_lazy("supply:home")
-
 
 class ButtonUpdate(UpdateView):
     model = SupplySwitch
@@ -130,20 +91,16 @@ class ButtonUpdate(UpdateView):
     def get_success_url(self):
         return reverse("supply:home")
 
-
 class ButtonDelete(DeleteView):
     model = SupplySwitch
     template_name = "supply/delite.html"
     context_object_name = "switch"
     success_url = reverse_lazy("supply:home")
 
-
-
 class RaedactButtonsView(ListView):
     model = SupplySwitch
     template_name = "supply/redacters.html"
     context_object_name = "switches"
-
 
 class MobileView(ListView):
     model = SupplySwitch
@@ -159,9 +116,9 @@ class MobileView(ListView):
         
         return context
 
-class MobileONOFF(ListView):
+class MobileOnOff(ListView):
     model = SupplySwitch
-    template_name = "supply/mobile/on_off_mobile.html"
+    template_name = "supply/on_off_mobile.html.html"
     context_object_name = "switches"
     
     def get_context_data(self, **kwargs):
@@ -179,44 +136,15 @@ class MobileONOFF(ListView):
             f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
         )
 
-        # i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
-        # if switch.on_off:
-        #     i2c.turn_on()
-        #     logger_views.info("ON")
-        # else:
-        #     i2c.turn_off()
-        #     logger_views.info("OFF")
+        i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
+        if switch.on_off:
+            i2c.turn_off()
+            logger_views.info("ON")
+            switch.on_off = False
+        else:
+            i2c.turn_on()
+            logger_views.info("OFF")
+            switch.on_off = True
         
         switch.save()
         return super().get_queryset()
-
-
-# class MobileOFF(ListView):
-#     model = SupplySwitch
-#     template_name = "supply/mobile/on_off_mobile.html"
-#     context_object_name = "switches"
-    
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data()
-#         weather.get_weather()
-#         context["weather"] = weather.weather_now
-        
-#         logger_views.info(context)
-        
-#         return context
-
-#     def get_queryset(self) -> QuerySet:
-#         switch = SupplySwitch.objects.get(pk=self.kwargs["pk"])
-#         logger_views.info(
-#             f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
-#         )
-
-#         i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
-#         result = i2c.turn_off()
-#         if result:
-#             switch.on_off = True
-#         else:
-#             switch.on_off = False
-        
-#         switch.save()
-#         return super().get_queryset()
