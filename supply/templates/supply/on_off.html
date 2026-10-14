@@ -56,7 +56,7 @@
   <div class="container ms-5 p-2">
     <div class="section-title">Остальные</div>
   </div>
-  <div class="row row-cols-2">
+  <div class="row row-cols-2 ms-2 me-2">
     {% for switch in switches %}
     
       {% if switch.location == 'остальные' %}
@@ -68,7 +68,7 @@
   <div class="container ms-5 p-2">
     <div class="section-title">Кухня</div>
   </div>
-  <div class="row row-cols-2">
+  <div class="row row-cols-2 ms-2 me-2">
     {% for switch in switches %}
       {% if switch.location == 'кухня' %}
         {% include 'supply/_device_card.html' %}
