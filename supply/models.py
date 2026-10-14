@@ -27,6 +27,8 @@ class SupplySwitch(models.Model):
     connected = models.BooleanField(
         help_text="Подключено ли?", verbose_name="Подключено", default=True
     )
+    
+    is_favorite = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f"{self.name}"

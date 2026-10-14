@@ -6,4 +6,5 @@ from supply.models import SupplySwitch
 class SupplySerializer(serializers.ModelSerializer):
     class Meta:
         model = SupplySwitch
-        fields = "__all__"
+        fields = ['id', 'name', 'location', 'on_off', 'image', 'is_favorite']
+        read_only_fields = ['id']

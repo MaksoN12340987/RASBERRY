@@ -1,12 +1,4 @@
 import logging
-
-from supply.i2c import SwitchI2C
-
-from rest_framework import generics
-
-from supply.models import SupplySwitch
-from .serializers import SupplySerializer
-
 logger_views = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
 file_formatter = logging.Formatter(
@@ -17,6 +9,22 @@ file_handler.setFormatter(file_formatter)
 logger_views.addHandler(file_handler)
 logger_views.setLevel(logging.INFO)
 
+
+from rest_framework import generics
+from supply.models import SupplySwitch
+from .serializers import SupplySerializer
+from supply.i2c import SwitchI2C
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
+class FavoriteViewSet(generics.ListAPIView):
+    serializer_class = SupplySerializer
+    queryset = SupplySwitch.objects.all().filter(is_favorite=True)
+    
+class AddFavorite(generics.UpdateAPIView):
+    serializer_class = SupplySerializer
+    queryset = SupplySwitch.objects.all()
+    
 
 class SwitchAPI(generics.ListAPIView):
     serializer_class = SupplySerializer
