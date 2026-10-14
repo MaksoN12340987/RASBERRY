@@ -1,6 +1,6 @@
 import logging
 
-# from supply.i2c import SwitchI2C
+from supply.i2c import SwitchI2C
 
 from rest_framework import generics
 
@@ -28,18 +28,16 @@ class OnOffAPI(generics.UpdateAPIView):
     
     def update(self, request, *args, **kwargs):
         switch = self.get_object()
-        logger_views.info(
-            f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
-        )        
+        data =  request.data
+        logger_views.info(f"{data} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}")
 
-        # i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
-        
-        # if switch.on_off:
-        #     i2c.turn_on()
-        #     logger_views.info("ON")
-        # else:
-        #     i2c.turn_off()
-        #     logger_views.info("OFF")
+        i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
+        if data["on_off"]:
+            i2c.turn_on()
+            logger_views.info("ON")
+        else:
+            i2c.turn_off()
+            logger_views.info("OFF")
 
         return super().update(request, *args, **kwargs)
 
