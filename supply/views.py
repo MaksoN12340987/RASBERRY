@@ -43,7 +43,7 @@ class SwitchesButtonsView(ListView):
         return context
 
 
-class SwitchON(ListView):
+class SwitchOnOff(ListView):
     model = SupplySwitch
     template_name = "supply/on_off.html"
     context_object_name = "switches"
@@ -64,11 +64,14 @@ class SwitchON(ListView):
         )
 
         i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
-        result = i2c.turn_on()
-        if result:
-            switch.on_off = True
-        else:
+        if switch.on_off:
+            i2c.turn_off()
+            logger_views.info("ON")
             switch.on_off = False
+        else:
+            i2c.turn_on()
+            logger_views.info("OFF")
+            switch.on_off = True
         
         switch.save()
         return super().get_queryset()
@@ -97,12 +100,12 @@ class SwitchOFF(ListView):
             f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
         )
 
-        i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
-        result = i2c.turn_off()
-        if result:
-            switch.on_off = True
-        else:
-            switch.on_off = False
+        # i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
+        # result = i2c.turn_off()
+        # if result:
+        #     switch.on_off = True
+        # else:
+        #     switch.on_off = False
         
         switch.save()
         return super().get_queryset()
@@ -155,10 +158,8 @@ class MobileView(ListView):
         logger_views.info(context)
         
         return context
-        
-        return context
 
-class MobileON(ListView):
+class MobileONOFF(ListView):
     model = SupplySwitch
     template_name = "supply/mobile/on_off_mobile.html"
     context_object_name = "switches"
@@ -178,44 +179,44 @@ class MobileON(ListView):
             f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
         )
 
-        i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
-        result = i2c.turn_on()
-        if result:
-            switch.on_off = True
-        else:
-            switch.on_off = False
+        # i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
+        # if switch.on_off:
+        #     i2c.turn_on()
+        #     logger_views.info("ON")
+        # else:
+        #     i2c.turn_off()
+        #     logger_views.info("OFF")
         
         switch.save()
         return super().get_queryset()
 
 
-class MobileOFF(ListView):
-    model = SupplySwitch
-    template_name = "supply/mobile/on_off_mobile.html"
-    context_object_name = "switches"
+# class MobileOFF(ListView):
+#     model = SupplySwitch
+#     template_name = "supply/mobile/on_off_mobile.html"
+#     context_object_name = "switches"
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        weather.get_weather()
-        context["weather"] = weather.weather_now
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data()
+#         weather.get_weather()
+#         context["weather"] = weather.weather_now
         
-        logger_views.info(context)
+#         logger_views.info(context)
         
-        return context
+#         return context
 
-    def get_queryset(self) -> QuerySet:
-        switch = SupplySwitch.objects.get(pk=self.kwargs["pk"])
-        logger_views.info(
-            f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
-        )
+#     def get_queryset(self) -> QuerySet:
+#         switch = SupplySwitch.objects.get(pk=self.kwargs["pk"])
+#         logger_views.info(
+#             f"{switch.adres_board} type {type(switch.adres_board)}\n{switch.adres_registr} type {type(switch.adres_registr)}"
+#         )
 
-        i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
-        result = i2c.turn_off()
-        if result:
-            switch.on_off = True
-        else:
-            switch.on_off = False
+#         i2c = SwitchI2C(1, switch.name, switch.adres_board, switch.adres_registr)
+#         result = i2c.turn_off()
+#         if result:
+#             switch.on_off = True
+#         else:
+#             switch.on_off = False
         
-        switch.save()
-        return super().get_queryset()
-
+#         switch.save()
+#         return super().get_queryset()
