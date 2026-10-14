@@ -118,7 +118,7 @@ class MobileView(ListView):
 
 class MobileOnOff(ListView):
     model = SupplySwitch
-    template_name = "supply/on_off_mobile.html.html"
+    template_name = "supply/on_off_mobile.html"
     context_object_name = "switches"
     
     def get_context_data(self, **kwargs):
