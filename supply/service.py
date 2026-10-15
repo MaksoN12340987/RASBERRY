@@ -71,7 +71,14 @@ class Printer():
         try:
             # Настройки порта (уточните в документации или через raspi-config)
             # VKP80 II поддерживает скорость до 115200[reference:4]
-            printer = Serial(devfile=self.devfile, baudrate=self.baudrate, bytesize=self.bytesize, parity=self.parity, stopbits=self.stopbits, timeout=self.timeout, xonxoff=self.xonxoff)
+            printer = Serial(
+                devfile=self.devfile, 
+                baudrate=self.baudrate, 
+                bytesize=self.bytesize, 
+                # parity=self.parity, 
+                # stopbits=self.stopbits, 
+                timeout=self.timeout, 
+                xonxoff=self.xonxoff)
             
             # Печать данных
             # printer.set(align='center', font='a', width=2, height=2, custom_size=True)
