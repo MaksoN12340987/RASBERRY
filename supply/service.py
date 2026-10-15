@@ -75,7 +75,13 @@ class Printer():
             
             # Печать данных
             # printer.set(align='center', font='a', width=2, height=2, custom_size=True)
-            printer.text("ПОГОДА\n")
+            printer.text(f"""
+            ПОГОДА
+            Температура: {data.get('temp', 'N/A')}°C
+            На улице: {data.get('status', 'N/A')}
+            Давление: {data.get('pressure', 'N/A')}
+            Влажность: {data.get('humidity', 'N/A')}%
+            """)
             # printer.set(align='center', font='a', width=1, height=1)
             # printer.text("----------------\n")
             
@@ -89,7 +95,7 @@ class Printer():
             # printer.text("\n\n")
             printer.cut()  # Отрезка бумаги
             
-            print("Печать успешна")
+            logger_weather_conditions.info("Печать успешна")
         except Exception as e:
             logger_weather_conditions.info(e)
             
