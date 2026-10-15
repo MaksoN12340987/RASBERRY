@@ -91,4 +91,5 @@ class Printer():
             
             print("Печать успешна")
         except Exception as e:
-            print(f"Ошибка печати: {e}")
+            logger_weather_conditions.info(e)
+            
