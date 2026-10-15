@@ -57,7 +57,7 @@ class WeatherConditions():
 
 class Printer():
     devfile='/dev/ttyUSB0'
-    baudrate=9600
+    baudrate=115200
     bytesize=8
     stopbits=1
     parity='N'
