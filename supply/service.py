@@ -1,10 +1,7 @@
 import os
 import logging
 import requests # type: ignore
-from django.http import JsonResponse
 from escpos.printer import Serial # type: ignore
-import sys
-import json
 
 logger_weather_conditions = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -54,33 +51,43 @@ class WeatherConditions():
             "humidity": raw_data["main"]["humidity"],
             "clouds": f"{clouds} %"
         }
+        
+        print_weather = Printer()
+        print_weather.generate_string(self.weather_now)
 
 class Printer():
-
-    # Данные приходят от Django в виде JSON
-    data = json.loads(sys.argv[1])
-
-    try:
-        # Настройки порта (уточните в документации или через raspi-config)
-        # VKP80 II поддерживает скорость до 115200[reference:4]
-        printer = Serial(devfile='/dev/ttyUSB0', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=1.00)
-        
-        # Печать данных
-        printer.set(align='center', font='a', width=2, height=2, custom_size=True)
-        printer.text("ПОГОДА\n")
-        printer.set(align='center', font='a', width=1, height=1)
-        printer.text("----------------\n")
-        
-        # Пример вывода данных
-        printer.set(align='left')
-        printer.text(f"Город: {data.get('city', 'N/A')}\n")
-        printer.text(f"Температура: {data.get('temp', 'N/A')}°C\n")
-        printer.text(f"Давление: {data.get('pressure', 'N/A')} мм рт.ст.\n")
-        printer.text(f"Влажность: {data.get('humidity', 'N/A')}%\n")
-        
-        printer.text("\n\n")
-        printer.cut()  # Отрезка бумаги
-        
-        print("Печать успешна")
-    except Exception as e:
-        print(f"Ошибка печати: {e}")
+    devfile='/dev/ttyUSB0'
+    baudrate=9600
+    bytesize=8
+    stopbits=1
+    parity='N'
+    timeout=1.00
+    
+    def __str__(self) -> str:
+        return f"{self.devfile}, {self.baudrate} bot, byte-{self.bytesize}, stopbits={self.stopbits}, parity={self.parity}, {self.timeout} sec"
+    
+    def generate_string(self, data={}):
+        try:
+            # Настройки порта (уточните в документации или через raspi-config)
+            # VKP80 II поддерживает скорость до 115200[reference:4]
+            printer = Serial(devfile=self.devfile, baudrate=self.baudrate, bytesize=self.bytesize, parity=self.parity, stopbits=self.stopbits, timeout=self.timeout)
+            
+            # Печать данных
+            printer.set(align='center', font='a', width=2, height=2, custom_size=True)
+            printer.text("ПОГОДА\n")
+            printer.set(align='center', font='a', width=1, height=1)
+            printer.text("----------------\n")
+            
+            # Пример вывода данных
+            printer.set(align='left')
+            printer.text(f"Температура: {data.get('temp', 'N/A')}°C\n") # type: ignore
+            printer.text(f"На улице: {data.get('status', 'N/A')}\n") # type: ignore
+            printer.text(f"Давление: {data.get('pressure', 'N/A')} мм рт.ст.\n") # type: ignore
+            printer.text(f"Влажность: {data.get('humidity', 'N/A')}%\n") # type: ignore
+            
+            printer.text("\n\n")
+            printer.cut()  # Отрезка бумаги
+            
+            print("Печать успешна")
+        except Exception as e:
+            print(f"Ошибка печати: {e}")
