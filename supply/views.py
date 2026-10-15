@@ -38,7 +38,7 @@ class SwitchesButtonsView(ListView):
         weather.get_weather()
         context["weather"] = weather.weather_now
         
-        logger_views.info(context)
+        # logger_views.info(context)
         
         return context
 

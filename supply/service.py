@@ -38,7 +38,7 @@ class WeatherConditions():
     def get_weather(self):
         
         raw_data = self._request_weather()
-        logger_weather_conditions.info(raw_data)
+        # logger_weather_conditions.info(raw_data)
         temp = raw_data["main"]["temp"]
         icon = raw_data["weather"][0]["icon"]
         clouds = raw_data["clouds"]["all"]
