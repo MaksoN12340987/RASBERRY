@@ -106,9 +106,9 @@ class Printer():
             font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 24)
 
             d.text((10, 10), "Погода\n", font=font, fill='black')
-            d.text((10, 50), f"Температура: {data.get('temp', 'N/A')}°C", font=font, fill='black')
-            d.text((10, 90), f"Влажность: {data.get('humidity', 'N/A')}%", font=font, fill='black')
-            d.text((10, 130), f"Давление: {data.get('temp', 'N/A')}мм", font=font, fill='black')
+            d.text((10, 40), f"Температура: {data.get('temp', 'N/A')}°C", font=font, fill='black')
+            d.text((10, 70), f"Влажность: {data.get('humidity', 'N/A')}%", font=font, fill='black')
+            d.text((10, 100), f"Давление: {data.get('temp', 'N/A')}мм", font=font, fill='black')
 
             printer.image(img)
             printer.cut()
