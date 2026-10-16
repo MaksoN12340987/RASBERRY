@@ -42,6 +42,8 @@ class SwitchesButtonsView(ListView):
         weather_data = weather.weather_now
         context["weather"] = weather_data
         
+        printer.printer_worker(weather_data)
+        
         # logger_views.info(context)
         
         return context
