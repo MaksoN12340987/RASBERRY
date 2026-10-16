@@ -86,34 +86,29 @@ class Printer():
                 )
             
             # Печать данных
-            printer.set(align='center', font='a', width=2, height=2, custom_size=True)
-            printer.text("Weather\n")
-            # printer.text(f"""ПОГОДА
-            # # Температура: {data.get('temp', 'N/A')}°C
-            # # На улице: {data.get('status', 'N/A')}
-            # # Давление: {data.get('pressure', 'N/A')}
-            # # Влажность: {data.get('humidity', 'N/A')}%
-            # """)
-            printer.set(align='center', font='a', width=1, height=1)
-            printer.text("----------------\n")
+            # printer.set(align='center', font='a', width=2, height=2, custom_size=True)
+            # printer.text("Weather\n")
+            # printer.set(align='center', font='a', width=1, height=1)
+            # printer.text("----------------\n")
             
             # # Пример вывода данных
-            printer.set(align='left')
-            printer.text(f"Temp: {data.get('temp', 'N/A')}°C\n") # type: ignore
-            printer.text(f"Outdor: {data.get('status', 'N/A')}\n") # type: ignore
-            printer.text(f"Pressure: {data.get('pressure', 'N/A')} мм рт.ст.\n") # type: ignore
-            printer.text(f"Water: {data.get('humidity', 'N/A')}%\n") # type: ignore            
+            # printer.set(align='left')
+            # printer.text(f"Temp: {data.get('temp', 'N/A')}°C\n") # type: ignore
+            # printer.text(f"Outdor: {data.get('status', 'N/A')}\n") # type: ignore
+            # printer.text(f"Pressure: {data.get('pressure', 'N/A')} мм рт.ст.\n") # type: ignore
+            # printer.text(f"Water: {data.get('humidity', 'N/A')}%\n") # type: ignore            
             
-            printer.text("\n\n")
-            printer.cut()  # Отрезка бумаги
+            # printer.text("\n\n")
+            # printer.cut()  # Отрезка бумаги
             
             img = Image.new('RGB', (576, 200), 'white')
             d = ImageDraw.Draw(img)
             font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 24)
 
-            d.text((10, 10), "Погода", font=font, fill='black')
-            d.text((10, 50), "Температура: 11.26°C", font=font, fill='black')
-            d.text((10, 90), "Влажность: 88%", font=font, fill='black')
+            d.text((10, 10), "Погода\n", font=font, fill='black')
+            d.text((10, 50), f"Температура: {data.get('temp', 'N/A')}°C", font=font, fill='black')
+            d.text((10, 90), f"Влажность: {data.get('humidity', 'N/A')}%", font=font, fill='black')
+            d.text((10, 50), f"Давление: {data.get('temp', 'N/A')}мм", font=font, fill='black')
 
             printer.image(img)
             printer.cut()
