@@ -82,7 +82,7 @@ class Printer():
                 xonxoff=self.xonxoff)
             
             # Печать данных
-            printer.set(align='center', font='a', width=2, height=2, custom_size=True)
+            printer.set(align='center', font='Korean CP949', width=2, height=2, custom_size=True)
             printer.text("ПОГОДА")
             # printer.text(f"""ПОГОДА
             # # Температура: {data.get('temp', 'N/A')}°C
