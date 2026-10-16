@@ -60,7 +60,7 @@ class Printer():
     baudrate=9600
     bytesize=8
     stopbits=1
-    parity='N'
+    parity=None
     timeout=1.00
     xonxoff=False
     
@@ -75,7 +75,7 @@ class Printer():
                 devfile=self.devfile, 
                 baudrate=self.baudrate, 
                 bytesize=self.bytesize, 
-                # parity=self.parity, 
+                parity=self.parity, 
                 stopbits=self.stopbits, 
                 timeout=self.timeout, 
                 xonxoff=self.xonxoff)
