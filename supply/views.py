@@ -28,7 +28,6 @@ logger_views.setLevel(logging.INFO)
 
 weather = WeatherConditions()
 printer = Print_VKP80()
-logger_views.info(printer)
 
 
 class SwitchesButtonsView(ListView):
@@ -37,6 +36,7 @@ class SwitchesButtonsView(ListView):
     context_object_name = "switches"
     
     def get_context_data(self, **kwargs):
+        logger_views.info(printer)
         context = super().get_context_data()
         weather.get_weather()
         weather_data = weather.weather_now
