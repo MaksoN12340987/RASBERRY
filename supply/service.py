@@ -86,7 +86,7 @@ class Printer():
             
             # Печать данных
             printer.set(align='center', font='a', width=2, height=2, custom_size=True)
-            printer.text("ПОГОДА")
+            printer.text("Weather\n")
             # printer.text(f"""ПОГОДА
             # # Температура: {data.get('temp', 'N/A')}°C
             # # На улице: {data.get('status', 'N/A')}
@@ -98,10 +98,10 @@ class Printer():
             
             # # Пример вывода данных
             printer.set(align='left')
-            printer.text(f"Температура: {data.get('temp', 'N/A')}°C\n") # type: ignore
-            printer.text(f"На улице: {data.get('status', 'N/A')}\n") # type: ignore
-            printer.text(f"Давление: {data.get('pressure', 'N/A')} мм рт.ст.\n") # type: ignore
-            printer.text(f"Влажность: {data.get('humidity', 'N/A')}%\n") # type: ignore
+            printer.text(f"Temp: {data.get('temp', 'N/A')}°C\n") # type: ignore
+            printer.text(f"Outdor: {data.get('status', 'N/A')}\n") # type: ignore
+            printer.text(f"Pressure: {data.get('pressure', 'N/A')} мм рт.ст.\n") # type: ignore
+            printer.text(f"Water: {data.get('humidity', 'N/A')}%\n") # type: ignore
             
             printer.text("\n\n")
             printer.cut()  # Отрезка бумаги
