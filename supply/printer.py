@@ -42,6 +42,11 @@ class Print_VKP80():
             encoding=self.encoding
         )
         
+        logger_printer.info(f"""{self.devfile}, 
+        {self.baudrate} bot, byte-{self.bytesize}, 
+        stopbits={self.stopbits}, parity={self.parity}, 
+        {self.timeout} sec, encoding={self.encoding}""")
+        
         try:
             img = Image.new('RGB', (576, 200), 'white')
             d = ImageDraw.Draw(img)

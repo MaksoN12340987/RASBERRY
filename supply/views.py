@@ -36,12 +36,11 @@ class SwitchesButtonsView(ListView):
     context_object_name = "switches"
     
     def get_context_data(self, **kwargs):
-        logger_views.info(printer)
         context = super().get_context_data()
+        
         weather.get_weather()
         weather_data = weather.weather_now
         context["weather"] = weather_data
-        printer.printer_worker(weather_data)
         
         # logger_views.info(context)
         
