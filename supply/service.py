@@ -64,9 +64,10 @@ class Printer():
     parity=serial.PARITY_ODD
     timeout=1.00
     xonxoff=False
+    encoding='cp866'
     
     def __str__(self) -> str:
-        return f"{self.devfile}, {self.baudrate} bot, byte-{self.bytesize}, stopbits={self.stopbits}, parity={self.parity}, {self.timeout} sec"
+        return f"{self.devfile}, {self.baudrate} bot, byte-{self.bytesize}, stopbits={self.stopbits}, parity={self.parity}, {self.timeout} sec, encoding={self.encoding}"
     
     def generate_string(self, data={}):
         try:
@@ -79,7 +80,9 @@ class Printer():
                 parity=self.parity, 
                 stopbits=self.stopbits, 
                 timeout=self.timeout, 
-                xonxoff=self.xonxoff)
+                xonxoff=self.xonxoff,
+                encoding=self.encoding
+                )
             
             # Печать данных
             printer.set(align='center', font='a', width=2, height=2, custom_size=True)
