@@ -15,8 +15,6 @@ file_handler.setFormatter(file_formatter)
 logger_printer.addHandler(file_handler)
 logger_printer.setLevel(logging.INFO)
 
-print_queue: "Queue[dict]" = Queue()
-
 class Print_VKP80():
     devfile='/dev/ttyUSB0'
     baudrate=9600
@@ -30,14 +28,10 @@ class Print_VKP80():
     
     def __str__(self) -> str:
         return f"{self.devfile}, {self.baudrate} bot, byte-{self.bytesize}, stopbits={self.stopbits}, parity={self.parity}, {self.timeout} sec, encoding={self.encoding}"
-    
-    def __init__(self) -> None:
-        Thread(target=self.printer_worker, daemon=True).start()
 
     def printer_worker(self, data={}):
         """Фоновый поток: открывает порт один раз и печатает задания из очереди."""
-        try:
-            printer = Serial(
+        printer = Serial(
                 ddevfile=self.devfile, 
                 baudrate=self.baudrate, 
                 bytesize=self.bytesize, 
@@ -47,14 +41,8 @@ class Print_VKP80():
                 xonxoff=self.xonxoff,
                 encoding=self.encoding
             )
-        except Exception as e:
-            logger_printer.exception(f"Не удалось открыть порт: {e}")
-            return
-
+        
         while True:
-            task = print_queue.get()
-            if task is None:
-                break
             try:
                 img = Image.new('RGB', (576, 200), 'white')
                 d = ImageDraw.Draw(img)
@@ -73,5 +61,3 @@ class Print_VKP80():
                 logger_printer.info("Печать успешна")
             except Exception as e:
                 logger_printer.exception(f"Ошибка печати: {e}")
-            finally:
-                print_queue.task_done()
