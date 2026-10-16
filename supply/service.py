@@ -3,6 +3,7 @@ import logging
 import requests # type: ignore
 from escpos.printer import Serial # type: ignore
 import serial # type: ignore
+from PIL import Image, ImageDraw, ImageFont
 
 logger_weather_conditions = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -105,6 +106,19 @@ class Printer():
             
             printer.text("\n\n")
             printer.cut()  # Отрезка бумаги
+            
+            img = Image.new('RGB', (576, 200), 'white')
+            d = ImageDraw.Draw(img)
+            font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 24)
+
+            d.text((10, 10), "Погода", font=font, fill='black')
+            d.text((10, 50), "Температура: 11.26°C", font=font, fill='black')
+            d.text((10, 90), "Влажность: 88%", font=font, fill='black')
+
+            printer.image(img)
+            printer.cut()
+            printer.text("\n\n")
+            
             
             logger_weather_conditions.info("Печать успешна")
         except Exception as e:
