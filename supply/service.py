@@ -2,6 +2,7 @@ import os
 import logging
 import requests # type: ignore
 from escpos.printer import Serial # type: ignore
+import serial # type: ignore
 
 logger_weather_conditions = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -60,7 +61,7 @@ class Printer():
     baudrate=9600
     bytesize=8
     stopbits=1
-    parity=None
+    parity=serial.PARITY_ODD
     timeout=1.00
     xonxoff=False
     
