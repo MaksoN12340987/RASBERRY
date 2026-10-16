@@ -47,7 +47,6 @@ class Print_VKP80():
                 xonxoff=self.xonxoff,
                 encoding=self.encoding
             )
-            printer._raw(b'\x1b\x74\x11')   # ESC t 17 → CP866
         except Exception as e:
             logger_printer.exception(f"Не удалось открыть порт: {e}")
             return
