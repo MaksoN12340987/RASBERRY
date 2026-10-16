@@ -42,22 +42,21 @@ class Print_VKP80():
                 encoding=self.encoding
             )
         
-        while True:
-            try:
-                img = Image.new('RGB', (576, 200), 'white')
-                d = ImageDraw.Draw(img)
-                font = ImageFont.truetype(
+        try:
+            img = Image.new('RGB', (576, 200), 'white')
+            d = ImageDraw.Draw(img)
+            font = ImageFont.truetype(
                     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 36
                 )
-                d.text((10, 10), "Погода", font=font, fill='black')
-                d.text((10, 50), f"Температура: {data.get('temp', 'N/A')}°C", font=font, fill='black')
-                d.text((10, 90), f"Влажность: {data.get('humidity', 'N/A')}%", font=font, fill='black')
-                d.text((10, 130), f"Давление: {data.get('pressure', 'N/A')} мм", font=font, fill='black')
+            d.text((10, 10), "Погода", font=font, fill='black')
+            d.text((10, 50), f"Температура: {data.get('temp', 'N/A')}°C", font=font, fill='black')
+            d.text((10, 90), f"Влажность: {data.get('humidity', 'N/A')}%", font=font, fill='black')
+            d.text((10, 130), f"Давление: {data.get('pressure', 'N/A')} мм", font=font, fill='black')
 
-                printer.image(img)
-                printer.cut()
-                printer.text(" ")
+            printer.image(img)
+            printer.cut()
+            printer.text(" ")
 
-                logger_printer.info("Печать успешна")
-            except Exception as e:
-                logger_printer.exception(f"Ошибка печати: {e}")
+            logger_printer.info("Печать успешна")
+        except Exception as e:
+            logger_printer.exception(f"Ошибка печати: {e}")
