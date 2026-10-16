@@ -32,7 +32,7 @@ class Print_VKP80():
     def printer_worker(self, data={}):
         """Фоновый поток: открывает порт один раз и печатает задания из очереди."""
         printer = Serial(
-            ddevfile=self.devfile, 
+            devfile=self.devfile, 
             baudrate=self.baudrate, 
             bytesize=self.bytesize, 
             parity=self.parity, 
