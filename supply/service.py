@@ -59,8 +59,8 @@ def printer_worker():
             d.text((10, 130), f"Давление: {data.get('pressure', 'N/A')} мм", font=font, fill='black')
 
             printer.image(img)
-            printer.text("\n\n")
             printer.cut()
+            printer.text("")
 
             logger.info("Печать успешна")
         except Exception as e:
