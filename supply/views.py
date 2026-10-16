@@ -10,7 +10,7 @@ from django.views.generic import (
 )
 
 from supply.i2c import SwitchI2C
-from printer import Print_VKP80
+from .printer import Print_VKP80
 from supply.forms import CreateSwitchForm, UpdateForm
 from supply.models import SupplySwitch
 from supply.service import WeatherConditions
