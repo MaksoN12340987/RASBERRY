@@ -28,6 +28,7 @@ logger_views.setLevel(logging.INFO)
 
 weather = WeatherConditions()
 printer = Print_VKP80()
+logger_views.info(printer)
 
 
 class SwitchesButtonsView(ListView):
