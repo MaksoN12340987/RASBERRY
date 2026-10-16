@@ -10,6 +10,7 @@ from django.views.generic import (
 )
 
 from supply.i2c import SwitchI2C
+from printer import Print_VKP80
 from supply.forms import CreateSwitchForm, UpdateForm
 from supply.models import SupplySwitch
 from supply.service import WeatherConditions
@@ -26,6 +27,7 @@ logger_views.setLevel(logging.INFO)
 
 
 weather = WeatherConditions()
+printer = Print_VKP80()
 
 
 class SwitchesButtonsView(ListView):
@@ -36,7 +38,9 @@ class SwitchesButtonsView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         weather.get_weather()
-        context["weather"] = weather.weather_now
+        weather_data = weather.weather_now
+        context["weather"] = weather_data
+        printer.printer_worker(weather_data)
         
         # logger_views.info(context)
         

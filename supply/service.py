@@ -17,62 +17,6 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 logger.setLevel(logging.INFO)
 
-
-# ─────────────────────────────────────────────────────
-# Очередь и воркер — на уровне модуля (создаются ОДИН раз)
-# ─────────────────────────────────────────────────────
-print_queue: "Queue[dict]" = Queue()
-
-
-def printer_worker():
-    """Фоновый поток: открывает порт один раз и печатает задания из очереди."""
-    try:
-        printer = Serial(
-            devfile='/dev/ttyUSB0',
-            baudrate=9600,
-            bytesize=8,
-            parity=serial.PARITY_ODD,
-            stopbits=1,
-            timeout=1.0,
-            xonxoff=True,          # ← как в SETUP принтера
-            encoding='cp866'
-        )
-        printer._raw(b'\x1b\x74\x11')   # ESC t 17 → CP866
-    except Exception as e:
-        logger.exception(f"Не удалось открыть порт: {e}")
-        return
-
-    while True:
-        task = print_queue.get()
-        if task is None:
-            break
-        try:
-            data = task
-            img = Image.new('RGB', (576, 200), 'white')
-            d = ImageDraw.Draw(img)
-            font = ImageFont.truetype(
-                "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 36
-            )
-            d.text((10, 10), "Погода", font=font, fill='black')
-            d.text((10, 50), f"Температура: {data.get('temp', 'N/A')}°C", font=font, fill='black')
-            d.text((10, 90), f"Влажность: {data.get('humidity', 'N/A')}%", font=font, fill='black')
-            d.text((10, 130), f"Давление: {data.get('pressure', 'N/A')} мм", font=font, fill='black')
-
-            printer.image(img)
-            printer.cut()
-            printer.text("")
-
-            logger.info("Печать успешна")
-        except Exception as e:
-            logger.exception(f"Ошибка печати: {e}")
-        finally:
-            print_queue.task_done()
-
-
-# Запускаем воркер один раз при импорте модуля
-Thread(target=printer_worker, daemon=True).start()
-
-
 # ─────────────────────────────────────────────────────
 # Погода
 # ─────────────────────────────────────────────────────
@@ -95,7 +39,7 @@ class WeatherConditions:
         )
         return response.json()
 
-    def get_weather(self):
+    def get_weather(self):   
         raw_data = self._request_weather()
         self.weather_now = {
             "temp": f"{raw_data['main']['temp']}",
@@ -105,6 +49,4 @@ class WeatherConditions:
             "humidity": raw_data['main']['humidity'],
             "clouds": f"{raw_data['clouds']['all']} %",
         }
-        # Кладём задание в очередь — печать пойдёт в фоне
-        print_queue.put(self.weather_now)
         return self.weather_now
