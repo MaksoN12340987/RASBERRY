@@ -103,6 +103,11 @@ class Printer():
             printer.text(f"Pressure: {data.get('pressure', 'N/A')} мм рт.ст.\n") # type: ignore
             printer.text(f"Water: {data.get('humidity', 'N/A')}%\n") # type: ignore
             
+            
+            printer._raw(b'\x1b\x74\x11')   # ESC t 17 = выбрать code table 17 (CP866)
+            printer.text("Погода\n", encoding='cp866')
+            
+            
             printer.text("\n\n")
             printer.cut()  # Отрезка бумаги
             
