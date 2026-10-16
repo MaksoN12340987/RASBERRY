@@ -1,7 +1,7 @@
 import os
 import logging
 import requests # type: ignore
-from escpos.printer import Serial
+from escpos.printer import Serial # type: ignore
 
 logger_weather_conditions = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")
@@ -62,7 +62,7 @@ class Printer():
     stopbits=1
     parity='N'
     timeout=1.00
-    xonxoff=True
+    xonxoff=False
     
     def __str__(self) -> str:
         return f"{self.devfile}, {self.baudrate} bot, byte-{self.bytesize}, stopbits={self.stopbits}, parity={self.parity}, {self.timeout} sec"
@@ -76,25 +76,25 @@ class Printer():
                 baudrate=self.baudrate, 
                 bytesize=self.bytesize, 
                 # parity=self.parity, 
-                # stopbits=self.stopbits, 
+                stopbits=self.stopbits, 
                 timeout=self.timeout, 
                 xonxoff=self.xonxoff)
             
             # Печать данных
             # printer.set(align='center', font='a', width=2, height=2, custom_size=True)
-            printer.text(f"""
-            ПОГОДА
-            Температура: {data.get('temp', 'N/A')}°C
-            На улице: {data.get('status', 'N/A')}
-            Давление: {data.get('pressure', 'N/A')}
-            Влажность: {data.get('humidity', 'N/A')}%
-            """)
+            # printer.text(f"""
+            # ПОГОДА
+            # Температура: {data.get('temp', 'N/A')}°C
+            # На улице: {data.get('status', 'N/A')}
+            # Давление: {data.get('pressure', 'N/A')}
+            # Влажность: {data.get('humidity', 'N/A')}%
+            # """)
             # printer.set(align='center', font='a', width=1, height=1)
             # printer.text("----------------\n")
             
             # # Пример вывода данных
             # printer.set(align='left')
-            # printer.text(f"Температура: {data.get('temp', 'N/A')}°C\n") # type: ignore
+            printer.text(f"Температура: {data.get('temp', 'N/A')}°C\n") # type: ignore
             # printer.text(f"На улице: {data.get('status', 'N/A')}\n") # type: ignore
             # printer.text(f"Давление: {data.get('pressure', 'N/A')} мм рт.ст.\n") # type: ignore
             # printer.text(f"Влажность: {data.get('humidity', 'N/A')}%\n") # type: ignore
@@ -105,4 +105,3 @@ class Printer():
             logger_weather_conditions.info("Печать успешна")
         except Exception as e:
             logger_weather_conditions.info(e)
-            
