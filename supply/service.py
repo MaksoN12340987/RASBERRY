@@ -1,11 +1,6 @@
 import os
 import logging
 import requests
-from escpos.printer import Serial
-import serial
-from PIL import Image, ImageDraw, ImageFont
-from queue import Queue
-from threading import Thread
 
 logger = logging.getLogger(__name__)
 file_handler = logging.FileHandler(f"log/{__name__}.log", mode="a", encoding="UTF8")

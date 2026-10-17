@@ -19,6 +19,7 @@ class Print_VKP80():
     bytesize=8
     stopbits=1
     parity=serial.PARITY_ODD
+    # parity='0'
     timeout=1.00
     xonxoff=False
     encoding='cp866'
@@ -29,7 +30,7 @@ class Print_VKP80():
     stopbits={self.stopbits}, parity={self.parity}, 
     {self.timeout} sec, encoding={self.encoding}"""
 
-    def printer_worker(self, data={}):
+    def print_weather(self, data={}):
         """Фоновый поток: открывает порт один раз и печатает задания из очереди."""
         printer = Serial(
             devfile=self.devfile, 
@@ -65,3 +66,59 @@ class Print_VKP80():
             logger_printer.info("Печать успешна")
         except Exception as e:
             logger_printer.exception(f"Ошибка печати: {e}")
+
+    def print_str(self, data=''):
+        printer = Serial(
+            devfile=self.devfile, 
+            baudrate=self.baudrate, 
+            bytesize=self.bytesize, 
+            parity=self.parity, 
+            stopbits=self.stopbits, 
+            timeout=self.timeout, 
+            xonxoff=self.xonxoff,
+            encoding=self.encoding
+        )
+        
+        # logger_printer.info(f"""{data}""")
+        try:
+            printer.text(data)
+            
+            # for char in data:
+            #     if len(to_print) < len_str:
+            #         to_print.join(char)
+            #         logger_printer.info(to_print)
+            #     else:
+            #         to_print.join("-")
+            #         # printer.text(to_print)
+            #         logger_printer.info(to_print)
+            #         to_print = ""
+                    
+
+            printer.cut()
+            printer.text(" ")
+
+            logger_printer.info("Печать успешна")
+        except Exception as e:
+            logger_printer.exception(f"Ошибка печати: {e}")
+
+    def test_encode(self):
+        printer = Serial(
+            devfile=self.devfile, 
+            baudrate=self.baudrate, 
+            bytesize=self.bytesize, 
+            parity=self.parity, 
+            stopbits=self.stopbits, 
+            timeout=self.timeout, 
+            xonxoff=self.xonxoff,
+            encoding=self.encoding
+        )
+        
+        for enc in ['cp866', 'cp1251', 'cp855', 'cp858']:
+            try:
+                printer.charcode(enc.upper())
+                printer.text(f"Проверка {enc}: Погода -10°C\n")
+                printer.text("\n")
+            except Exception as e:
+                print(f"{enc}: {e}")
+        
+        printer.cut()
