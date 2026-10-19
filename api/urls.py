@@ -1,5 +1,5 @@
 from django.urls import path
-from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken.views import obtain_auth_token
 
 from .apps import ApiConfig
 from .views import (
@@ -25,6 +25,8 @@ urlpatterns = [
     path("Add_favorites/<int:pk>/", AddFavorite.as_view(), name="Add_favorites"),
     
     # Users
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
+    
     path("lessons/", UsersAPI.as_view(), name="JSON_users"),
     path("lesson/<int:pk>/", User.as_view(), name="JSON_user"),
     path("lesson/<int:pk>/update/", UpdateUsersAPI.as_view(), name="JSON_users"),
