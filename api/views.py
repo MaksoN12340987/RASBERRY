@@ -12,10 +12,9 @@ logger_views.setLevel(logging.INFO)
 
 from rest_framework import generics
 from supply.models import SupplySwitch
-from .serializers import SupplySerializer
+from .serializers import SupplySerializer, UserSerializer
 from supply.i2c import SwitchI2C
-from rest_framework.decorators import action
-from rest_framework.response import Response
+from users.models import HomeUser
 
 class FavoriteViewSet(generics.ListAPIView):
     serializer_class = SupplySerializer
@@ -23,8 +22,7 @@ class FavoriteViewSet(generics.ListAPIView):
     
 class AddFavorite(generics.UpdateAPIView):
     serializer_class = SupplySerializer
-    queryset = SupplySwitch.objects.all()
-    
+    queryset = SupplySwitch.objects.all() 
 
 class SwitchAPI(generics.ListAPIView):
     serializer_class = SupplySerializer
@@ -49,6 +47,26 @@ class OnOffAPI(generics.UpdateAPIView):
 
         return super().update(request, *args, **kwargs)
 
-
 class CreateSwitchAPI(generics.CreateAPIView):
     serializer_class = SupplySerializer
+
+
+
+class UsersAPI(generics.ListAPIView):
+    serializer_class = UserSerializer
+    queryset = HomeUser.objects.all()
+
+class User(generics.RetrieveAPIView):
+    serializer_class = UserSerializer
+    queryset = HomeUser.objects.all()
+
+class UpdateUsersAPI(generics.UpdateAPIView):
+    serializer_class = UserSerializer
+    queryset = HomeUser.objects.all()
+
+class DeleteUsersAPI(generics.DestroyAPIView):
+    serializer_class = UserSerializer
+    queryset = HomeUser.objects.all()
+
+class CreateUsersAPI(generics.CreateAPIView):
+    serializer_class = UserSerializer
