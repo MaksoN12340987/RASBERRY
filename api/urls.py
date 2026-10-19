@@ -27,9 +27,9 @@ urlpatterns = [
     # Users
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     
-    path("lessons/", UsersAPI.as_view(), name="JSON_users"),
-    path("lesson/<int:pk>/", User.as_view(), name="JSON_user"),
-    path("lesson/<int:pk>/update/", UpdateUsersAPI.as_view(), name="JSON_users"),
-    path("lesson/<int:pk>/delete/", DeleteUsersAPI.as_view(), name="JSON_users"),
-    path("lesson/", CreateUsersAPI.as_view(), name="JSON_users"),
+    path("users/", UsersAPI.as_view(), name="JSON_users"),
+    path("user/<int:pk>/", User.as_view(), name="JSON_user"),
+    path("user/<int:pk>/update/", UpdateUsersAPI.as_view(), name="JSON_users"),
+    path("user/<int:pk>/delete/", DeleteUsersAPI.as_view(), name="JSON_users"),
+    path("user/create/", CreateUsersAPI.as_view(), name="JSON_users"),
 ]
