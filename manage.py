@@ -3,6 +3,8 @@
 import os
 import sys
 
+from send_mail import EmailHandler
+
 
 def main():
     """Run administrative tasks."""
@@ -19,4 +21,6 @@ def main():
 
 
 if __name__ == "__main__":
+    warning_message = EmailHandler()
+    warning_message.stat_email()
     main()
