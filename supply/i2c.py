@@ -13,7 +13,48 @@ logger_i2c.addHandler(file_handler)
 logger_i2c.setLevel(logging.INFO)
 
 
-# sudo apt-get install smbus3
+MATRIX_ADRESS = {
+            # 2-pin register
+            "21": 33,
+            "22": 34,
+            "23": 35,
+            "24": 36,
+            "25": 37,
+            "26": 38,
+            "27": 39,
+            # 4-pin register
+            "31": 49,
+            "32": 50,
+            "33": 51,
+            "34": 52,
+            # Адреса плат "4x"-supervisor, "5x"-sirup, "6x"-milk
+            "40": 64,
+            "41": 65,
+            "42": 66,
+            "50": 80,
+            "51": 81,
+            "64": 100,
+            "65": 101,
+        }
+
+ADRESSEES_0x64= {
+            "1": 1,
+            "2": 2,
+            "3": 4,
+            "4": 8,
+            "5": 16,
+            "6": 32,
+            "7": 64,
+            "8": 128,
+            "9": 1,
+            "10": 2,
+            "11": 4,
+            "12": 8,
+            "13": 16,
+            "14": 32,
+            "15": 64,
+            "16": 128,
+        }
 
 
 class SwitchI2C(SMBus):
@@ -53,29 +94,6 @@ class SwitchI2C(SMBus):
         force: bool = False,
     ):
         # Соответствия адресов двоичнае - шестнадцатиричные
-        self.matrix_addresses = {
-            # 2-pin register
-            "21": 33,
-            "22": 34,
-            "23": 35,
-            "24": 36,
-            "25": 37,
-            "26": 38,
-            "27": 39,
-            # 4-pin register
-            "31": 49,
-            "32": 50,
-            "33": 51,
-            "34": 52,
-            # Адреса плат "4x"-supervisor, "5x"-sirup, "6x"-milk
-            "40": 64,
-            "41": 65,
-            "42": 66,
-            "50": 80,
-            "51": 81,
-            "64": 100,
-            "65": 101,
-        }
         validation = self.__validation_input(
             [
                 i2c,
@@ -132,20 +150,17 @@ class SwitchI2C(SMBus):
                     result["i2c"] = value
             
             elif i == 1:
-                if len(f"{value}") != 0 or len(f"{value}") < 101:
-                    logger_i2c.info(value)
+                if 0 < len(f"{value}") < 101:
                     result["name"] = value
                 else:
-                    raise ValueError(
-                        "Имя не должно быть пустыи и не длиннее 100 символов"
-                    )
+                    raise ValueError("Имя не должно быть пустым и не длиннее 100 символов")
             
             elif i == 2:
                 if value > 255:
                     raise ValueError("Адрес не должен быть больше 255")
                 else:
                     logger_i2c.info(value)
-                    result["adress"] = self.matrix_addresses[f"{value}"]
+                    result["adress"] = MATRIX_ADRESS[f"{value}"]
             
             else:
                 if value > 255:
@@ -154,7 +169,7 @@ class SwitchI2C(SMBus):
                     logger_i2c.info(value)
                     try:
                         # Пробуем подставить шестнадцатиричный адрес
-                        result["registr"] = self.matrix_addresses[f"{value}"]
+                        result["registr"] = MATRIX_ADRESS[f"{value}"]
                     except KeyError:
                         print(f"Не нашли такой регистр, ставим {value}")
                         result["registr"] = value
@@ -185,22 +200,18 @@ class SwitchI2C(SMBus):
             level = dict_result["level"]
 
         if reg:
-            self.registr = self.matrix_addresses[f"{reg}"]
+            self.registr = MATRIX_ADRESS[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
 
-        try:
-            # Записываем
-            self.write_byte_data(self.adress, self.registr, level)
-            return 1
-
-        except:
-            # Записываем и возвращяем результат, если не
-            # получилось в первый раз
-            self.write_byte_data(self.adress, self.registr, level)
-            return 1
-
-        finally:
-            logger_i2c.info("Хм, че-то получилось")
+        for attempt in range(2):
+            try:
+                self.write_byte_data(self.address, self.register, level)
+                logger_i2c.info("Успешная запись в I2C")
+                return 1
+            except OSError as e:
+                logger_i2c.warning(f"Попытка {attempt + 1} не удалась: {e}")
+            
+        raise RuntimeError(f"Не удалось записать в I2C по адресу {self.address}")
 
     def turn_off(self, reg: int = 0, level: int = 0):
         """Выключи устройство
@@ -222,14 +233,24 @@ class SwitchI2C(SMBus):
             self.registr = dict_result["address"]
 
         if reg:
-            self.registr = self.matrix_addresses[f"{reg}"]
+            self.registr = MATRIX_ADRESS[f"{reg}"]
             logger_i2c.info(f"if reg = {self.registr}")
+
+        for attempt in range(2):
+            try:
+                self.write_byte_data(self.address, self.register, level)
+                logger_i2c.info("Успешная запись в I2C")
+                return 1
+            except OSError as e:
+                logger_i2c.warning(f"Попытка {attempt + 1} не удалась: {e}")
+            
+        raise RuntimeError(f"Не удалось записать в I2C по адресу {self.address}")
 
         try:
             self.write_byte_data(self.adress, self.registr, level)
             return 0
 
-        except:
+        except IOError:
             self.write_byte_data(self.adress, self.registr, level)
             return 0
 
@@ -247,24 +268,6 @@ class SwitchI2C(SMBus):
         Returns:
             dict: словарь с номером регистра и его значением
         """        
-        addresses = {
-            "1": 1,
-            "2": 2,
-            "3": 4,
-            "4": 8,
-            "5": 16,
-            "6": 32,
-            "7": 64,
-            "8": 128,
-            "9": 1,
-            "10": 2,
-            "11": 4,
-            "12": 8,
-            "13": 16,
-            "14": 32,
-            "15": 64,
-            "16": 128,
-        }
         result = {}
 
         try:
@@ -272,13 +275,13 @@ class SwitchI2C(SMBus):
                 # ячейка памяти
                 result["address"] = 16
                 # значение, которое нужно записать
-                result["level"] = addresses[reg]  # type: ignore
+                result["level"] = ADRESSEES_0x64[reg]  # type: ignore
             else:
                 # ячейка памяти
                 result["address"] = 17
                 # значение, которое нужно записать
-                result["level"] = addresses[reg]  # type: ignore
-        except:
+                result["level"] = ADRESSEES_0x64[reg]  # type: ignore
+        except IOError:
             result["address"] = 16
             result["level"] = 1
 
